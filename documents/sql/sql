@@ -1,0 +1,66 @@
+-- お客様情報テーブル
+DROP TABLE IF EXISTS users;
+CREATE TABLE users 
+(id serial primary key,
+name text NOT NULL UNIQUE,
+email text NOT NULL UNIQUE,
+password text NOT NULL,
+zipcode text NOT NULL,
+telephone text NOT NULL
+);
+
+--　商品情報テーブル
+DROP TABLE IF EXISTS items;
+CREATE TABLE order_items
+(id serial primary key,
+name text NOT NULL UNIQUE,
+description text NOT NULL,
+price_m int NOT NULL,
+price_l int NOT NULL,
+image_path text NOT NULL UNIQUE,
+deleted boolean not null default false
+);
+
+-- トッピング情報テーブル
+DROP TABLE IF EXISTS toppings;
+CREATE TABLE toppings
+(id serial primary key,
+name text NOT NULL UNIQUE,
+price_m int NOT NULL,
+price_l int NOT NULL
+);
+
+--　注文情報テーブル
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders
+(id serial primary key,
+userid int NOT NULL,
+status int NOT NULL,
+total_price int NOT NULL,
+order_date date NOT NULL,
+destination_name text NOT NULL,
+destination_email text NOT NULL,
+destination_zipcode text NOT NULL,
+destination_address text NOT NULL,
+destination_tel text NOT NULL,
+delivery_time timestamp NOT NULL,
+payment_method int NOT NULL
+);
+
+-- 注文トッピング情報テーブル
+DROP TABLE IF EXISTS order_toppings;
+CREATE TABLE order_toppings
+(id serial primary key,
+topping_id int NOT NULL,
+order_item_id int NOT NULL
+);
+
+--　注文商品情報テーブル
+DROP TABLE IF EXISTS order_items;
+CREATE TABLE order_items
+(id serial primary key,
+item_id int NOT NULL,
+order_id int NOT NULL,
+quantity int NOT NULL,
+size char(1) NOT NULL
+);
