@@ -11,7 +11,7 @@ telephone text NOT NULL
 
 --　商品情報テーブル
 DROP TABLE IF EXISTS items;
-CREATE TABLE order_items
+CREATE TABLE items
 (id serial primary key,
 name text NOT NULL UNIQUE,
 description text NOT NULL,
