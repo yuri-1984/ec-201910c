@@ -137,7 +137,7 @@ public class Order {
 		int tax = 0;
 		for (OrderItem orderitem : orderItemList) {
 
-			tax = (int) (orderitem.getSubTotal() * 0.1);
+			tax += (int) (orderitem.getSubTotal() * 0.1);
 		}
 
 		return tax;

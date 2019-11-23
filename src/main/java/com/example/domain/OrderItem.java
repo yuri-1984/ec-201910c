@@ -13,18 +13,21 @@ public class OrderItem {
 
 	public int getSubTotal() {
 		int subtotal = 0;
+		int toppingTotal = 0;
 		if (size.equals("M")) {
 			for (OrderTopping topping : orderToppingList) {
+				toppingTotal += topping.getTopping().getPriceM();
 
-				subtotal = (item.getPriceM() + topping.getTopping().getPriceM()) * quantity;
 			}
+			subtotal = (item.getPriceM() + toppingTotal) * quantity;
 
 		} else {
 			for (OrderTopping topping : orderToppingList) {
 
-				subtotal = (item.getPriceL() + topping.getTopping().getPriceL()) * quantity;
+				toppingTotal += topping.getTopping().getPriceL();
 
 			}
+			subtotal = (item.getPriceL() + toppingTotal) * quantity;
 		}
 
 		return subtotal;
