@@ -178,7 +178,7 @@
 				<!-- ページング機能 -->
 				<div th:if="${itemPage.totalPages > 0}" class="pagination"
 				    th:each="pageNumber : ${pageNumbers}">
-				    <a th:href="@{/item/showList(size=${itemPage.size}, page=${pageNumber}, searchName=${searchName})}"
+				    <a th:href="@{/show-item-list(size=${itemPage.size}, page=${pageNumber}, searchName=${searchName})}"
 				        th:text=${pageNumber}
 				        th:class="${pageNumber==itemPage.number + 1} ? active"></a>
 				</div>
