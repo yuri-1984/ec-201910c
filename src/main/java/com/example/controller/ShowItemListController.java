@@ -26,7 +26,7 @@ public class ShowItemListController {
 	@Autowired
 	private ItemService service;
 	
-	private static final int VIEW_SIZE = 10;
+	private static final int VIEW_SIZE = 9;
 
 	/**
 	 * 全商品情報を表示します.
@@ -52,7 +52,7 @@ public class ShowItemListController {
 		// ページングのリンクに使うページ数をスコープに格納 (例)28件あり1ページにつき10件表示させる場合→1,2,3がpageNumbersに入る
 		List<Integer> pageNumbers = calcPageNumbers(model, itemPage);
 		model.addAttribute("pageNumbers", pageNumbers);		
-
+		
 		return "item_list";
 	}
 	
