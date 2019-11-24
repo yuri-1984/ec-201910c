@@ -51,7 +51,11 @@ public class ShowItemListController {
 
 		// ページングのリンクに使うページ数をスコープに格納 (例)28件あり1ページにつき10件表示させる場合→1,2,3がpageNumbersに入る
 		List<Integer> pageNumbers = calcPageNumbers(model, itemPage);
-		model.addAttribute("pageNumbers", pageNumbers);		
+		model.addAttribute("pageNumbers", pageNumbers);	
+		
+		// オートコンプリート用にJavaScriptの配列の中身を文字列で作ってスコープへ格納
+		StringBuilder itemListForAutocomplete = service.getItemListForAutocomplete(itemList);
+		model.addAttribute("itemListForAutocomplete", itemListForAutocomplete);		
 		
 		return "item_list";
 	}

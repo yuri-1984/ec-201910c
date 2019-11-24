@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.domain.Item;
 import com.example.repository.ItemRepository;
 
-
 /**
  * 商品情報を操作するサービスクラス.
  * 
@@ -74,6 +73,27 @@ public class ItemService {
 	    Page<Item> itemPage
 	      = new PageImpl<Item>(list, PageRequest.of(page, size), itemList.size());
 	    return itemPage;
+	}
+	
+	/**
+	 * オートコンプリート用にJavaScriptの配列の中身を文字列で作ります.
+	 * 
+	 * @param itemList 商品一覧
+	 * @return　オートコンプリート用JavaScriptの配列の文字列
+	 * 　　　　　(例) "渡辺三郎","佐藤次郎","山本八郎","小林九子"
+	 */
+	public StringBuilder getItemListForAutocomplete(List<Item> itemList) {
+		StringBuilder itemListForAutocomplete = new StringBuilder();
+		for (int i = 0; i < itemList.size(); i++) {
+			if (i != 0) {
+				itemListForAutocomplete.append(",");
+			}
+			Item item = itemList.get(i);
+			itemListForAutocomplete.append("\"");
+			itemListForAutocomplete.append(item.getName());
+			itemListForAutocomplete.append("\"");
+		}
+		return itemListForAutocomplete;
 	}
 
 }
