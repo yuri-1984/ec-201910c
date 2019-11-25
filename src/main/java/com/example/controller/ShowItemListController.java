@@ -34,17 +34,26 @@ public class ShowItemListController {
 	 * @param model 全商品情報を格納
 	 * @return 全商品情報
 	 */
-	@RequestMapping("/showItemList")
-	public String showItemList(Model model, Integer page) {
-		
+
+	@RequestMapping("/")
+	public String showItemList(String findName,Integer page,Model model) {
 		if(page == null) {
 			//ページ数の指定がない場合は１ページ目を表示させる
 			page = 1;
 		}
 		
-		List<Item> itemList = service.showList();
-		model.addAttribute("itemList", itemList);
-		
+		List<Item> itemList = null;
+		if (findName == null) {
+			//初期画面遷移
+			itemList = service.showList();
+		}else if (findName.equals("")) {
+			// 入力フィールドが空文字の場合、全商品を表示します。
+			itemList = service.showList();
+		} else {
+			// 入力フィールドの文字列で曖昧検索を行います。
+			itemList = service.findByName(findName);
+		}
+		System.out.println(itemList);
 		// 表示させたいページ数、ページサイズ、従業員リストを渡し１ページに表示させる従業員リストを絞り込み
 		Page<Item> itemPage = service.showListPaging(page, VIEW_SIZE, itemList);
 		model.addAttribute("itemPage", itemPage);
@@ -57,6 +66,7 @@ public class ShowItemListController {
 		StringBuilder itemListForAutocomplete = service.getItemListForAutocomplete(itemList);
 		model.addAttribute("itemListForAutocomplete", itemListForAutocomplete);		
 		
+		System.out.println(model);
 		return "item_list";
 	}
 	
@@ -77,12 +87,4 @@ public class ShowItemListController {
 		}
 		return pageNumbers;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

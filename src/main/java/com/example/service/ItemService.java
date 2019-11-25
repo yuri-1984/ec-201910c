@@ -80,7 +80,6 @@ public class ItemService {
 	 * 
 	 * @param itemList 商品一覧
 	 * @return　オートコンプリート用JavaScriptの配列の文字列
-	 * 　　　　　(例) "渡辺三郎","佐藤次郎","山本八郎","小林九子"
 	 */
 	public StringBuilder getItemListForAutocomplete(List<Item> itemList) {
 		StringBuilder itemListForAutocomplete = new StringBuilder();
