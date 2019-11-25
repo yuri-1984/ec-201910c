@@ -20,6 +20,8 @@ public class RegisterUserForm {
 	/**	パスワード */
 	@NotBlank(message="*入力は必須です")
 	private String password;
+	@NotBlank(message="*入力は必須です")
+	private String confirmationPassword;	
 	/**	郵便番号 */
 	@NotBlank(message="*入力は必須です")
 	private String zipcode;
@@ -54,6 +56,12 @@ public class RegisterUserForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getConfirmationPassword() {
+		return confirmationPassword;
+	}
+	public void setConfirmationPassword(String confirmationPassword) {
+		this.confirmationPassword = confirmationPassword;
+	}
 	public String getZipcode() {
 		return zipcode;
 	}
@@ -74,10 +82,9 @@ public class RegisterUserForm {
 	}
 	@Override
 	public String toString() {
-		return "UserRegisterForm [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", zipcode=" + zipcode + ", address=" + address + ", telephone=" + telephone + "]";
+		return "RegisterUserForm [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", confirmationPassword=" + confirmationPassword + ", zipcode=" + zipcode + ", address=" + address
+				+ ", telephone=" + telephone + "]";
 	}
-	
-	
 	
 }
