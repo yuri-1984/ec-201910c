@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.service.ShowOrderService;
 
 /**
- * 注文内容を操作するコントローラー
+ * 注文内容を操作するコントローラー.
  * @author shun053012
  *
  */
@@ -29,14 +29,14 @@ public class ShowOrderController {
 	}
 	
 	/**
-	 * 注文内容確認画面を表示する
+	 * 注文内容確認画面を表示する.
 	 * 
 	 * @param userId
 	 * @param status
 	 * @param model
 	 * @return　注文内容確認画面
 	 */
-	@RequestMapping("")
+	@RequestMapping("/showorder1")
 	public String ShowOrder(Integer userId,Integer status,Model model) {
 		if(userId==null) {
 			return "login";

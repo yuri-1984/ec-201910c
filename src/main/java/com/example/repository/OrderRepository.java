@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 
 import com.example.domain.Order;
 
@@ -13,6 +14,7 @@ import com.example.domain.Order;
  * @author shun053012
  *
  */
+@Repository
 public class OrderRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
