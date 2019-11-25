@@ -1,33 +1,33 @@
 package com.example.form;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 /**
  * ユーザー登録のリクエストパラメータを受け取るフォームクラス.
  * @author yuichi
  *
  */
-public class UserRegisterForm {
+public class RegisterUserForm {
 	/**	ID */
-	@NotEmpty(message="*入力は必須です")
+	@NotBlank(message="*入力は必須です")
 	private Integer id;
 	/**	氏名 */
-	@NotEmpty(message="*入力は必須です")
+	@NotBlank(message="*入力は必須です")
 	private String name;
 	/**	メールアドレス */
-	@NotEmpty(message="*入力は必須です")
+	@NotBlank(message="*入力は必須です")
 	private String email;
 	/**	パスワード */
-	@NotEmpty(message="*入力は必須です")
+	@NotBlank(message="*入力は必須です")
 	private String password;
 	/**	郵便番号 */
-	@NotEmpty(message="*入力は必須です")
+	@NotBlank(message="*入力は必須です")
 	private String zipcode;
 	/**	住所 */
-	@NotEmpty(message="*入力は必須です")
+	@NotBlank(message="*入力は必須です")
 	private String address;
 	/**	電話番号 */
-	@NotEmpty(message="*入力は必須です")
+	@NotBlank(message="*入力は必須です")
 	private String telephone;
 	
 	public Integer getId() {

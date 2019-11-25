@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,9 +49,9 @@
 						<fieldset>
 							<legend>ユーザ登録</legend>
 							<div class="form-group">
-								<label for="inputName">名前:</label><label
-									class="control-label" style="color: red" for="inputError">名前を入力してください</label>
-								<input type="text" id="inputName" class="form-control"
+								<span th:errors="*{name}" style="color:red">エラーメッセージ</span>
+								<label for="inputName">名前:</label>
+								<input type="text" name="name" id="inputName" class="form-control"
 									placeholder="Name">
 							</div>
 							<div class="form-group">

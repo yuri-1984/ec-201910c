@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.User;
-import com.example.form.UserRegisterForm;
-import com.example.service.UserRegisterService;
+import com.example.form.RegisterUserForm;
+import com.example.service.RegisterUserService;
 
 /**
  * ユーザー登録処理を行うコントローラクラス.
@@ -22,7 +22,7 @@ import com.example.service.UserRegisterService;
 public class ResisterUserController {
 
 	@Autowired
-	private UserRegisterService userRegisterService;
+	private RegisterUserService userRegisterService;
 
 	/**
 	 * エラーチェック用.
@@ -30,8 +30,8 @@ public class ResisterUserController {
 	 * @return 空のフォームオブジェクト
 	 */
 	@ModelAttribute
-	public UserRegisterForm setUpUserRegisterForm() {
-		return new UserRegisterForm();
+	public RegisterUserForm setUpUserRegisterForm() {
+		return new RegisterUserForm();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class ResisterUserController {
 	@RequestMapping("/registerUser")
 	public String registerUser(
 			@Validated 
-			UserRegisterForm form,
+			RegisterUserForm form,
 			BindingResult result) {
 		if(result.hasErrors()) {
 			return "register_user.html";

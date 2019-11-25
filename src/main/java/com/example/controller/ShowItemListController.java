@@ -34,7 +34,7 @@ public class ShowItemListController {
 	 * @param model 全商品情報を格納
 	 * @return 全商品情報
 	 */
-	@RequestMapping("/show-item-list")
+	@RequestMapping("/showItemList")
 	public String showItemList(Model model, Integer page) {
 		
 		if(page == null) {

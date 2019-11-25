@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -73,7 +73,7 @@
 
 		<div class="row">
 			<div class="text-center">
-				<a href="register_user.html">ユーザ登録はこちら</a>
+				<a th:href="@{/showRegisterUserPage}">ユーザ登録はこちら</a>
 			</div>
 		</div>
 		

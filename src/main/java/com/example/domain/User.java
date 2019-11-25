@@ -1,17 +1,25 @@
 package com.example.domain;
 
+
 /**
  * 利用者情報登録のエンティティクラス.
  * 
  * @author hiraokayuri
  */
 public class User {
+	/**	ID */
 	private Integer id;
+	/**	氏名 */
 	private String name;
+	/**	メールアドレス */
 	private String email;
+	/**	パスワード */
 	private String password;
+	/**	郵便番号 */
 	private String zipcode;
+	/**	住所 */
 	private String address;
+	/**	電話番号 */
 	private String telephone;
 	
 	public User(){

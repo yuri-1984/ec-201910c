@@ -9,7 +9,7 @@ import com.example.repository.UserRepository;
 
 @Service
 @Transactional
-public class UserRegisterService {
+public class RegisterUserService {
 
 	@Autowired
 	private UserRepository userRepository;
