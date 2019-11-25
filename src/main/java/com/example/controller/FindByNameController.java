@@ -18,7 +18,7 @@ import com.example.service.ItemService;
  */
 @Controller
 @RequestMapping("")
-public class FindByNameController {
+public class FindByNameController{
 
 	@Autowired
 	private ItemService service;
