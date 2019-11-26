@@ -25,15 +25,10 @@ public class ShowOrderController {
 	 * @param model
 	 * @return　注文内容確認画面
 	 */
-<<<<<<< HEAD
-	@RequestMapping("/showConfirmOrder")
-	public String ShowConfirmOrder(Integer userId,Integer status,Model model) {
-		if(userId == null) {
-=======
+
 	@RequestMapping("/showorder1")
 	public String ShowOrder(Integer userId,Model model) {
 		if(userId==null) {
->>>>>>> feature/login
 			return "login";
 		}else {
 			Object order = showOrderservice.showOrder(userId);
