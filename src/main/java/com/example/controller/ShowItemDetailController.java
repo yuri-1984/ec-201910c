@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Item;
 import com.example.service.ShowItemDetailService;
 
+/**
+ * 商品の詳細を表示するコントローラクラス.
+ * @author yuichi
+ *
+ */
 @Controller
 public class ShowItemDetailController {
 

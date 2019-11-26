@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
  */
 public class RegisterUserForm {
 	/**	ID */
-	@NotBlank(message="*入力は必須です")
 	private Integer id;
 	/**	氏名 */
 	@NotBlank(message="*入力は必須です")

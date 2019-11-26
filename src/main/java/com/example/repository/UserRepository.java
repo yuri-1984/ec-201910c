@@ -37,11 +37,11 @@ public class UserRepository {
 	 * @param user 登録するユーザー情報
 	 */
 	public void insert(User user) {
-		String sql = "INSERT INTO users(id,name,email,password,zipcode,address,telephone) "
+		String sql = "INSERT INTO users(name,email,password,zipcode,address,telephone) "
 				+ "VALUES(:name,:email,:password,:zipcode,:address,:telephone)";
 		SqlParameterSource param = new MapSqlParameterSource()
 				.addValue("name", user.getName())
-				.addValue("email", user.getName())
+				.addValue("email", user.getEmail())
 				.addValue("password", user.getPassword())
 				.addValue("zipcode", user.getZipcode())
 				.addValue("address", user.getAddress())
