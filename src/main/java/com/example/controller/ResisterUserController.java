@@ -54,10 +54,19 @@ public class ResisterUserController {
 			RegisterUserForm form,
 			BindingResult result,
 			Model model) {
+		// 条件1：メールアドレスが重複していないかチェック
+		if (userRegisterService.findByEmail(form.getEmail()) != null) {
+			result.rejectValue("email", "", "*既に登録されているメールアドレスです");
+		}
+		// 条件2：パスワードが一致しているかどうかチェック
+		if (!(form.getPassword().equals(form.getConfirmationPassword()))) {
+			result.rejectValue("confirmationPassword", "", "*入力されたパスワードと異なります");
+		}
+		// 条件3：上記以外にエラーがないかチェック
 		if(result.hasErrors()) {			
 			return showRegisterUserPage();
 		}
-		System.out.println(form);
+		// 条件4：何もエラーがない場合
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
 		userRegisterService.registerUser(user);
