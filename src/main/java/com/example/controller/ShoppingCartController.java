@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping("")
 public class ShoppingCartController {
+
 //	@Autowired
 //	private HttpSession session;
-//
-//	@RequestMapping("/showOrder")
-//	public String showOrder() {
+
+	@RequestMapping("/showCartList")
+	public String showCartList() {
 //		Integer userId = Integer.valueOf(session.getId());
-////		ShoppingCartService.showOrder(userId);
-//
-//		return "Cart_list";
-//	}
+//		ShoppingCartService.showOrder(userId);
+
+		return "cart_list.html";
+	}
 //
 //	@RequestMapping("/deleteOrder")
 //	public String deleteOrder(Integer orderItemId){
