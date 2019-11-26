@@ -52,7 +52,7 @@
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<h3 class="text-center">ショッピングカート</h3>
 				<table class="table table-striped">
-					<tbody>
+					<tbody th:each="orderItem : ${Order.orderItemList}">
 						<tr>
 							<th>
 								<div class="text-center">
@@ -80,25 +80,25 @@
 						<tr>
 							<td>
 								<div class="center">
-									<img src="img/1.jpg" 
+									<img src="img/1.jpg"  th:src="'/img/' + ${orderItem.item.imagePath}"
 										class="img-responsive img-rounded" width="100" height="300"><br>
-									じゃがバターベーコン
+									<span th:text="${orderItem.item.name}">じゃがバターベーコン</span>
 								</div>
 							</td>
 							<td>
-								<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-								&nbsp;&nbsp;1個
+								<span class="price">&nbsp;<span th:text="${orderItem.size}">Ｌ</span></span>&nbsp;&nbsp;<span th:text="${orderItem.item.priceM}">2,380</span>円
+								&nbsp;&nbsp;<span th:text="${orderItem.quantity}">1個</span>
 							</td>
 							<td>
-								<ul>
-									<li>ピーマン300円</li>
+								<ul th:each="orderTopping : ${orderItem.orderToppingList}">
+									<li th:text="${orderTopping.priceM}">ピーマン300円</li>
 									<li>オニオン300円</li>
 									<li>あらびきソーセージ300円</li>
 								</ul>
 							</td>
 							<td>
 								<div class="text-center">
-									3,280円
+									<span th:text="${Order.totalPrice}">3,280円</span>
 								</div>
 							</td>
 							<td>
@@ -107,7 +107,7 @@
 								</div>
 							</td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>
 								<div class="center">
 									<img src="img/1.jpg"
@@ -166,7 +166,7 @@
 									<button type="submit" class="btn btn-primary">削除</button>
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>

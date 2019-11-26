@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.math.BigInteger;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -32,7 +34,9 @@ public class ShoppingCartController {
 
 	@RequestMapping("/showCartList")
 	public String showCartList(Model model) {
-	Integer userId = Integer.valueOf(session.getId());
+//		Integer userId = Integer.valueOf(session.getId());	
+		int userId = new BigInteger(session.getId(),16).intValue();
+		System.out.println(userId);
 		 Order order = shoppingCartService.showCartList(userId);
 		if(order == null) {
 			model.addAttribute("message", "カートの中身が一つも入っていません。");
