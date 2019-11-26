@@ -36,7 +36,7 @@ public class OrderRepository {
 			if (rs.getInt("o_id") != preId) {
 				order = new Order();
 				order.setId(rs.getInt("o_id"));
-				order.setUserId(rs.getInt("o_userid"));
+				order.setUserId(rs.getInt("o_user_id"));
 				order.setStatus(rs.getInt("o_status"));
 				order.setTotalPrice(rs.getInt("o_total_price"));
 				order.setOrderDate(rs.getDate("o_order_date"));
@@ -81,7 +81,7 @@ public class OrderRepository {
 			if (rs.getInt("t_id") != 0) {
 				topping = new Topping();
 				topping.setId(rs.getInt("t_id"));
-				topping.setName(rs.getString("t_mame"));
+				topping.setName(rs.getString("t_name"));
 				topping.setPriceL(rs.getInt("t_price_m"));
 				topping.setPriceM(rs.getInt("t_price_l"));
 
@@ -89,7 +89,7 @@ public class OrderRepository {
 			if (rs.getInt("i_id") != 0) {
 				item = new Item();
 				item.setId(rs.getInt("i_id"));
-				item.setName(rs.getString("i_descroption"));
+				item.setName(rs.getString("i_description"));
 				item.setPriceM(rs.getInt("i_price_m"));
 				item.setPriceL(rs.getInt("i_price_l"));
 				item.setImagePath(rs.getString("i_image_path"));
