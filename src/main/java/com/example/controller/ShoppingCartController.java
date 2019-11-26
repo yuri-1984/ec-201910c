@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("")
 public class ShoppingCartController {
-//	@Autowired
-//	private HttpSession session;
-//
+	@Autowired
+	private HttpSession session;
+
 //	@RequestMapping("/showOrder")
 //	public String showOrder() {
 //		Integer userId = Integer.valueOf(session.getId());
-////		ShoppingCartService.showOrder(userId);
+//		ShoppingCartService.showOrder(userId);
 //
 //		return "Cart_list";
 //	}
@@ -34,7 +34,7 @@ public class ShoppingCartController {
 //			
 //	}
 //    @RequestMapping("/InsertOrderItem")
-////	public String InsertOrderItem(OrderItemForm) {
+//	public String InsertOrderItem(OrderItemForm) {
 //    	
 //    	
 //    	

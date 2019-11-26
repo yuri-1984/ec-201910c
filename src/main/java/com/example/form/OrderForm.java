@@ -26,7 +26,7 @@ public class OrderForm {
 	private String destinationTel;
 	@NotBlank(message="配達日時を入力してください")
 	private Timestamp deliveryTime;
-	private Integer paymenMethod;
+	private Integer paymentMethod;
 	private User user;
 	private List orderItemList;
 	
@@ -127,12 +127,12 @@ public class OrderForm {
 		this.deliveryTime = deliveryTime;
 	}
 
-	public Integer getPaymenMethod() {
-		return paymenMethod;
+	public Integer getPaymentMethod() {
+		return paymentMethod;
 	}
 
-	public void setPaymenMethod(Integer paymenMethod) {
-		this.paymenMethod = paymenMethod;
+	public void setPaymentMethod(Integer paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 	public User getUser() {
