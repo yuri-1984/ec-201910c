@@ -24,9 +24,9 @@ public class ShowOrderService {
 	private OrderRepository repository;
 
 	
-	public Order showOrder(Integer userId,Integer status) {
+	public Order showOrder(Integer userId) {
 		
-		Order order = repository.findByUserIdAndStatus(userId, status);
+		Order order = repository.findByUserIdAndStatus(userId,0);
 		return order;
 		
 		
