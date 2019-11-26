@@ -1,9 +1,18 @@
 package com.example.domain;
 
+/**
+ * トッピングのドメインクラス.
+ * @author yuichi
+ *
+ */
 public class Topping {
+	/**	トッピングID */
 	private Integer id;
+	/**	トッピング名 */
 	private String name;
+	/** Mサイズの価格 */
 	private Integer priceM;
+	/**	Lサイズの価格 */
 	private Integer priceL;
 
 	public Integer getId() {

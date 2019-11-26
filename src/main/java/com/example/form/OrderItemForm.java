@@ -3,19 +3,29 @@ package com.example.form;
 import java.util.List;
 
 import com.example.domain.Item;
+import com.example.domain.Topping;
 
+/**
+ * item_detail.htmlから注文された商品の
+ * リクエストパラメータを受け取るフォームクラス.
+ * @author yuichi
+ */
 public class OrderItemForm {
+	/** 注文された商品のID */
 	private Integer id;
+	/** 商品ID */
 	private Integer Itemid;
+	/** 注文ID */
 	private Integer orderId;
+	/** 数量 */
 	private Integer quantity;
+	/** サイズ */
 	private Character size;
+	/** 商品 */
 	private Item item;
-	private List orderTopingList;
-	
-	
-	
-	
+	/** トッピングリスト */
+	private List<Topping> orderTopingList;
+
 	public Integer getId() {
 		return id;
 	}
@@ -52,10 +62,10 @@ public class OrderItemForm {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	public List getOrderTopingList() {
+	public List<Topping> getOrderTopingList() {
 		return orderTopingList;
 	}
-	public void setOrderTopingList(List orderTopingList) {
+	public void setOrderTopingList(List<Topping> orderTopingList) {
 		this.orderTopingList = orderTopingList;
 	}
 	@Override
@@ -63,9 +73,4 @@ public class OrderItemForm {
 		return "OrderItemForm [id=" + id + ", Itemid=" + Itemid + ", orderId=" + orderId + ", quantity=" + quantity
 				+ ", size=" + size + ", item=" + item + ", orderTopingList=" + orderTopingList + "]";
 	}
-
-
-	}
-	
-
-
+}
