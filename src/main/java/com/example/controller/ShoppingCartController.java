@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ShoppingCartController {
 	@Autowired
 	private HttpSession session;
 	@Autowired
+	private ServletContext application;
+	@Autowired
 	private ShoppingCartService shoppingCartService;
 
 	@RequestMapping("/showCartList")
@@ -34,7 +37,7 @@ public class ShoppingCartController {
 		if(order == null) {
 			model.addAttribute("message", "カートの中身が一つも入っていません。");
 		}else{
-			model.addAttribute("order",order);
+			application.setAttribute("order",order);
 		}
 		return "cart_list";
 	}
