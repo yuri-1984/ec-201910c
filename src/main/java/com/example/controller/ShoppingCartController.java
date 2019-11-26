@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.math.BigInteger;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -34,14 +36,20 @@ public class ShoppingCartController {
 	private ShoppingCartService shoppingCartService;
 
 	@RequestMapping("/showCartList")
-	public String showCartList(OrderItemForm form, Model model) {
-		Integer userId = Integer.valueOf(session.getId());
-		Order order = shoppingCartService.showCartList(userId);
-		if (order == null) {
+
+	public String showCartList(Model model) {
+//		Integer userId = Integer.valueOf(session.getId());	
+//		sessionIdを10進数の数字に変換
+		int userId = new BigInteger(session.getId(),16).intValue();
+		System.out.println(userId);
+		 Order order = shoppingCartService.showCartList(userId);
+		if(order == null) {
 			model.addAttribute("message", "カートの中身が一つも入っていません。");
 		} else {
 			application.setAttribute("order", order);
 		}
+		
+		//エラーが解消できませんでしたが、わからなかったのでエラーのままpushします（橋本）
 
 		// order_toppingテーブルへの注文トッピングのINSERT
 		// チェックボックスで選択されたトッピングの数だけ繰り返す
@@ -63,6 +71,7 @@ public class ShoppingCartController {
 		//※価格の計算などはここまででは行っていない
 		
 		return "cart_list";
+		
 	}
 
 // @RequestMapping("/deleteOrder")
