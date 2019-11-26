@@ -37,11 +37,11 @@ public class ShowOrderController {
 	 * @return　注文内容確認画面
 	 */
 	@RequestMapping("/showorder1")
-	public String ShowOrder(Integer userId,Integer status,Model model) {
+	public String ShowOrder(Integer userId,Model model) {
 		if(userId==null) {
 			return "login";
 		}else {
-			Object order = showOrderservice.showOrder(userId, status);
+			Object order = showOrderservice.showOrder(userId);
 			model.addAttribute("order",order);
 			return "order_confirm";
 		}
