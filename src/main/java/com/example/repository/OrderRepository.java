@@ -108,7 +108,7 @@ public class OrderRepository {
 	 * @param status 注文前なので０を入れる.
 	 * @return 注文内容 Orderオブジェクト.
 	 */
-	public Order findByUserId(Integer userId) {
+	public Order findByUserIdAndStatus(Integer userId, Integer status) {
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		String sql = "SELECT o.id o_id,o.user_id o_user_id,o.status o_status,o.total_price o_total_price,o.order_date o_order_date,o.destination_name o_destination_name,o.destination_email o_destination_email,o.destination_zipcode o_destination_zipcode,o.destination_address o_destination_address,o.destination_tel o_destination_tel,o.delivery_time o_delivery_time,o.payment_method o_payment_method,"

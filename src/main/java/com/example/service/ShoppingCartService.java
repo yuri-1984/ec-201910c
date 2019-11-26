@@ -8,12 +8,14 @@ import com.example.repository.OrderRepository;
 
 @Service
 public class ShoppingCartService {
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
-	public Order showOrder(Integer userId) {
-		Order order = orderRepository.findByUserIdAndStatus(userId);
+
+	public Order showCartList(Integer userId) {
+		Order order = orderRepository.findByUserIdAndStatus(userId, 0);
+		return order;
+
 	}
 
 }

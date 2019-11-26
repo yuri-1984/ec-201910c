@@ -4,7 +4,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.domain.Order;
+import com.example.service.ShoppingCartService;
 
 /**
  * ショッピングカートの操作を行うコントローラー.
@@ -17,16 +21,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ShoppingCartController {
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 
-//	@RequestMapping("/showOrder")
-//	public String showOrder() {
-//		Integer userId = Integer.valueOf(session.getId());
-//		ShoppingCartService.showOrder(userId);
-//
-//		return "Cart_list";
-//	}
-//
-//	@RequestMapping("/deleteOrder")
+	@RequestMapping("/showCartList")
+	public String showCartList(Model model) {
+		Integer userId = Integer.valueOf(session.getId());
+		 Order order = shoppingCartService.showCartList(userId);
+		if(order == null) {
+			model.addAttribute("message", "カートの中身が一つも入っていません。");
+		}else {
+			model.addAttribute("order",order);
+		}
+		return "cart_list";
+	}
+
+//@RequestMapping("/deleteOrder")
 //	public String deleteOrder(Integer orderItemId){
 //		
 //		
