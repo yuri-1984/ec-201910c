@@ -2,6 +2,11 @@ package com.example.domain;
 
 import java.util.List;
 
+/**
+ * 注文された商品のドメインクラス.
+ * @author yuichi
+ *
+ */
 public class OrderItem {
 	/**	注文された商品のID */
 	private Integer id;
