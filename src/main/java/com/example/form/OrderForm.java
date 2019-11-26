@@ -10,7 +10,7 @@ import com.example.domain.User;
 
 public class OrderForm {
 	
-	private Integer orderId;
+	private Integer id;
 	private Integer userId;
 	private Integer status;
 	private Integer totalPrice;
@@ -39,12 +39,12 @@ public class OrderForm {
 		return (int) (totalPrice+(totalPrice*0.1));
 	}
 
-	public Integer getOrderId() {
-		return orderId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getUserId() {
