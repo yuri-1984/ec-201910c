@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,5 +23,16 @@ public class RegisterUserService {
 	public void registerUser(User user) {
 		userRepository.insert(user);
 	}
+	
+	/**
+	 * メールアドレスでユーザー情報を検索するメソッド.
+	 * @param email メールアドレス
+	 * @return 検索されたユーザー情報
+	 */
+	public List<User> findByEmail(String email) {
+		List<User> userList = userRepository.findByEmail(email);
+		return userList;
+	}
+	
 	
 }
