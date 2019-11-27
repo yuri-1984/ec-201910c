@@ -1,0 +1,2 @@
+【データベースを作成】
+createdb -U postgres -E utf-8 -W -e ec-201910c

@@ -1,10 +1,10 @@
-	<!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ピザ屋のネット注文</title>
+<title>注文履歴</title>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/piza.css" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -13,7 +13,7 @@
     <![endif]-->
 </head>
 <body>
-	<div class="container">
+<div class="container">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -34,8 +34,8 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
-						<a th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+			<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a th:href="@{showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
 						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;
 						<a href="item_list.html" class="navbar-link">ログアウト</a>
 					</p>
@@ -50,9 +50,9 @@
 		<div class="row">
 			<div
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
-				<h3 class="text-center">ショッピングカート</h3>
+				<h3 class="text-center">注文履歴</h3>
 				<table class="table table-striped">
-					<tbody th:each="orderItem : ${Order.orderItemList}">
+					<tbody>
 						<tr>
 							<th>
 								<div class="text-center">
@@ -80,30 +80,25 @@
 						<tr>
 							<td>
 								<div class="center">
-									<img src="img/1.jpg"  th:src="'/img/' + ${orderItem.item.imagePath}"
+									<img src="img/1.jpg"
 										class="img-responsive img-rounded" width="100" height="300"><br>
-									<span th:text="${orderItem.item.name}">じゃがバターベーコン</span>
+									じゃがバターベーコン
 								</div>
 							</td>
 							<td>
-<<<<<<< HEAD
-								<span class="price">&nbsp;<span th:text="${orderItem.size}">Ｌ</span></span>&nbsp;&nbsp;<span th:text="${orderItem.item.priceM}">2,380</span>円
-								&nbsp;&nbsp;<span th:text="${orderItem.quantity}">1個</span>
-=======
-								<span class="price" >&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
+								<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
 								&nbsp;&nbsp;1個
->>>>>>> feature/login
 							</td>
 							<td>
-								<ul th:each="orderTopping : ${orderItem.orderToppingList}">
-									<li th:text="${orderTopping.priceM}">ピーマン300円</li>
+								<ul>
+									<li>ピーマン300円</li>
 									<li>オニオン300円</li>
 									<li>あらびきソーセージ300円</li>
 								</ul>
 							</td>
 							<td>
 								<div class="text-center">
-									<span th:text="${Order.totalPrice}">3,280円</span>
+									3,280円
 								</div>
 							</td>
 							<td>
@@ -112,7 +107,7 @@
 								</div>
 							</td>
 						</tr>
-						<!-- <tr>
+						<tr>
 							<td>
 								<div class="center">
 									<img src="img/1.jpg"
@@ -171,11 +166,12 @@
 									<button type="submit" class="btn btn-primary">削除</button>
 								</div>
 							</td>
-						</tr> -->
+						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
+</div>
 
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
@@ -185,21 +181,10 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-xs-offset-5 col-xs-3">
-				<div class="form-group">
-					<form th:action="@{/showConfirmOrder}">
-						<input class="form-control btn btn-warning btn-block"
-							type="submit" value="注文に進む">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- end container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>
