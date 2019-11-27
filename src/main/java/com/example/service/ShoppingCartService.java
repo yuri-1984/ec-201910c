@@ -1,18 +1,14 @@
 package com.example.service;
 
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.domain.Order;
 import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
-import com.example.form.OrderForm;
 import com.example.form.OrderItemForm;
 import com.example.repository.OrderItemRepository;
 import com.example.repository.OrderRepository;
@@ -37,7 +33,6 @@ public class ShoppingCartService {
 	private OrderToppingRepository orderToppingRepository;
 	@Autowired
 	private OrderItemRepository orderItemRepository;
-	
 
 	/**
 	 * ショッピングカートの中身を表示するメソッド.
@@ -58,7 +53,7 @@ public class ShoppingCartService {
 	public void insertOrderTopping(OrderTopping orderTopping) {
 		orderToppingRepository.insert(orderTopping);
 	}
-	
+
 	/**
 	 * 注文商品を追加するメソッド.
 	 * 
@@ -67,41 +62,37 @@ public class ShoppingCartService {
 	public void insertOrderItem(OrderItem orderItem) {
 		orderItemRepository.insert(orderItem);
 	}
-	
-	public Order addItem(Integer userId, OrderItemForm orderItemform , OrderForm orderform) {
-		Order order =orderRepository.findByUserIdAndStatus(userId, 0);
-		if( order == null) {
-			
+
+	public void addItem(Integer userId, OrderItemForm orderItemform) {
+		Order preOrder = orderRepository.findByUserIdAndStatus(userId, 0);
+		Order order = new Order();
+		if (preOrder == null) {
+			order.setId(userId);
+			order.setStatus(0);
+			order.setTotalPrice(0);
 			orderRepository.insert(order);
 		}
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties("form", orderItem);
 		orderItem.setOrderId(order.getId());
 		orderItemRepository.insert(orderItem);
-		
-		//itemとorderトッピングリストはテーブル結合でとってきてorderItemにset
-		//orderItemをリクエストスコープに追加してフォワード？
-		//※価格の計算などはここまででは行っていない
-		OrderTopping orderTopping =new OrderTopping();
-		for (int toppingId : orderItemform.getToppingList()) {
-			
-			
-			
-			
-			
-		}
-			
-			orderToppingRepository.insert(orderTopping);
-			
-			
-			return null;
-		}
-		
-		
-		// order_toppingテーブルへの注文トッピングのINSERT
-		// チェックボックスで選択されたトッピングの数だけ繰り返す
 
-		
+		// itemとorderトッピングリストはテーブル結合でとってきてorderItemにset
+		// orderItemをリクエストスコープに追加してフォワード？
+		// ※価格の計算などはここまででは行っていない
+		OrderTopping orderTopping = new OrderTopping();
+		for (int toppingId : orderItemform.getToppingList()) {
+			orderTopping.setOrderItemId(orderItem.getId());
+			orderTopping.setToppingId(toppingId);
+			orderToppingRepository.insert(orderTopping);
+
+		}
+
+	}
+
+	// order_toppingテーブルへの注文トッピングのINSERT
+	// チェックボックスで選択されたトッピングの数だけ繰り返す
+
 //		// order_toppingテーブルへの注文トッピングのINSERT
 //		// チェックボックスで選択されたトッピングの数だけ繰り返す
 //		for (int i = 0; i < form.getToppingId().length; i++) {

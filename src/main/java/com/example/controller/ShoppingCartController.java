@@ -5,7 +5,6 @@ import java.math.BigInteger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import javax.servlet.http.HttpSession;
@@ -17,13 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Order;
-import com.example.domain.OrderItem;
-import com.example.domain.OrderTopping;
 import com.example.form.OrderForm;
 import com.example.form.OrderItemForm;
 import com.example.service.ShoppingCartService;
-
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 
 /**
  * ショッピングカートの操作を行うコントローラー.
@@ -48,8 +43,24 @@ public class ShoppingCartController {
 		return new OrderForm();
 	}
 
-	@RequestMapping("/showCartList")
+	/**
+	 * カートを追加するのボタンを押したら注文情報が追加される.
+	 * 
+	 * @param orderItemform
+	 * @param orderform
+	 * @return 
+	 */
+	@RequestMapping("/insertOrderItem")
+	public String insertOrderItem(OrderItemForm orderItemform) {
+		
+		int userId = new BigInteger(session.getId(),16).intValue();
+		shoppingCartService.addItem(userId, orderItemform);
+		
+		return "/showCartList";
+	}
+	
 
+	@RequestMapping("/showCartList")
 	public String showCartList(OrderItemForm form, Model model) {
 //		Integer userId = Integer.valueOf(session.getId());	
 //		sessionIdを10進数の数字に変換
@@ -64,18 +75,17 @@ public class ShoppingCartController {
 		}
 		
 		//エラーが解消できませんでしたが、わからなかったのでエラーのままpushします（橋本）
-		return "/cart_list";
+		return "cart_list";
 		
 	}
-	@RequestMapping("/InsertOrderItem")
-	public String InsertOrderItem(OrderItemForm orderItemform, OrderForm orderform ) {
-		int userId = new BigInteger(session.getId(),16).intValue();
-		shoppingCartService.addItem(userId, orderItemform,orderform);
+	
 		
-		return "/showCartList";
-	}
-		
-		
+	/**
+	 * カートの中身を削除するメソッド.
+	 * 
+	 * @param orderItemId
+	 * @return
+	 */
 	@RequestMapping("/deleteOrder")
 	public String deleteOrder(Integer orderItemId){
 	   shoppingCartService.deleteByOrderItemId(orderItemId);
