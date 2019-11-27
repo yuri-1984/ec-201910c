@@ -52,7 +52,7 @@
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<h3 class="text-center">ショッピングカート</h3>
 				<table class="table table-striped">
-					<tbody th:each="orderItem : ${Order.orderItemList}">
+					<tbody th:each="orderItem : ${order.orderItemList}">
 						<tr>
 							<th>
 								<div class="text-center">
@@ -184,7 +184,7 @@
 		<div class="row">
 			<div class="col-xs-offset-5 col-xs-3">
 				<div class="form-group">
-					<form th:action="@{/showConfirmOrder}">
+					<form th:action="@{/insertOrderItem}">
 						<input class="form-control btn btn-warning btn-block"
 							type="submit" value="注文に進む">
 					</form>
