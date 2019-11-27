@@ -47,7 +47,7 @@
 			<!-- /.container-fluid -->
 		</nav>
 
-		<form th:action="@{/showCartList}" method="post">
+		<form th:action="@{/insertOrderItem}" method="post">
 		
 		<!-- OrderItemFormに渡すitemId -->
 		<input type="hidden" name="itemId" th:value="${item.id}">
