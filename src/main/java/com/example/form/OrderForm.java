@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
-import com.example.domain.Order;
 import com.example.domain.OrderItem;
 import com.example.domain.User;
 

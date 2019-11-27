@@ -22,7 +22,11 @@ public class OrderService {
 		Order order = orderRepository.load(form.getId());
 		order.setId(form.getId());
 		order.setUserId(form.getUserId());
-		order.setStatus(form.getStatus());
+		if(form.getPaymentMethod()==1) {
+			order.setStatus(1);
+		}else if(form.getPaymentMethod()==2) {
+			order.setStatus(2);
+		}
 		order.setTotalPrice(form.getTotalPrice());
 		order.setDestinationName(form.getDestinationName());
 		order.setDestinationEmail(form.getDestinationEmail());

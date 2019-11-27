@@ -43,7 +43,6 @@ public class ShowOrderController {
 		if(userId == new BigInteger(session.getId()).intValue()){
         return "login";
 		}else {
-			System.out.println(2);
 			Object order = showOrderservice.showOrder(userId);
 			model.addAttribute("order",order);
 			return "order_confirm";
