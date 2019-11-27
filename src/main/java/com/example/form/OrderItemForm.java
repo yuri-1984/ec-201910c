@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class OrderItemForm {
 	/** 商品ID */
-	private Integer Itemid;
+	private Integer itemId;
 	/** 注文ID */
 	private Integer orderId;				//どこからとってくる??
 	/** 数量 */
@@ -20,10 +20,10 @@ public class OrderItemForm {
 	private Integer[]toppingId;
 	
 	public Integer getItemid() {
-		return Itemid;
+		return itemId;
 	}
 	public void setItemid(Integer itemid) {
-		Itemid = itemid;
+		itemId = itemid;
 	}
 	public Integer getOrderId() {
 		return orderId;
@@ -51,7 +51,7 @@ public class OrderItemForm {
 	}
 	@Override
 	public String toString() {
-		return "OrderItemForm [Itemid=" + Itemid + ", orderId=" + orderId + ", quantity=" + quantity
+		return "OrderItemForm [itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
 				+ ", size=" + size + ", toppingId=" + Arrays.toString(toppingId) + "]";
 	}
 }
