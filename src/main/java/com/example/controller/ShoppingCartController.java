@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import javax.servlet.http.HttpSession;
@@ -12,13 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Order;
 import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
+import com.example.form.OrderForm;
 import com.example.form.OrderItemForm;
 import com.example.service.ShoppingCartService;
+
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
 
 /**
  * ショッピングカートの操作を行うコントローラー.
@@ -34,6 +39,14 @@ public class ShoppingCartController {
 	private ServletContext application;
 	@Autowired
 	private ShoppingCartService shoppingCartService;
+	@ModelAttribute
+	public OrderItemForm setUpdateOrderItemForm() {
+		return new OrderItemForm();
+	}
+	@ModelAttribute
+	public OrderForm setUpdateOrderFomr() {
+		return new OrderForm();
+	}
 
 	@RequestMapping("/showCartList")
 
@@ -51,44 +64,25 @@ public class ShoppingCartController {
 		}
 		
 		//エラーが解消できませんでしたが、わからなかったのでエラーのままpushします（橋本）
-
-		// order_toppingテーブルへの注文トッピングのINSERT
-		// チェックボックスで選択されたトッピングの数だけ繰り返す
-		for (int i = 0; i < form.getToppingId().length; i++) {
-			OrderTopping orderTopping = new OrderTopping();
-			Integer[] toppingId = form.getToppingId();
-			orderTopping.setToppingId(toppingId[i]);
-			orderTopping.setOrderItemId(form.getItemid());
-			shoppingCartService.insertOrderTopping(orderTopping);
-		}
-		// OrderItemオブジェクトを作る
-		OrderItem orderItem = new OrderItem();
-		orderItem.setItemId(form.getItemid());
-		orderItem.setOrderId(form.getOrderId());
-		orderItem.setQuantity(form.getQuantity());
-		orderItem.setSize(form.getSize());		
-		//itemとorderトッピングリストはテーブル結合でとってきてorderItemにset
-		//orderItemをリクエストスコープに追加してフォワード？
-		//※価格の計算などはここまででは行っていない
-		
-		return "cart_list";
+		return "/cart_list";
 		
 	}
-
-// @RequestMapping("/deleteOrder")
-//	public String deleteOrder(Integer orderItemId){
-//		
-//		
-//		return showOrder();
-//			
-//	}
-//    @RequestMapping("/InsertOrderItem")
-//	public String InsertOrderItem(OrderItemForm) {
-//    	
-//    	
-//    	
-//    	return showOrder();	
-//	}
-//}
+	@RequestMapping("/InsertOrderItem")
+	public String InsertOrderItem(OrderItemForm orderItemform, OrderForm orderform ) {
+		int userId = new BigInteger(session.getId(),16).intValue();
+		shoppingCartService.addItem(userId, orderItemform,orderform);
+		
+		return "/showCartList";
+	}
+		
+		
+	@RequestMapping("/deleteOrder")
+	public String deleteOrder(Integer orderItemId){
+	   shoppingCartService.deleteByOrderItemId(orderItemId);
+	   
+		return "/showCartList";
+			
+	}
 
 }
+

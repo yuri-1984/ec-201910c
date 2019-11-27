@@ -1,6 +1,6 @@
 package com.example.form;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * item_detail.htmlから注文された商品の
@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class OrderItemForm {
 	/** 商品ID */
-	private Integer Itemid;
+	private Integer itemId;
 	/** 注文ID */
 	private Integer orderId;				//どこからとってくる??
 	/** 数量 */
@@ -17,13 +17,12 @@ public class OrderItemForm {
 	/** サイズ */
 	private Character size;
 	/** トッピングリスト */
-	private Integer[]toppingId;
-	
-	public Integer getItemid() {
-		return Itemid;
+	private List<Integer>toppingList;
+	public Integer getItemId() {
+		return itemId;
 	}
-	public void setItemid(Integer itemid) {
-		Itemid = itemid;
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}
 	public Integer getOrderId() {
 		return orderId;
@@ -43,15 +42,19 @@ public class OrderItemForm {
 	public void setSize(Character size) {
 		this.size = size;
 	}
-	public Integer[] getToppingId() {
-		return toppingId;
+	public List<Integer> getToppingList() {
+		return toppingList;
 	}
-	public void setToppingId(Integer[] toppingId) {
-		this.toppingId = toppingId;
+	public void setToppingList(List<Integer> toppingList) {
+		this.toppingList = toppingList;
 	}
 	@Override
 	public String toString() {
-		return "OrderItemForm [Itemid=" + Itemid + ", orderId=" + orderId + ", quantity=" + quantity
-				+ ", size=" + size + ", toppingId=" + Arrays.toString(toppingId) + "]";
+		return "OrderItemForm [itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity + ", size=" + size
+				+ ", toppingList=" + toppingList + "]";
 	}
+	
+
 }
+	
+	
