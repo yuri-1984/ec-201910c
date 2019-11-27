@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
+import com.example.domain.Order;
+import com.example.domain.OrderItem;
 import com.example.domain.User;
 
 public class OrderForm {
@@ -28,7 +30,7 @@ public class OrderForm {
 	private Timestamp deliveryTime;
 	private Integer paymentMethod;
 	private User user;
-	private List orderItemList;
+	private List<OrderItem> orderItemList;
 	
 	public int getTax() {
 		int tax = (int) (totalPrice*0.1);
@@ -143,11 +145,11 @@ public class OrderForm {
 		this.user = user;
 	}
 
-	public List getOrderItemList() {
+	public List<OrderItem> getOrderItemList() {
 		return orderItemList;
 	}
 
-	public void setOrderItemList(List orderItemList) {
+	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
 

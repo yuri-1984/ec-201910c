@@ -35,13 +35,6 @@ public class ShowOrderController {
 	 */
 
 
-	@RequestMapping("/showConfirmOrder")
-	public String ShowConfirmOrder(Integer userId,Integer status,Model model) {
-		if(userId == null) {
-			
-		}
-		return null;
-	}
 
 	@RequestMapping("/showorder1")
 	public String ShowOrder(Integer userId,Model model) {
