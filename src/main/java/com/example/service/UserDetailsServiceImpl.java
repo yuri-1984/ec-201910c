@@ -38,11 +38,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email)
 			throws UsernameNotFoundException {
+		System.out.println(email);
 		List<User> userList = userRepository.findByEmail(email);
 		User user = userList.get(0);
 		if (user == null) {
 			throw new UsernameNotFoundException("そのEmailは登録されていません。");
 		}
+		System.out.println(user);
 		// 権限付与の例
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
 		authorityList.add(new SimpleGrantedAuthority("ROLE_USER")); // ユーザ権限付与

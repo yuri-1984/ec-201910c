@@ -65,7 +65,6 @@ public class ShoppingCartController {
 //		Integer userId = Integer.valueOf(session.getId());	
 //		sessionIdを10進数の数字に変換
 		int userId = new BigInteger(session.getId(),16).intValue();
-		System.out.println(userId);
 
 		 Order order = shoppingCartService.showCartList(userId);
 		if(order == null) {

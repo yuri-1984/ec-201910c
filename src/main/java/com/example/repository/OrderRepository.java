@@ -140,6 +140,7 @@ public class OrderRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", 1).addValue("status", status);
 
 		List<Order> orderList = template.query(sql, param, ORDER_EXTRACTOR);
+		System.out.println(orderList);
 		System.out.println(orderList.get(0));
 		return orderList.get(0);
 
