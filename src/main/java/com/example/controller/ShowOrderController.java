@@ -35,13 +35,6 @@ public class ShowOrderController {
 	 */
 
 
-	@RequestMapping("/showConfirmOrder")
-	public String ShowConfirmOrder(Integer userId,Integer status,Model model) {
-		if(userId == null) {
-			
-		}
-		return null;
-	}
 
 	@RequestMapping("/showorder1")
 	public String ShowOrder(Integer userId,Model model) {
@@ -50,7 +43,6 @@ public class ShowOrderController {
 		if(userId == new BigInteger(session.getId()).intValue()){
         return "login";
 		}else {
-			System.out.println(2);
 			Object order = showOrderservice.showOrder(userId);
 			model.addAttribute("order",order);
 			return "order_confirm";
