@@ -29,7 +29,8 @@ public class OrderForm {
 	private Timestamp deliveryTime;
 	private Integer paymentMethod;
 	private User user;
-	private List<OrderItem> orderItemList;
+	private List<OrderItem>orderItemList;
+
 	
 	public int getTax() {
 		int tax = (int) (totalPrice*0.1);
