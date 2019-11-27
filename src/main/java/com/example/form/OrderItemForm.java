@@ -1,6 +1,5 @@
 package com.example.form;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,20 +18,11 @@ public class OrderItemForm {
 	private Character size;
 	/** トッピングリスト */
 	private List<Integer>toppingList;
-	
-<<<<<<< HEAD
-	public Integer getItemid() {
-		return itemId;
-	}
-	public void setItemid(Integer itemid) {
-		itemId = itemid;
-=======
 	public Integer getItemId() {
 		return itemId;
 	}
 	public void setItemId(Integer itemId) {
 		this.itemId = itemId;
->>>>>>> feature/login
 	}
 	public Integer getOrderId() {
 		return orderId;
@@ -60,15 +50,11 @@ public class OrderItemForm {
 	}
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-		return "OrderItemForm [itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
-				+ ", size=" + size + ", toppingId=" + Arrays.toString(toppingId) + "]";
-=======
 		return "OrderItemForm [itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity + ", size=" + size
 				+ ", toppingList=" + toppingList + "]";
->>>>>>> feature/login
 	}
 	
+
 }
 	
 	

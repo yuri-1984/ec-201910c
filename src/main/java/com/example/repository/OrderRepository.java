@@ -182,6 +182,10 @@ public class OrderRepository {
 		SqlParameterSource param =new BeanPropertySqlParameterSource(order);
 		template.update(sql, param);
 	}
+	@Override
+	public String toString() {
+		return "OrderRepository [template=" + template + "]";
+	}
 	
 	
 
