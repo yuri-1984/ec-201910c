@@ -64,16 +64,18 @@ public class ShoppingCartService {
 	}
 
 	public void addItem(Integer userId, OrderItemForm orderItemform) {
-		Order preOrder = orderRepository.findByUserIdAndStatus(userId, 0);
-		Order order = new Order();
-		if (preOrder == null) {
-			order.setId(userId);
+		System.out.println(userId + "セッションスコープ");
+		 Order order = orderRepository.findByUserIdAndStatus(userId, 0);
+		if (order == null) {
+			 order = new Order();
+			order.setUserId(userId);
 			order.setStatus(0);
 			order.setTotalPrice(0);
 			orderRepository.insert(order);
 		}
+		
 		OrderItem orderItem = new OrderItem();
-		BeanUtils.copyProperties("form", orderItem);
+		BeanUtils.copyProperties(orderItemform, orderItem);
 		orderItem.setOrderId(order.getId());
 		orderItemRepository.insert(orderItem);
 
@@ -84,6 +86,7 @@ public class ShoppingCartService {
 		for (int toppingId : orderItemform.getToppingList()) {
 			orderTopping.setOrderItemId(orderItem.getId());
 			orderTopping.setToppingId(toppingId);
+			System.out.println(orderTopping+"アイテムですよ！");
 			orderToppingRepository.insert(orderTopping);
 
 		}
