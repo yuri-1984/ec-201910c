@@ -45,16 +45,10 @@ public class ShowOrderController {
 
 	@RequestMapping("/showorder1")
 	public String ShowOrder(Integer userId,Model model) {
-<<<<<<< HEAD
-		if(userId==null) {
 
-
-			return "login";
-=======
 		System.out.println(userId);
 		if(userId == new BigInteger(session.getId()).intValue()){
         return "login";
->>>>>>> feature/login
 		}else {
 			System.out.println(2);
 			Object order = showOrderservice.showOrder(userId);

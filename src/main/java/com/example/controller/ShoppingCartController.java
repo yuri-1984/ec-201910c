@@ -2,10 +2,7 @@ package com.example.controller;
 
 import java.math.BigInteger;
 
-<<<<<<< HEAD
 import javax.servlet.ServletContext;
-=======
->>>>>>> feature/login
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +37,12 @@ public class ShoppingCartController {
 
 	@RequestMapping("/showCartList")
 
-	public String showCartList(Model model) {
-<<<<<<< HEAD
+	public String showCartList(OrderItemForm form, Model model) {
 //		Integer userId = Integer.valueOf(session.getId());	
 //		sessionIdを10進数の数字に変換
 		int userId = new BigInteger(session.getId(),16).intValue();
 		System.out.println(userId);
-=======
-	Integer userId = new BigInteger(session.getId()).intValue();
->>>>>>> feature/login
+
 		 Order order = shoppingCartService.showCartList(userId);
 		if(order == null) {
 			model.addAttribute("message", "カートの中身が一つも入っていません。");
