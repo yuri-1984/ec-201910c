@@ -35,7 +35,7 @@
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
 						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
-						<a th:href="@{showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+						<a th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
 						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;
 						<a href="item_list.html" class="navbar-link">ログアウト</a>
 					</p>
@@ -45,10 +45,10 @@
 			<!-- /.container-fluid -->
 		</nav>
 
-		<form th:action="@{/showCartList}" method="post" th:object="${orderItemForm}">
+		<form th:action="@{/showCartList}" method="post">
 		
 		<!-- OrderItemFormに渡すitemId -->
-		<input type="hidden" name="itemId" th:value="${item.id}" th:field="${itemId}">
+		<input type="hidden" name="itemId" th:value="${item.id}">
 		
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
@@ -103,7 +103,7 @@
 								</div>
 								<div class="col-sm-12" th:each="topping:${item.toppingList}">
 									<label class="checkbox-inline">
-										<input type="checkbox" name="toppingId" th:value="${topping.id}"><span th:text="${topping.name}">トッピング名</span>
+										<input type="checkbox" name="toppingId" th:value="${topping.id}" th:field="*{toppingId}"><span th:text="${topping.name}">トッピング名</span>
 									</label>
 								</div>
 							</div>
