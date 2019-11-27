@@ -172,7 +172,7 @@
 		</div>
 
 		<!-- table -->
-		<form th:action="@{/showorder/showorder1}">
+		<form th:action="@{/showorder/showorder1}" th:object="${orderForm}" method="post">
 			<div class="row">
 				<div
 					class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
@@ -187,7 +187,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="name">
+								   <div th:errors="*{name}" style="color:red"></div>
+									<input type="text" name="name" th:field="*{name}">
 								</td>
 							</tr>
 							<tr>
@@ -197,7 +198,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="email">
+								  <div th:errors="*{email}" style="color:red"></div>
+									<input type="text" name="email" th:field="*{error}">
 								</td>
 							</tr>
 							<tr>
@@ -207,7 +209,9 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="zipcode">&nbsp;&nbsp;<button>住所検索</button>
+								   <div th:errors="*{zipcode}" style="color:red">></div>
+									<input type="text" name="zipcode" th:field="*{zipcode}">&nbsp;&nbsp;<button>住所検索</button>
+								
 								</td>
 							</tr>
 							<tr>
@@ -217,7 +221,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="address">
+								   <div th:errors="*{address}" style="color:red"></div>
+									<input type="text" name="address" th:field="*{address}">
 								</td>
 							</tr>
 							<tr>
@@ -227,7 +232,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="tel">
+								   <div th:errors="*{tel}" style="color:red"></div>
+									<input type="text" name="tel" th:field="*{tel}">
 								</td>
 							</tr>
 							<tr>
