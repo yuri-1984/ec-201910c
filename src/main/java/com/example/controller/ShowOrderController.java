@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Order;
+import com.example.form.OrderForm;
 import com.example.form.OrderItemForm;
 import com.example.service.ShowOrderService;
 import com.example.service.TestDataService;
@@ -45,7 +46,7 @@ public class ShowOrderController {
 	}
 
 	@RequestMapping("/showorder")
-	public String ShowOrder(@Validated OrderItemForm form, BindingResult result, Integer userId,Model model) {
+	public String ShowOrder(@Validated OrderForm form, BindingResult result, Integer userId,Model model) {
            if(result.hasErrors()) {
         	   return "order_confirm";
            }
