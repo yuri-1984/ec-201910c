@@ -25,6 +25,7 @@ public class OrderService {
 		if(form.getPaymentMethod()==1) {
 			order.setStatus(1);
 		}else if(form.getPaymentMethod()==2) {
+			
 			order.setStatus(2);
 		}
 		order.setTotalPrice(form.getTotalPrice());
