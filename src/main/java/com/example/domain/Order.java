@@ -215,8 +215,9 @@ public class Order {
 	public int getCalctotalPrice() {
 		int totalPrice = 0;
 		for (OrderItem orderitem : orderItemList) {
-			totalPrice = getTax() + orderitem.getSubTotal();
+			totalPrice += orderitem.getSubTotal();
 		}
+		totalPrice += getTax();
 		return totalPrice;
 
 	}

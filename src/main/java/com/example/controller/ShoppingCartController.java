@@ -70,13 +70,11 @@ public class ShoppingCartController {
 		Order order = shoppingCartService.showCartList(userId);
 		if (order == null) {
 			model.addAttribute("message", "カートの中身が一つも入っていません。");
-			
+
 		} else {
 			model.addAttribute("order", order);
-			
 
 		}
-
 		return "cart_list";
 
 	}
@@ -91,7 +89,7 @@ public class ShoppingCartController {
 	public String deleteOrder(Integer orderItemId) {
 		shoppingCartService.deleteByOrderItemId(orderItemId);
 
-		return "/showCartList";
+		return "forward:/showCartList";
 
 	}
 
