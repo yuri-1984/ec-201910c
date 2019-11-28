@@ -57,7 +57,7 @@ public class ShoppingCartController {
 		Integer userId = new BigInteger(session.getId(), 16).intValue();
 		shoppingCartService.addItem(userId, orderItemform);
 
-		return "/showCartList";
+		return "forward:/showCartList";
 	}
 
 	@RequestMapping("/showCartList")
@@ -70,8 +70,10 @@ public class ShoppingCartController {
 		Order order = shoppingCartService.showCartList(userId);
 		if (order == null) {
 			model.addAttribute("message", "カートの中身が一つも入っていません。");
+			
 		} else {
 			model.addAttribute("order", order);
+
 		}
 
 		return "cart_list";

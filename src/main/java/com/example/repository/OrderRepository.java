@@ -136,7 +136,7 @@ public class OrderRepository {
 				+ " LEFT OUTER JOIN order_toppings ot on oi.id = ot.order_item_id"
 				+ " LEFT OUTER JOIN items i on i.id = oi.item_id"
 				+ " LEFT OUTER JOIN toppings t on t.id = ot.topping_id WHERE o.user_id =:userId AND o.status =:status";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", 1).addValue("status", status);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
 
 		List<Order> orderList = template.query(sql, param, ORDER_EXTRACTOR);
 
