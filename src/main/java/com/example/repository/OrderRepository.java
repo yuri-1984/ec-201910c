@@ -84,9 +84,16 @@ public class OrderRepository {
 				char[] str = (rs.getString("oi_size").toCharArray());
 				orderitem.setSize(str[0]);
 				orderToppingList = new ArrayList<>();
-				orderitem.setItem(item);
 				orderitem.setOrderToppingList(orderToppingList);
 				orderItemList.add(orderitem);
+				
+				item = new Item();
+				item.setId(rs.getInt("i_id"));
+				item.setName(rs.getString("i_description"));
+				item.setPriceM(rs.getInt("i_price_m"));
+				item.setPriceL(rs.getInt("i_price_l"));
+				item.setImagePath(rs.getString("i_image_path"));
+				orderitem.setItem(item);
 
 			}
 			if (rs.getInt("ot_id") != 0) {
@@ -94,26 +101,32 @@ public class OrderRepository {
 				orderTopping.setId(rs.getInt("ot_id"));
 				orderTopping.setOrderItemId(rs.getInt("ot_order_item_id"));
 				orderTopping.setToppingId(rs.getInt("ot_topping_id"));
-				orderTopping.setTopping(topping);
 				orderToppingList.add(orderTopping);
-			}
-			if (rs.getInt("t_id") != 0) {
+				
 				topping = new Topping();
 				topping.setId(rs.getInt("t_id"));
 				topping.setName(rs.getString("t_name"));
 				topping.setPriceL(rs.getInt("t_price_m"));
 				topping.setPriceM(rs.getInt("t_price_l"));
-
+				orderTopping.setTopping(topping);
 			}
-			if (rs.getInt("i_id") != 0) {
-				item = new Item();
-				item.setId(rs.getInt("i_id"));
-				item.setName(rs.getString("i_description"));
-				item.setPriceM(rs.getInt("i_price_m"));
-				item.setPriceL(rs.getInt("i_price_l"));
-				item.setImagePath(rs.getString("i_image_path"));
-
-			}
+//			if (rs.getInt("t_id") != 0) {
+//				topping = new Topping();
+//				topping.setId(rs.getInt("t_id"));
+//				topping.setName(rs.getString("t_name"));
+//				topping.setPriceL(rs.getInt("t_price_m"));
+//				topping.setPriceM(rs.getInt("t_price_l"));
+//
+//			}
+//			if (rs.getInt("i_id") != 0) {
+//				item = new Item();
+//				item.setId(rs.getInt("i_id"));
+//				item.setName(rs.getString("i_description"));
+//				item.setPriceM(rs.getInt("i_price_m"));
+//				item.setPriceL(rs.getInt("i_price_l"));
+//				item.setImagePath(rs.getString("i_image_path"));
+//
+//			}
 			preId = order.getId();
 
 		}
