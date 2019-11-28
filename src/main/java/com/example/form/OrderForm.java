@@ -25,7 +25,6 @@ public class OrderForm {
 	private String destinationAddress;
 	@NotBlank(message="電話番号を入力してください")
 	private String destinationTel;
-	@NotBlank(message="配達日時を入力してください")
 	private Timestamp deliveryTime;
 	private Integer paymentMethod;
 	private User user;

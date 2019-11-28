@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/","/showItemDetail","/showCartList","/toLoginPage","/registerUser","/showRegisterUserPage","/showorder","/aaaa","/insertOrderItem").permitAll() //「/」などのパスは全てのユーザに許可
 
 			.antMatchers("/","/showItemDetail","/showCartList","/toLoginPage","/registerUser"
-					,"/showRegisterUserPage","/insertOrderItem","/deleteOrder","/showorder*").permitAll() //「/」などのパスは全てのユーザに許可
+					,"/showRegisterUserPage","/insertOrderItem","/deleteOrder","/showorder*","showorder1*").permitAll() //「/」などのパスは全てのユーザに許可
 //			.antMatchers("/","/showItemDetail","/showCartList","/toLoginPage","/registerUser","/showRegisterUserPage","/showorder","/aaaa","/insertOrderItem").permitAll() //「/」などのパスは全てのユーザに許可
 
 			.anyRequest().authenticated(); // それ以外のパスは認証が必要
