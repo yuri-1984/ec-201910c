@@ -66,7 +66,7 @@ public class ShoppingCartService {
 	public void addItem(Integer userId, OrderItemForm orderItemform) {
 		 Order order = orderRepository.findByUserIdAndStatus(userId, 0);
 		if (order == null) {
-			 order = new Order();
+			order = new Order();
 			order.setUserId(userId);
 			order.setStatus(0);
 			order.setTotalPrice(0);
