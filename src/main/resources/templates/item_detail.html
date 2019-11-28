@@ -80,12 +80,12 @@
 									<label class="radio-inline">
 										<input class="size" type="radio"
 											name="size" value="M" checked="checked">
-										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;<span class="item_price" th:value="${item.priceM}" th:text="${item.priceM}">9,999</span>円(税抜)
+										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;<span id="price_M" th:text="${item.priceM}">9,999</span>円(税抜)
 									</label>
 									<label class="radio-inline">
 										<input class="size" type="radio"
 											name="size" value="L">
-										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;<span class="item_price" th:value="${item.priceM}" th:text="${item.priceL}">9,999</span>円(税抜)
+										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;<span id="price_L" th:text="${item.priceL}">9,999</span>円(税抜)
 									</label>
 								</div>
 							</div>
@@ -117,8 +117,8 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-5 col-sm-5">
-									<label for="">数量:</label>
-									<select name="quantity" class="form-control">
+									<label for="quantity">数量:</label>
+									<select id="quantity" name="quantity" class="form-control">
 										<option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="'× ' + ${i}">1</option>
 									</select>
 								</div>
