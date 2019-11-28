@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests() // 認可に関する設定
 
-//			.antMatchers("/","/showItemDetail","/showCartList","/toLoginPage","/registerUser","/showRegisterUserPage","/showorder","/aaaa","/insertOrderItem").permitAll() //「/」などのパスは全てのユーザに許可
+			.antMatchers("/","/showItemDetail","/showCartList","/toLoginPage","/registerUser","/showRegisterUserPage","/showorder","/aaaa","/insertOrderItem").permitAll() //「/」などのパスは全てのユーザに許可
 
 			.antMatchers("/","/showItemDetail","/showCartList","/toLoginPage","/registerUser"
 					,"/showRegisterUserPage","/insertOrderItem","/deleteOrder","/showorder*").permitAll() //「/」などのパスは全てのユーザに許可

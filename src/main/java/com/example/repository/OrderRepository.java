@@ -108,8 +108,8 @@ public class OrderRepository {
 				topping = new Topping();
 				topping.setId(rs.getInt("t_id"));
 				topping.setName(rs.getString("t_name"));
-				topping.setPriceL(rs.getInt("t_price_m"));
-				topping.setPriceM(rs.getInt("t_price_l"));
+				topping.setPriceM(rs.getInt("t_price_m"));
+				topping.setPriceL(rs.getInt("t_price_l"));
 				orderTopping.setTopping(topping);
 			}
 //			if (rs.getInt("t_id") != 0) {

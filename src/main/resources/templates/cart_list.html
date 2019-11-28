@@ -97,7 +97,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 								<td>
 								
 									<ul th:each="orderTopping : ${orderItem.orderToppingList}">
-										<li><span th:text="${orderTopping.topping.name}">ピーマン</span><span th:text="${orderTopping.topping.priceM}"></span>円</li>
+										<li><span th:text="${orderTopping.topping.name}">ピーマン</span><span th:if="${orderItem.size} == 'M'" th:text="${orderTopping.topping.priceM}"></span><span th:if="${orderItem.size} == 'L'"
+									th:text="${orderTopping.topping.priceL}"></span>円</li>
 									</ul>
 									
 								</td>
