@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.domain.Order;
 import com.example.service.ShowOrderService;
+import com.example.service.TestDataService;
 
 /**
  * 注文内容を操作するコントローラー.
@@ -15,11 +17,14 @@ import com.example.service.ShowOrderService;
  *
  */
 @Controller
-@RequestMapping("/showorder")
+@RequestMapping("")
 public class ShowOrderController {
 	
 	@Autowired
 	private ShowOrderService showOrderservice;
+	
+	@Autowired
+	private TestDataService testDataService;
 	
 	
 	/**
@@ -32,10 +37,11 @@ public class ShowOrderController {
 
 
 
-	@RequestMapping("/showorder1")
+	@RequestMapping("/showorder")
 	public String ShowOrder(Integer userId,Model model) {
-
-			Object order = showOrderservice.showOrder(userId);
+            Order order= testDataService.testOrder();
+            System.out.println(order);
+//			Order order = showOrderservice.showOrder(userId);
 			model.addAttribute("order",order);
 			return "order_confirm";
 		}

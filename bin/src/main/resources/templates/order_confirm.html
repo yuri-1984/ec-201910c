@@ -78,25 +78,32 @@
 						<tr>
 							<td>
 								<div class="center">
-									<img src="img/1.jpg"  th:src="${'/image_curry/'+ orderitem.item.imagePath}"
+									<img src="img/1.jpg"  th:src="'/image_curry/'+ ${orderitem.item.imagePath}"
 										class="img-responsive img-rounded" width="100" height="300"><br>
-									じゃがバターベーコン
+									<span th:text="${orderItem.item.name}">じゃがバターベーコン</span>
+								
 								</div>
 							</td>
 							<td>
-								<span class="price" th:text="${orderitem.size}" th:text="${orderitem.price}" th:text="${orderitem.quantity}">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-								&nbsp;&nbsp;1個
+							<span class="price">&nbsp;<span th:text="${orderItem.size}">Ｌ</span></span>&nbsp;&nbsp;<span th:text="${orderItem.item.priceM}">2,380</span>円
+								&nbsp;&nbsp;<span th:text="${orderItem.quantity}">1個</span>
 							</td>
 							<td>
-								<ul th:each="topping:${toppingList}">
-									<li th:text="${topping.name}" th:text="${topping.priceM}" th:text="${topping.priceL}">ピーマン300円</li>
+							     <ul th:each="orderTopping : ${orderItem.orderToppingList}">
+									<li th:text="${orderTopping.priceM}">ピーマン300円</li>
 									<li>オニオン300円</li>
 									<li>あらびきソーセージ300円</li>
 								</ul>
 							</td>
 							<td>
-								<div class="text-center" th:text="$">
-									3,280円
+								<div class="text-center"> 
+								<span th:text="${Order.totalPrice}">3,280円</span>
+									
+								</div>
+							</td>
+							<td>
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary">削除</button>
 								</div>
 							</td>
 						</tr>
@@ -121,11 +128,11 @@
 							</td>
 							<td>
 								<div class="text-center">
-									3,280円
+								 <span th:text="${Order.totalPrice}">3,280円</span>
 								</div>
 							</td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>
 								<div class="center">
 									<img src="img/1.jpg"
@@ -149,7 +156,7 @@
 									3,280円
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -158,14 +165,14 @@
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
 				<div class="form-group text-center">
-					<span id="total-price" th:>消費税：8,000円</span><br>
+					<span id="total-price" >消費税：8,000円</span><br>
 					<span id="total-price">ご注文金額合計：38,000円 (税込)</span>
 				</div>
 			</div>
 		</div>
 
 		<!-- table -->
-		<form th:action="@{/showorder/showorder1}">
+		<form th:action="@{/showorder/showorder1}" th:object="${orderForm}" method="post">
 			<div class="row">
 				<div
 					class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
@@ -180,7 +187,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="name">
+								   <div th:errors="*{name}" style="color:red"></div>
+									<input type="text" name="name" th:field="*{name}">
 								</td>
 							</tr>
 							<tr>
@@ -190,7 +198,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="email">
+								  <div th:errors="*{email}" style="color:red"></div>
+									<input type="text" name="email" th:field="*{error}">
 								</td>
 							</tr>
 							<tr>
@@ -200,7 +209,9 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="zipcode">&nbsp;&nbsp;<button>住所検索</button>
+								   <div th:errors="*{zipcode}" style="color:red">></div>
+									<input type="text" name="zipcode" th:field="*{zipcode}">&nbsp;&nbsp;<button>住所検索</button>
+								
 								</td>
 							</tr>
 							<tr>
@@ -210,7 +221,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="address">
+								   <div th:errors="*{address}" style="color:red"></div>
+									<input type="text" name="address" th:field="*{address}">
 								</td>
 							</tr>
 							<tr>
@@ -220,7 +232,8 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="tel">
+								   <div th:errors="*{tel}" style="color:red"></div>
+									<input type="text" name="tel" th:field="*{tel}">
 								</td>
 							</tr>
 							<tr>

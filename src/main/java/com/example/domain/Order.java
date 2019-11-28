@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-
 public class Order {
 
 	private Integer id;
@@ -21,6 +20,18 @@ public class Order {
 	private Integer paymentMethod;
 	private User user;
 	private List<OrderItem> orderItemList;
+	
+	
+	/**
+	 * クレジットカード決済に必要なフィールド変数.
+	 */
+	private Integer orderNumber;
+	private Integer amount;
+	private Integer cardNumber;
+	private Integer cardExpYear;
+	private Integer cardExpMonth;
+	private String cardName;
+	private Integer cardCvv;
 
 	public Integer getId() {
 		return id;
@@ -134,6 +145,62 @@ public class Order {
 		this.orderItemList = orderItemList;
 	}
 
+	public Integer getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(Integer orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+
+	public Integer getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(Integer cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public Integer getCardExpYear() {
+		return cardExpYear;
+	}
+
+	public void setCardExpYear(Integer cardExpYear) {
+		this.cardExpYear = cardExpYear;
+	}
+
+	public Integer getCardExpMonth() {
+		return cardExpMonth;
+	}
+
+	public void setCardExpMonth(Integer cardExpMonth) {
+		this.cardExpMonth = cardExpMonth;
+	}
+
+	public String getCardName() {
+		return cardName;
+	}
+
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
+	}
+
+	public Integer getCardCvv() {
+		return cardCvv;
+	}
+
+	public void setCardCvv(Integer cardCvv) {
+		this.cardCvv = cardCvv;
+	}
+
 	public int getTax() {
 		int tax = 0;
 		for (OrderItem orderitem : orderItemList) {
@@ -160,7 +227,10 @@ public class Order {
 				+ ", orderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
 				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
 				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
-				+ ", paymentMethod=" + paymentMethod + ", user=" + user + "]";
+				+ ", paymentMethod=" + paymentMethod + ", user=" + user + ", orderItemList=" + orderItemList
+				+ ", orderNumber=" + orderNumber + ", amount=" + amount + ", cardNumber=" + cardNumber
+				+ ", cardExpYear=" + cardExpYear + ", cardExpMonth=" + cardExpMonth + ", cardName=" + cardName
+				+ ", cardCvv=" + cardCvv + "]";
 	}
 
 }
