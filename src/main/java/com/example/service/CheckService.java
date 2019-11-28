@@ -1,6 +1,8 @@
 package com.example.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +15,13 @@ import com.example.form.OrderForm;
 public class CheckService {
 	@Autowired
 	private RestTemplate restTemplate;
-        
+
+	@Bean
+	public RestTemplate restTemplate() {
+        RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
+        return restTemplateBuilder.build();
+    }
+	
 	public Credit check(OrderForm form,Model model) {
 		Credit credit = new Credit();
 		credit.setUserId(form.getUserId());
