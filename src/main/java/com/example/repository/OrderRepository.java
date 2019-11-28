@@ -47,6 +47,7 @@ public class OrderRepository {
 	public static final ResultSetExtractor<List<Order>> ORDER_EXTRACTOR = (rs) -> {
 		List<Order> orderList = new LinkedList<Order>();
 		int preId = 0;
+		int preOrderItemId = 0;
 		Order order = null;
 		List<OrderItem> orderItemList = null;
 		List<OrderTopping> orderToppingList = null;
@@ -74,7 +75,7 @@ public class OrderRepository {
 
 				preId = rs.getInt("o_id");
 			}
-			if (rs.getInt("oi_id") != 0) {
+			if (rs.getInt("oi_id") != 0 && rs.getInt("oi_id")!=preOrderItemId ) {
 				OrderItem orderitem = new OrderItem();
 				orderitem.setId(rs.getInt("oi_id"));
 				orderitem.setOrderId(rs.getInt("oi_order_id"));
@@ -95,6 +96,7 @@ public class OrderRepository {
 				item.setImagePath(rs.getString("i_image_path"));
 				orderitem.setItem(item);
 
+				preOrderItemId = orderitem.getId();
 			}
 			if (rs.getInt("ot_id") != 0) {
 				OrderTopping orderTopping = new OrderTopping();
