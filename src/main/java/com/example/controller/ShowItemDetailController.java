@@ -35,6 +35,7 @@ public class ShowItemDetailController {
 		List<Topping> toppingList = showItemDetailService.showToppingList();
 		item.setToppingList(toppingList);
 		model.addAttribute("item", item);
+		System.out.println(item.getId());
 		return "item_detail.html";
 	}
 	

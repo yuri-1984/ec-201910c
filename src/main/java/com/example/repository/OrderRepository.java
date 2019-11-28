@@ -70,8 +70,7 @@ public class OrderRepository {
 
 				orderItemList = new ArrayList<>();
 				order.setOrderItemList(orderItemList);
-
-				;
+				orderList.add(order);
 
 				preId = rs.getInt("o_id");
 			}
@@ -140,10 +139,13 @@ public class OrderRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", 1).addValue("status", status);
 
 		List<Order> orderList = template.query(sql, param, ORDER_EXTRACTOR);
-		System.out.println(orderList);
-		System.out.println(orderList.get(0));
-		return orderList.get(0);
 
+
+		if (orderList.size() == 0) {
+			return null;
+		}
+
+		return orderList.get(0);
 	}
 
 	/**
@@ -174,14 +176,14 @@ public class OrderRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		Number key = insert.executeAndReturnKey(param);
 		order.setId(key.intValue());
-		
+
 //		String sql = "INSERT INTO orders(user_id,status,total_price,order_date,destination_name,destination_email,destination_zipcode,destination_address,destination_tel,delivery_time,payment_method)"
 //				+ " Values(:user_id, :status, :total_price, :order_date, :destination_name, :destination_email, :destination_zipcode, :destination_address, :destination_tel, :delivery_time, :payment_method)";
 //		if (order.getId() != null) {
 //			throw new NullPointerException();
 //		}
 //		template.update(sql, param);
-		
+
 		return order;
 	}
 
