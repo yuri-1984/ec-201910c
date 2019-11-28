@@ -22,6 +22,7 @@ import com.example.service.OrderService;
  *
  */
 @Controller
+@RequestMapping("")
 public class OrderController {
 	@ModelAttribute
 	public OrderForm form() {
@@ -34,15 +35,15 @@ public class OrderController {
 	@Autowired
 	private CheckService checkService;
 
-	/**
-	 * 注文完了ページを表示するメソッド.
-	 * 
-	 * @return 注文完了画面
-	 */
-	@RequestMapping("/showOrderFinished")
-	public String index() {
-		return "order_confirm";
-	}
+//	/**
+//	 * 注文完了ページを表示するメソッド.
+//	 * 
+//	 * @return 注文完了画面
+//	 */
+//	@RequestMapping("/showOrderFinished")
+//	public String index() {
+//		return "order_confirm";
+//	}
 
 	/**
 	 * 注文処理を行うメソッド.
@@ -55,8 +56,9 @@ public class OrderController {
 
 		if (result.hasErrors()) {
 
-			return index();
-		} else if (form.getStatus().equals("2")) {
+			return "forward:/showorder";
+		} 
+		if (form.getPaymentMethod()==2) {
 			Credit credit = new Credit();
 			credit.setUserId(form.getUserId());
 			credit.setOrderNumber(form.getOrderNumber());
