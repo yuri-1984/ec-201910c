@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Item;
+import com.example.domain.LoginUser;
 import com.example.service.ItemService;
 
 
@@ -62,7 +64,8 @@ public class ShowItemListController {
 		model.addAttribute("pageNumbers", pageNumbers);	
 		
 		// オートコンプリート用にJavaScriptの配列の中身を文字列で作ってスコープへ格納
-		StringBuilder itemListForAutocomplete = service.getItemListForAutocomplete(itemList);
+		List<Item> itemListAll = service.showList();
+		StringBuilder itemListForAutocomplete = service.getItemListForAutocomplete(itemListAll);
 		model.addAttribute("itemListForAutocomplete", itemListForAutocomplete);		
 		
 		System.out.println(model);
