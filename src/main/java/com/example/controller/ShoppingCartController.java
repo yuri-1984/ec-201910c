@@ -73,6 +73,7 @@ public class ShoppingCartController {
 			
 		} else {
 			model.addAttribute("order", order);
+			
 
 		}
 
