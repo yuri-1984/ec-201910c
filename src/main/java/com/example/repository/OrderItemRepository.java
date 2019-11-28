@@ -41,8 +41,10 @@ public class OrderItemRepository {
 	 * @param orderitem
 	 */
 	public OrderItem insert(OrderItem orderitem) {
+		System.out.println("insert" +"こんにちはaa");
 		SqlParameterSource param = new BeanPropertySqlParameterSource(orderitem);
 		Number key = insert.executeAndReturnKey(param);
+		System.out.println(param +"こんにちは");
 		orderitem.setId(key.intValue());
 //		
 //		String sql = "insert into order_items(item_id,order_id,quantity, size) ";

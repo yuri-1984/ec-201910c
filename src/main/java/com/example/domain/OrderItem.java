@@ -4,42 +4,48 @@ import java.util.List;
 
 /**
  * 注文された商品のドメインクラス.
+ * 
  * @author yuichi
  *
  */
 public class OrderItem {
-	/**	注文された商品のID */
+	/** 注文された商品のID */
 	private Integer id;
-	/**	商品ID */
+	/** 商品ID */
 	private Integer itemId;
-	/**	注文ID */
+	/** 注文ID */
 	private Integer orderId;
-	/**	数量 */
+	/** 数量 */
 	private Integer quantity;
-	/**	サイズ */
+	/** サイズ */
 	private Character size;
-	/**	商品 */
+	/** 商品 */
 	private Item item;
-	/**	トッピングリスト */
+	/** トッピングリスト */
 	private List<OrderTopping> orderToppingList;
 
 	public int getSubTotal() {
 		int subtotal = 0;
 		int toppingTotal = 0;
-		if (size.equals("M")) {
-			for (OrderTopping topping : orderToppingList) {
-				toppingTotal += topping.getTopping().getPriceM();
-
+		if (size.equals('M')) {
+			if (orderToppingList != null) {
+				for (OrderTopping ordertopping : orderToppingList) {
+					toppingTotal += ordertopping.getTopping().getPriceM();
+				}
 			}
-			subtotal = (item.getPriceM() + toppingTotal) * quantity;
+			if (item != null) {
+				subtotal = (item.getPriceM() + toppingTotal) * quantity;
+			}
 
 		} else {
-			for (OrderTopping topping : orderToppingList) {
-
-				toppingTotal += topping.getTopping().getPriceL();
-
+			if (orderToppingList != null) {
+				for (OrderTopping ordertopping : orderToppingList) {
+					toppingTotal += ordertopping.getTopping().getPriceL();
+				}
 			}
-			subtotal = (item.getPriceL() + toppingTotal) * quantity;
+			if (item != null) {
+				subtotal = (item.getPriceL() + toppingTotal) * quantity;
+			}
 		}
 
 		return subtotal;

@@ -64,7 +64,6 @@ public class ShoppingCartService {
 	}
 
 	public void addItem(Integer userId, OrderItemForm orderItemform) {
-		System.out.println(userId + "セッションスコープ");
 		 Order order = orderRepository.findByUserIdAndStatus(userId, 0);
 		if (order == null) {
 			 order = new Order();
@@ -72,17 +71,22 @@ public class ShoppingCartService {
 			order.setStatus(0);
 			order.setTotalPrice(0);
 			orderRepository.insert(order);
+			System.out.println("ショッピングカートインサート1");
 		}
+		System.out.println("ショッピングカートインサート2");
 		
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(orderItemform, orderItem);
 		orderItem.setOrderId(order.getId());
+		System.out.println("ショッピングカートインサート3");
 		orderItemRepository.insert(orderItem);
 
 		// itemとorderトッピングリストはテーブル結合でとってきてorderItemにset
 		// orderItemをリクエストスコープに追加してフォワード？
 		// ※価格の計算などはここまででは行っていない
 		OrderTopping orderTopping = new OrderTopping();
+		
+		System.out.println("ショッピングカートインサート4");
 		for (int toppingId : orderItemform.getToppingList()) {
 			orderTopping.setOrderItemId(orderItem.getId());
 			orderTopping.setToppingId(toppingId);
