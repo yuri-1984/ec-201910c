@@ -3,7 +3,6 @@ package com.example.form;
 import java.util.List;
 
 import com.example.domain.Item;
-import com.example.domain.OrderTopping;
 
 public class OrderItemForm {
 	
@@ -20,30 +19,10 @@ public class OrderItemForm {
 	/**	商品 */
 	private Item item;
 	/**	トッピングリスト */
-	private List<OrderTopping> orderToppingList;
+	private List<Integer> toppingList;
 
-	public int getSubTotal() {
-		int subtotal = 0;
-		int toppingTotal = 0;
-		if (size.equals("M")) {
-			for (OrderTopping topping : orderToppingList) {
-				toppingTotal += topping.getTopping().getPriceM();
 
-			}
-			subtotal = (item.getPriceM() + toppingTotal) * quantity;
 
-		} else {
-			for (OrderTopping topping : orderToppingList) {
-
-				toppingTotal += topping.getTopping().getPriceL();
-
-			}
-			subtotal = (item.getPriceL() + toppingTotal) * quantity;
-		}
-
-		return subtotal;
-
-	}
 	
 
 	public Integer getId() {
@@ -106,20 +85,22 @@ public class OrderItemForm {
 	}
 
 
-	public List<OrderTopping> getOrderToppingList() {
-		return orderToppingList;
+
+
+	public List<Integer> getToppingList() {
+		return toppingList;
 	}
 
 
-	public void setOrderToppingList(List<OrderTopping> orderToppingList) {
-		this.orderToppingList = orderToppingList;
+	public void setToppingList(List<Integer> toppingList) {
+		this.toppingList = toppingList;
 	}
 
 
 	@Override
 	public String toString() {
 		return "OrderItemForm [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
-				+ ", size=" + size + ", item=" + item + ", orderToppingList=" + orderToppingList + "]";
+				+ ", size=" + size + ", item=" + item + ", toppingList=" + toppingList + "]";
 	}
 	
 }

@@ -99,7 +99,7 @@
 							</td>
 							<td>
 								<div class="text-center"> 
-								<span th:text="${orderItem.totalPrice}">3,280円</span>
+								<span th:text="${orderItem.subTotal}">3,280円</span>
 									
 								</div>
 							</td>
@@ -130,7 +130,7 @@
 							</td>
 							<td>
 								<div class="text-center">
-								 <span th:text="${Order.totalPrice}">3,280円</span>
+								 3,280円
 								</div>
 							</td>
 						</tr>
@@ -189,8 +189,8 @@
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{name}" style="color:red"></div>
-									<input type="text" name="name" th:field="*{name}">
+								   <div th:errors="*{destinationName}" style="color:red"></div>
+									<input type="text" name="destinationName" th:field="*{destinationName}">
 								</td>
 							</tr>
 							<tr>
@@ -200,8 +200,8 @@
 									</div>
 								</td>
 								<td>
-								  <div th:errors="*{email}" style="color:red"></div>
-									<input type="text" name="email" th:field="*{error}">
+								  <div th:errors="*{destinationEmail}" style="color:red"></div>
+									<input type="text" name="destinationEmail" th:field="*{destinationEmail}">
 								</td>
 							</tr>
 							<tr>
@@ -211,8 +211,8 @@
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{zipcode}" style="color:red">></div>
-									<input type="text" name="zipcode" th:field="*{zipcode}">&nbsp;&nbsp;<button>住所検索</button>
+								   <div th:errors="*{destinationZipcode}" style="color:red">></div>
+									<input type="text" name="destinationZipcode" th:field="*{destinationZipcode}">&nbsp;&nbsp;<button>住所検索</button>
 								
 								</td>
 							</tr>
@@ -223,8 +223,8 @@
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{address}" style="color:red"></div>
-									<input type="text" name="address" th:field="*{address}">
+								   <div th:errors="*{destinationAddress}" style="color:red"></div>
+									<input type="text" name="destinationAddress" th:field="*{destinationAddress}">
 								</td>
 							</tr>
 							<tr>
@@ -234,8 +234,8 @@
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{tel}" style="color:red"></div>
-									<input type="text" name="tel" th:field="*{tel}">
+								   <div th:errors="*{destinationTel}" style="color:red"></div>
+									<input type="text" name="destinationTel" th:field="*{destinationTel}">
 								</td>
 							</tr>
 							<tr>
