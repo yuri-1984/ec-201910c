@@ -68,8 +68,8 @@ public class ShoppingCartController {
 		int userId = new BigInteger(session.getId(), 16).intValue();
 
 		Order order = shoppingCartService.showCartList(userId);
-		if (order == null) {
-			model.addAttribute("message", "カートの中身が一つも入っていません。");
+		if (order == null || order.getOrderItemList().size()==0) {
+			model.addAttribute("message", "カートの中身が空です。");
 
 		} else {
 			model.addAttribute("order", order);
