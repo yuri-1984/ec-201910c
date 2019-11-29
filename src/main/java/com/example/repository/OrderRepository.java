@@ -218,7 +218,7 @@ public class OrderRepository {
 
 	public void update(Order order) {
 
-		String sql = "update orders set user_id =:userId,status=:status,total_price =:totalPrice,order_date =:orderDate,destination_name =:destinationName,destination_email =:destinationEmail,destination_zipcode =:destinationZipcode,destination_address =:destinationAddress;,destination_tel =:destinationTel,delivery_time =:deliveryTime,payment_method =:paymentMethod where id=:id";
+		String sql = "update orders set status=:status,total_price =:totalPrice,order_date =:orderDate,destination_name =:destinationName,destination_email =:destinationEmail,destination_zipcode =:destinationZipcode,destination_address =:destinationAddress,destination_tel =:destinationTel,delivery_time =:deliveryTime,payment_method =:paymentMethod where id=:id";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(sql, param);
 	}
@@ -237,6 +237,8 @@ public class OrderRepository {
 		template.update(sql, param);
 		
 	}
+	
+
 
 	@Override
 	public String toString() {

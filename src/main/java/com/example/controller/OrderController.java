@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Credit;
 import com.example.domain.Order;
 import com.example.domain.ReceiveCredit;
+import com.example.domain.User;
 import com.example.form.OrderForm;
 import com.example.service.CheckService;
 import com.example.service.OrderService;
@@ -52,26 +53,26 @@ public class OrderController {
 	 * @return 注文完了画面.
 	 */
 	@RequestMapping("/order")
-	public String order(@Validated OrderForm form, BindingResult result, Model model) {
-        System.out.println(form);
+	public String order(@Validated OrderForm form, BindingResult result,User user, Model model) {
+        System.out.println("OrderControllerからもらったform"+form);
 		if (result.hasErrors()) {
 
 			return "forward:/showorder";
 		} 
-		if (form.getPaymentMethod()==2) {
+		if (Integer.parseInt(form.getPaymentMethod())==2) {
 			Credit credit = new Credit();
-			credit.setUserId(form.getUserId());
-			credit.setOrderNumber(form.getOrderNumber());
-			credit.setOrderAmount(form.getOrderAmount());
-			credit.setCardNumber(form.getCardNumber());
-			credit.setCardExpYear(form.getCardExpYear());
-			credit.setCardExpMonth(form.getCardExpMonth());
+			credit.setUserId(Integer.parseInt(form.getUserId()));
+			credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
+			credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
+			credit.setCardNumber(Integer.parseInt(form.getCardNumber()));
+			credit.setCardExpYear(Integer.parseInt(form.getCardExpYear()));
+			credit.setCardExpMonth(Integer.parseInt(form.getCardExpMonth()));
 			credit.setCardName(form.getCardName());
-			credit.setCardCvv(form.getCardCvv());
+			credit.setCardCvv(Integer.parseInt(form.getCardCvv()));
 
 			ReceiveCredit receiveCredit = new ReceiveCredit();
 
-			Order order = orderService.order(form);
+			Order order = orderService.order(form,user);
 			System.out.println("orderControllerの中身"+order);
 			model.addAttribute("order", order);
 			checkService.service(credit, receiveCredit);
@@ -83,8 +84,13 @@ public class OrderController {
 			}
 
 		}
-		Order order = orderService.order(form);
+		Order order = orderService.order(form,user);
 		model.addAttribute("order", order);
-		return "redirect:order_finished";
+		return "redirect:/finished";
+	}
+	
+	@RequestMapping("/finished")
+	public String finished() {
+		return "order_finished";
 	}
 }

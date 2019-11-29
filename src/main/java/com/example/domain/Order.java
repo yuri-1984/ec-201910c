@@ -16,22 +16,21 @@ public class Order {
 	private String destinationZipcode;
 	private String destinationAddress;
 	private String destinationTel;
+	private Timestamp deliverydate;
+	public Timestamp getDeliverydate() {
+		return deliverydate;
+	}
+
+	public void setDeliverydate(Timestamp deliverydate) {
+		this.deliverydate = deliverydate;
+	}
+
 	private Timestamp deliveryTime;
 	private Integer paymentMethod;
 	private User user;
 	private List<OrderItem> orderItemList;
 	
 	
-	/**
-	 * クレジットカード決済に必要なフィールド変数.
-	 */
-	private Integer orderNumber;
-	private Integer amount;
-	private Integer cardNumber;
-	private Integer cardExpYear;
-	private Integer cardExpMonth;
-	private String cardName;
-	private Integer cardCvv;
 
 	public Integer getId() {
 		return id;
@@ -145,61 +144,6 @@ public class Order {
 		this.orderItemList = orderItemList;
 	}
 
-	public Integer getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(Integer orderNumber) {
-		this.orderNumber = orderNumber;
-	}
-
-	public Integer getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Integer amount) {
-		this.amount = amount;
-	}
-
-	public Integer getCardNumber() {
-		return cardNumber;
-	}
-
-	public void setCardNumber(Integer cardNumber) {
-		this.cardNumber = cardNumber;
-	}
-
-	public Integer getCardExpYear() {
-		return cardExpYear;
-	}
-
-	public void setCardExpYear(Integer cardExpYear) {
-		this.cardExpYear = cardExpYear;
-	}
-
-	public Integer getCardExpMonth() {
-		return cardExpMonth;
-	}
-
-	public void setCardExpMonth(Integer cardExpMonth) {
-		this.cardExpMonth = cardExpMonth;
-	}
-
-	public String getCardName() {
-		return cardName;
-	}
-
-	public void setCardName(String cardName) {
-		this.cardName = cardName;
-	}
-
-	public Integer getCardCvv() {
-		return cardCvv;
-	}
-
-	public void setCardCvv(Integer cardCvv) {
-		this.cardCvv = cardCvv;
-	}
 
 	public int getTax() {
 		int tax = 0;
@@ -214,10 +158,13 @@ public class Order {
 
 	public int getCalctotalPrice() {
 		int totalPrice = 0;
-		for (OrderItem orderitem : orderItemList) {
-			totalPrice += orderitem.getSubTotal();
+		System.out.println("orderItemList:" + orderItemList);
+		if(orderItemList != null) {
+			for (OrderItem orderitem : orderItemList) {
+				totalPrice += orderitem.getSubTotal();
+			}
+			totalPrice += getTax();
 		}
-		totalPrice += getTax();
 		return totalPrice;
 
 	}
@@ -227,11 +174,11 @@ public class Order {
 		return "Order [id=" + id + ", userId=" + userId + ", status=" + status + ", totalPrice=" + totalPrice
 				+ ", orderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
 				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
-				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
-				+ ", paymentMethod=" + paymentMethod + ", user=" + user + ", orderItemList=" + orderItemList
-				+ ", orderNumber=" + orderNumber + ", amount=" + amount + ", cardNumber=" + cardNumber
-				+ ", cardExpYear=" + cardExpYear + ", cardExpMonth=" + cardExpMonth + ", cardName=" + cardName
-				+ ", cardCvv=" + cardCvv + "]";
+				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliverydate=" + deliverydate
+				+ ", deliveryTime=" + deliveryTime + ", paymentMethod=" + paymentMethod + ", user=" + user
+				+ ", orderItemList=" + orderItemList + "]";
 	}
+	
+
 
 }
