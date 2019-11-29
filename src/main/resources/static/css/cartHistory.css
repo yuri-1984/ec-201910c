@@ -20,21 +20,4 @@ table th,table td{
   padding: 15px 0;
 }
 
-table td.icon{
-  background-size: 35px;
-  background-position: left 5px center;
-  background-repeat: no-repeat;
-  padding-left: 30px;
-}
 
-table td.icon.bird{
-  background-image: url(icon-bird.png)
-}
-
-table td.icon.whale{
-  background-image: url(icon-whale.png)
-}
-
-table td.icon.crab{
-  background-image: url(icon-crab.png)
-}
