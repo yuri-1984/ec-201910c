@@ -27,6 +27,7 @@ public class ShowOrderService {
 	public Order showOrder(Integer userId) {
 		
 		Order order = repository.findByUserIdAndStatus(userId,0);
+		System.err.println("showOrderServiceのorderの中身"+order);
 		return order;
 		
 		

@@ -108,8 +108,8 @@ public class OrderRepository {
 				topping = new Topping();
 				topping.setId(rs.getInt("t_id"));
 				topping.setName(rs.getString("t_name"));
-				topping.setPriceM(rs.getInt("t_price_m"));
-				topping.setPriceL(rs.getInt("t_price_l"));
+				topping.setPriceL(rs.getInt("t_price_m"));
+				topping.setPriceM(rs.getInt("t_price_l"));
 				orderTopping.setTopping(topping);
 			}
 //			if (rs.getInt("t_id") != 0) {
@@ -217,7 +217,7 @@ public class OrderRepository {
 	}
 
 	public void update(Order order) {
-		String sql = "update oreders set o.id o_id=:id,o.user_id o_user_id=:userId,o.status o_status=status,o.total_price o_total_price=totalPrice,o.order_date o_order_date=:orderDate,o.destination_name o_destination_name=destinationName,o.destination_email o_destination_email=:destinationEmail,o.destination_zipcode o_destination_zipcode=destinationZipcode,o.destination_address o_destination_address=destinationAddress,o.destination_tel o_destination_tel=:destinationTel,o.delivery_time o_delivery_time=deliveryTime,o.payment_method o_payment_method=paymentMethod";
+		String sql = "update orders set user_id =:userId,status=:status,total_price =:totalPrice,order_date =:orderDate,destination_name =:destinationName,destination_email =:destinationEmail,destination_zipcode =:destinationZipcode,destination_address =:destinationAddress;,destination_tel =:destinationTel,delivery_time =:deliveryTime,payment_method =:paymentMethod where id=:id";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(sql, param);
 	}

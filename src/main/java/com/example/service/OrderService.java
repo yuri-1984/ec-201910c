@@ -38,6 +38,7 @@ public class OrderService {
 		}
 		order.setOrderItemList(form.getOrderItemList());
 		orderRepository.update(order);
+		System.out.println(order);
 		return order;
 
 	}

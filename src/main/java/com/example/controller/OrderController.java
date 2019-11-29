@@ -72,7 +72,7 @@ public class OrderController {
 			ReceiveCredit receiveCredit = new ReceiveCredit();
 
 			Order order = orderService.order(form);
-			System.out.println(order);
+			System.out.println("orderControllerの中身"+order);
 			model.addAttribute("order", order);
 			checkService.service(credit, receiveCredit);
 			if (checkService.service(credit, receiveCredit) == true) {

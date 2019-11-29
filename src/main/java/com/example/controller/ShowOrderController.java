@@ -44,16 +44,19 @@ public class ShowOrderController {
 	 * @return 注文内容確認画面
 	 */
 	@RequestMapping("/showorder")
-	public String showOrder(OrderForm form,Integer userId, Model model) {
+	public String showOrder(OrderForm form, Model model) {
+		System.err.println("cart_listからもらったユーザーID" + form.getUserId());
 //		int userId = new BigInteger(session.getId(), 16).intValue();
+		
 //        if(result.hasErrors()) {
 //        	return "forward:/showorder";
 //        }
-		Order order = showOrderService.showOrder(userId);
+		Order order = showOrderService.showOrder(form.getUserId());
 		System.err.println(order);
 
 //			Order order= testDataService.testOrder();
 		model.addAttribute("order", order);
+		
 		return "order_confirm";
 	}
 
