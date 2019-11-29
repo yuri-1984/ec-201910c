@@ -74,6 +74,7 @@ public class UserRepository {
 	}
 	
 	
+
 	public User findByMailAddressAndPassward(String email, String password) {
 		String sql = "SELECT id,name,email,password,zipcode,address,telephone from users where email=:email and password=:password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("password",password);
