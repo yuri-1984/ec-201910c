@@ -28,7 +28,6 @@ public class OrderToppingRepository {
 	public void insert(OrderTopping orderTopping) {
 
 //		SqlParameterSource param = new BeanPropertySqlParameterSource(orderTopping);
-		System.out.println("大変だ" + orderTopping);
 		String sql = "INSERT INTO order_toppings(topping_id, order_item_id) VALUES(:toppingId, :orderItemId)";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("toppingId", orderTopping.getToppingId())
 				.addValue("orderItemId", orderTopping.getOrderItemId());

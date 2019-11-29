@@ -44,7 +44,7 @@ public class ShoppingCartController {
 	}
 
 	/**
-	 * カートを追加するのボタンを押したら注文情報が追加される.
+	 * カートを追加するのボタンを押したら注文情報が追加されるメソッド.
 	 * 
 	 * @param orderItemform
 	 * @param orderform
@@ -57,9 +57,16 @@ public class ShoppingCartController {
 		Integer userId = new BigInteger(session.getId(), 16).intValue();
 		shoppingCartService.addItem(userId, orderItemform);
 
-		return "forward:/showCartList";
+		return "redirect:/showCartList";
 	}
 
+	/**
+	 * ショッピングカートの中身を表示するメソッド.
+	 * @param orderItemform
+	 * @param model
+	 * @return　中身が空ならメッセージを返し、中身があれば注文内容を渡す.
+	 * 
+	 */
 	@RequestMapping("/showCartList")
 	public String showCartList(OrderItemForm orderItemform, Model model) {
 //		Integer userId = Integer.valueOf(session.getId());	
@@ -89,7 +96,7 @@ public class ShoppingCartController {
 	public String deleteOrder(Integer orderItemId) {
 		shoppingCartService.deleteByOrderItemId(orderItemId);
 
-		return "forward:/showCartList";
+		return "redirect:/showCartList";
 
 	}
 
