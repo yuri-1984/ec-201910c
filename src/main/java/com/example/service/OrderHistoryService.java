@@ -20,11 +20,11 @@ public class OrderHistoryService {
 	private OrderRepository orderRepository;
 	
 
-	public List<Order> showOrdertList(Integer userId) {
-		List<Order> orderList = orderRepository.findByuserId(userId);
-		
-		return orderList;
-	}
+//	public List<Order> showOrdertList(Integer userId) {
+//		List<Order> orderList = orderRepository.findByuserId(userId);
+//		
+//		return orderList;
+//	}
 	
 	
 	

@@ -28,16 +28,16 @@ public class ShowOrderHistoryController {
 	 * 
 	 * @return 注文履歴ページ
 	 */
-	@RequestMapping("/showOrderHistory")
-	public String showOrderHistory(Integer userId, Model model) {
-		List<Order> orderList = orderHistoryService.showOrdertList(userId);
-		if (orderList.isEmpty() ) {
-			model.addAttribute("message", "注文履歴はありません");
-		}else {
-			model.addAttribute("orderList", orderList);
-		}
-
-		return "order_history.html";
-	}
+//	@RequestMapping("/showOrderHistory")
+//	public String showOrderHistory(Integer userId, Model model) {
+//		List<Order> orderList = orderHistoryService.showOrdertList(userId);
+//		if (orderList.isEmpty() ) {
+//			model.addAttribute("message", "注文履歴はありません");
+//		}else {
+//			model.addAttribute("orderList", orderList);
+//		}
+//
+//		return "order_history.html";
+//	}
 	
 }
