@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import java.math.BigInteger;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +36,9 @@ public class LoginController {
 		if (user == null) {
 			return "forward:/toLoginPage";
 		}
-		
-		
-//		int userId = new BigInteger(session.getId(), 16).intValue();
-//		Order order = orderRepository.load(user.getId());
-//		Order order1 = orderRepository.load(userId);
-		Order order = orderRepository.load(user.getId());
-		session.setAttribute("order", order);
+		int sessionId = (Integer)session.getAttribute("sessionId");
+		Order order = orderRepository.findByUserIdAndStatus(sessionId, 0);
+		orderRepository.updateLogin(user.getId(), order.getId());
 		return "forward:/";
 	}
 }

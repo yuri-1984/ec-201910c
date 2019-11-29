@@ -224,10 +224,18 @@ public class OrderRepository {
 	}
 	
 	//ログイン用
-	public void updateLogin(Order order) {
-		String sql = "update orders set user_id=:userId from orders where ";
-		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+	public void updateLogin(int userId, int id) {
+		String sql = "update orders set user_id=:userId where id = :id";
+//		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("id", id);
 		template.update(sql, param);
+	}
+	
+	public void orderDeleteBysessionId(Integer userId) {
+		String sql = "DELETE FROM orders WHERE o_user_id=:userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		template.update(sql, param);
+		
 	}
 
 	@Override

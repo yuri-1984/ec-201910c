@@ -44,7 +44,7 @@ public class ShoppingCartController {
 	}
 
 	/**
-	 * カートを追加するのボタンを押したら注文情報が追加される.
+	 * カートを追加するのボタンを押したら注文情報が追加されるメソッド.
 	 * 
 	 * @param orderItemform
 	 * @param orderform
@@ -54,18 +54,26 @@ public class ShoppingCartController {
 	public String insertOrderItem(OrderItemForm orderItemform) {
 		System.out.println("フォームの内容" + orderItemform);
 		// 修正必要
-		Integer userId = new BigInteger(session.getId(), 16).intValue();
+		Integer userId = (Integer)(session.getAttribute("sessionId"));
 		shoppingCartService.addItem(userId, orderItemform);
 
-		return "forward:/showCartList";
+		return "redirect:/showCartList";
 	}
 
+	/**
+	 * ショッピングカートの中身を表示するメソッド.
+	 * @param orderItemform
+	 * @param model
+	 * @return　中身が空ならメッセージを返し、中身があれば注文内容を渡す.
+	 * 
+	 */
 	@RequestMapping("/showCartList")
 	public String showCartList(OrderItemForm orderItemform, Model model) {
 //		Integer userId = Integer.valueOf(session.getId());	
 //		sessionIdを10進数の数字に変換
 
 		int userId = new BigInteger(session.getId(), 16).intValue();
+		session.setAttribute("sessionId", userId);
 
 		Order order = shoppingCartService.showCartList(userId);
 		if (order == null || order.getOrderItemList().size()==0) {
@@ -89,7 +97,7 @@ public class ShoppingCartController {
 	public String deleteOrder(Integer orderItemId) {
 		shoppingCartService.deleteByOrderItemId(orderItemId);
 
-		return "forward:/showCartList";
+		return "redirect:/showCartList";
 
 	}
 
