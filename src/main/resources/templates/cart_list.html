@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja" 
-xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,14 +35,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-					<span sec:authorize="hasRole('ROLE_USER')"></span>
-					
-						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
-						<span sec:authorize="hasRole('ROLE_USER')">
-						<a th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;</span>
-						<span sec:authorize="isAnonymous()">
-						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;</span>
-						<span sec:authorize="hasRole('ROLE_USER')"><a href="item_list.html" class="navbar-link">ログアウト</a></span>
+						<span sec:authorize="hasRole('ROLE_USER')"></span> <a
+							th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<span sec:authorize="hasRole('ROLE_USER')"> <a
+							th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+						</span> <span sec:authorize="isAnonymous()"> <a
+							th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						</span> <span sec:authorize="hasRole('ROLE_USER')"><a
+							href="item_list.html" class="navbar-link">ログアウト</a></span>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -57,7 +56,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<div
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<h3 class="text-center">ショッピングカート</h3>
-				<span th:if="${message}" th:text="${message}"></span> <span
+				<h4 class="text-center"><span th:if="${message}" th:text="${message}"></span> </h4><span
 					th:if="${order}">
 
 					<table class="table table-striped">
@@ -87,20 +86,22 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 									</div>
 								</td>
 								<td><span class="price">&nbsp;<span
-										th:text="${orderItem.size}"></span></span>&nbsp;&nbsp;
-										<span th:if="${orderItem.size} == 'M'"
-									th:text="${orderItem.item.priceM}">2,380</span>
-									<span th:if="${orderItem.size} == 'L'"
-									th:text="${orderItem.item.priceL}">2,380</span>
-									円 &nbsp;&nbsp;<span
+										th:text="${orderItem.size}"></span></span>&nbsp;&nbsp; <span
+									th:if="${orderItem.size} == 'M'"
+									th:text="${orderItem.item.priceM}">2,380</span> <span
+									th:if="${orderItem.size} == 'L'"
+									th:text="${orderItem.item.priceL}">2,380</span> 円 &nbsp;&nbsp;<span
 									th:text="${orderItem.quantity}">1個</span></td>
 								<td>
-								
+
 									<ul th:each="orderTopping : ${orderItem.orderToppingList}">
-										<li><span th:text="${orderTopping.topping.name}">ピーマン</span><span th:if="${orderItem.size} == 'M'" th:text="${orderTopping.topping.priceM}"></span><span th:if="${orderItem.size} == 'L'"
-									th:text="${orderTopping.topping.priceL}"></span>円</li>
+										<li><span th:text="${orderTopping.topping.name}">ピーマン</span><span
+											th:if="${orderItem.size} == 'M'"
+											th:text="${orderTopping.topping.priceM}"></span><span
+											th:if="${orderItem.size} == 'L'"
+											th:text="${orderTopping.topping.priceL}"></span>円</li>
 									</ul>
-									
+
 								</td>
 								<td>
 									<div class="text-center"></div>
@@ -109,11 +110,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 										<span th:text="${orderItem.subTotal}">3,280円</span>
 									</div></td>
 								<td>
-										<div class="text-center">
-								  <a th:href="@{'/deleteOrder?orderItemId=' + ${orderItem.id}}">
+									<div class="text-center">
+										<a th:href="@{'/deleteOrder?orderItemId=' + ${orderItem.id}}">
 											<button type="submit" class="btn btn-primary">削除</button>
-									</a>
-										</div>
+										</a>
+									</div>
 								</td>
 							</tr>
 						</tbody>
@@ -122,22 +123,39 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-xs-offset-2 col-xs-8">
-				<div class="form-group text-center">
-					<span id="total-price">消費税：<span th:text="${order.tax}">8,000</span>円<br></span>
-						<span id="total-price" >ご注文金額合計：<span th:text="${order.calctotalPrice}">38,000</span>円 (税込)</span>
+		<div th:if="${order}">
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-8">
+					<div class="form-group text-center">
+						<span id="total-price">消費税：<span th:text="${order.tax}">8,000</span>円<br></span>
+						<span id="total-price">ご注文金額合計：<span
+							th:text="${order.calctotalPrice}">38,000</span>円 (税込)
+						</span>
+					</div>
+				</div>
+			</div>
+			</sdiv>
+			<div th:if="${message}" >
+			<div class="row">
+				<div class="col-xs-offset-4 col-xs-4">
+					<div class="form-group">
+						<a th:href="@{/}">
+							<input class="form-control btn btn-warning btn-block"
+								type="submit" value="商品一覧ページに戻る">
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-xs-offset-5 col-xs-3">
-				<div class="form-group">
-					<form th:action="@{/showorder}">
-						<input class="form-control btn btn-warning btn-block"
-							type="submit" value="注文に進む">
-					</form>
+		 <div th:if="${order}">
+			<div class="row">
+				<div class="col-xs-offset-5 col-xs-3">
+					<div class="form-group">
+						<form th:action="@{/showorder}">
+							<input class="form-control btn btn-warning btn-block"
+								type="submit" value="注文に進む">
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
