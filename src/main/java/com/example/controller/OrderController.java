@@ -53,7 +53,7 @@ public class OrderController {
 	 */
 	@RequestMapping("/order")
 	public String order(@Validated OrderForm form, BindingResult result, Model model) {
-        
+        System.out.println(form);
 		if (result.hasErrors()) {
 
 			return "forward:/showorder";
