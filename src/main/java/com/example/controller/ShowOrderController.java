@@ -44,7 +44,7 @@ public class ShowOrderController {
 	 * @return 注文内容確認画面
 	 */
 	@RequestMapping("/showorder")
-	public String showOrder(@Validated OrderForm form,BindingResult result,Integer userId, Model model) {
+	public String showOrder(OrderForm form,Integer userId, Model model) {
 //		int userId = new BigInteger(session.getId(), 16).intValue();
 //        if(result.hasErrors()) {
 //        	return "forward:/showorder";
