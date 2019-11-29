@@ -73,6 +73,7 @@ public class ShoppingCartController {
 //		sessionIdを10進数の数字に変換
 
 		int userId = new BigInteger(session.getId(), 16).intValue();
+		session.setAttribute("sessionId", userId);
 
 		Order order = shoppingCartService.showCartList(userId);
 		if (order == null || order.getOrderItemList().size()==0) {
