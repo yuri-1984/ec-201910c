@@ -1,6 +1,8 @@
 package com.example.form;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 /**
  * ユーザー登録のリクエストパラメータを受け取るフォームクラス.
@@ -15,6 +17,7 @@ public class RegisterUserForm {
 	private String name;
 	/**	メールアドレス */
 	@NotBlank(message="*入力は必須です")
+	@Email(message="*メールアドレスの形式が不正です")
 	private String email;
 	/**	パスワード */
 	@NotBlank(message="*入力は必須です")
@@ -22,13 +25,13 @@ public class RegisterUserForm {
 	@NotBlank(message="*入力は必須です")
 	private String confirmationPassword;	
 	/**	郵便番号 */
-	@NotBlank(message="*入力は必須です")
+	@Pattern(regexp = "^\\d{3}\\-?\\d{4}$",message="*半角数字7桁で入力してください")
 	private String zipcode;
 	/**	住所 */
 	@NotBlank(message="*入力は必須です")
 	private String address;
 	/**	電話番号 */
-	@NotBlank(message="*入力は必須です")
+	@Pattern(regexp = "^[0-9]*$",message="*半角数字で入力してください")
 	private String telephone;
 	
 	public Integer getId() {

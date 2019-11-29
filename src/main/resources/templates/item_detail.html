@@ -9,6 +9,11 @@
 <script th:src="@{/js/item_detail.js}"></script>
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
 <link th:href="@{/css/piza.css}" rel="stylesheet">
+<link th:href="@{/css/item_detail.css}" rel="stylesheet">
+
+<script type="text/javascript">
+$('#price_M').number(true);
+</script>
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -80,12 +85,12 @@
 									<label class="radio-inline">
 										<input class="size" type="radio"
 											name="size" value="M" checked="checked">
-										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;<span id="price_M" th:text="${item.priceM}">9,999</span>円(税抜)
+										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;<span id="price_M" th:text="${#numbers.formatInteger(item.priceM, 2, 'COMMA')}">9,999</span>円(税抜)
 									</label>
 									<label class="radio-inline">
 										<input class="size" type="radio"
 											name="size" value="L">
-										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;<span id="price_L" th:text="${item.priceL}">9,999</span>円(税抜)
+										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;<span id="price_L" th:text="${#numbers.formatInteger(item.priceL, 2, 'COMMA')}">9,999</span>円(税抜)
 									</label>
 								</div>
 							</div>
@@ -130,7 +135,9 @@
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="form-group">
-							合計金額：<span id="total_price"></span>円
+							<span id="totalprice">
+								この商品の金額：<span id="total_price"></span>円（税抜）
+							</span>
 						</div>
 					</div>
 				</div>
