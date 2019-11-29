@@ -47,11 +47,13 @@ public class ShowOrderController {
 	public String showOrder(OrderForm form, Model model) {
 		System.err.println("cart_listからもらったユーザーID" + form.getUserId());
 //		int userId = new BigInteger(session.getId(), 16).intValue();
+//		session.setAttribute("sessionID" , new BigInteger(session.getId(), 16).intValue());
+		
 		
 //        if(result.hasErrors()) {
 //        	return "forward:/showorder";
 //        }
-		Order order = showOrderService.showOrder(form.getUserId());
+		Order order = showOrderService.showOrder(Integer.parseInt(form.getUserId()));
 		System.err.println(order);
 
 //			Order order= testDataService.testOrder();

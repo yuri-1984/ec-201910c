@@ -24,14 +24,14 @@ public class CheckService {
 	
 	public Credit check(OrderForm form,Model model) {
 		Credit credit = new Credit();
-		credit.setUserId(form.getUserId());
-		credit.setOrderNumber(form.getOrderNumber());
-		credit.setOrderAmount(form.getOrderAmount());
-		credit.setCardNumber(form.getCardNumber());
-		credit.setCardExpYear(form.getCardExpYear());
-		credit.setCardExpMonth(form.getCardExpMonth());
+		credit.setUserId(Integer.parseInt(form.getUserId()));
+		credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
+		credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
+		credit.setCardNumber(Integer.parseInt(form.getCardNumber()));
+		credit.setCardExpYear(Integer.parseInt(form.getCardExpYear()));
+		credit.setCardExpMonth(Integer.parseInt(form.getCardExpMonth()));
 		credit.setCardName(form.getCardName());
-		credit.setCardCvv(form.getCardCvv());
+		credit.setCardCvv(Integer.parseInt(form.getCardCvv()));
 		
 		return credit;
 		

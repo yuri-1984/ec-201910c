@@ -1,9 +1,15 @@
 package com.example.repository;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -11,7 +17,11 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.Item;
+import com.example.domain.Order;
 import com.example.domain.OrderItem;
+import com.example.domain.OrderTopping;
+import com.example.domain.Topping;
 
 /**
  * order_itemsテーブルを操作するレポジトリークラス.
@@ -34,6 +44,8 @@ public class OrderItemRepository {
 		insert = withTableName.usingGeneratedKeyColumns("id");
 
 	}
+	
+
 
 	/**
 	 * 注文商品を追加するメソッド.
@@ -64,5 +76,6 @@ public class OrderItemRepository {
 		template.update(deleteSql, param);
 
 	}
+	
 
 }
