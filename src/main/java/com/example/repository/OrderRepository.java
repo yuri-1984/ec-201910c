@@ -230,6 +230,13 @@ public class OrderRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("id", id);
 		template.update(sql, param);
 	}
+	
+	public void orderDeleteBysessionId(Integer userId) {
+		String sql = "DELETE FROM orders WHERE o_user_id=:userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		template.update(sql, param);
+		
+	}
 
 	@Override
 	public String toString() {

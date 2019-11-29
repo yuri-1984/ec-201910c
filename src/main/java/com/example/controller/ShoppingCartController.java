@@ -54,7 +54,7 @@ public class ShoppingCartController {
 	public String insertOrderItem(OrderItemForm orderItemform) {
 		System.out.println("フォームの内容" + orderItemform);
 		// 修正必要
-		Integer userId = new BigInteger(session.getId(), 16).intValue();
+		Integer userId = (Integer)(session.getAttribute("sessionId"));
 		shoppingCartService.addItem(userId, orderItemform);
 
 		return "redirect:/showCartList";
