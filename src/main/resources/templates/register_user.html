@@ -72,7 +72,7 @@ $(function() {
 								<label for="inputZipcode">郵便番号:</label>
 								<span th:errors="*{zipcode}" style="color:red">エラーメッセージ</span><br>
 									<input type="text" id="inputZipcode" class="form-control" placeholder="半角数字のみで郵便番号を入力してください (例)1234567" name="zipcode" th:field="*{zipcode}">
-								<input id="address-search" type="button" value="住所検索">
+								<input id="address-search" class="btn btn-primary" style="margin:10px 0px 10px 0px;" type="button" value="住所検索">
 							</div>
 							<div class="form-group">
 								<label for="inputAddress">住所:</label>
@@ -87,12 +87,12 @@ $(function() {
 							</div>
 							<div class="form-group">
 								<label for="inputPassword">パスワード:</label>
-								<pre>
-								・パスワードは英大文字・小文字、数字、記号の4種を含む8桁以上で設定してください。
-								・他社などのサービスで用いているパスワードと異なるパスワードを設定してください。</pre>
 								<span th:errors="*{password}" style="color:red">エラーメッセージ</span><br>
 								<input type="password" id="inputPassword" class="form-control"
 									placeholder="パスワードを入力してください" name="password" th:field="*{password}">
+								<span style="font-size:8px;">【パスワード設定の注意事項】<br>
+								※　パスワードは英大文字・小文字、数字、記号の4種を含む8桁以上で設定してください。<br>
+								※　他社のサービスなどで用いているパスワードと同一のパスワードを設定しないでください。<br></span>
 							</div>
 							<div class="form-group">
 								<label for="inputConfirmationPassword">確認用パスワード:</label>
