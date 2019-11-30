@@ -87,6 +87,9 @@ $(function() {
 							</div>
 							<div class="form-group">
 								<label for="inputPassword">パスワード:</label>
+								<pre>
+								・パスワードは英大文字・小文字、数字、記号の4種を含む8桁以上で設定してください。
+								・他社などのサービスで用いているパスワードと異なるパスワードを設定してください。</pre>
 								<span th:errors="*{password}" style="color:red">エラーメッセージ</span><br>
 								<input type="password" id="inputPassword" class="form-control"
 									placeholder="パスワードを入力してください" name="password" th:field="*{password}">
