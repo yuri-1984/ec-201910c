@@ -54,8 +54,7 @@ $( function() {
 						<span sec:authorize="isAnonymous()">
 						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;</span>
 						<span sec:authorize="hasRole('ROLE_USER')">
-						<a href="item_list.html" class="navbar-link">ログアウト</a></span>
-					</p>
+						<a href="list.html" th:href="@{/logout}" class="navbar-link">ログアウト</a></span>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>

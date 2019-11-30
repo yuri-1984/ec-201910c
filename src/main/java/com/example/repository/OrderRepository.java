@@ -217,17 +217,15 @@ public class OrderRepository {
 	}
 
 	public void update(Order order) {
-
 		String sql = "update orders set status=:status,total_price =:totalPrice,order_date =:orderDate,destination_name =:destinationName,destination_email =:destinationEmail,destination_zipcode =:destinationZipcode,destination_address =:destinationAddress,destination_tel =:destinationTel,delivery_time =:deliveryTime,payment_method =:paymentMethod where id=:id";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(sql, param);
 	}
 	
 	//ログイン用
-	public void updateLogin(int userId, int id) {
-		String sql = "update orders set user_id=:userId where id = :id";
-//		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("id", id);
+	public void loginUpdate(int loginId, int sessionId) {
+		String sql = "update orders set user_id = :userId where user_id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", loginId).addValue("id", sessionId);
 		template.update(sql, param);
 	}
 	

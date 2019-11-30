@@ -71,14 +71,11 @@ public class ShoppingCartService {
 			order.setStatus(0);
 			order.setTotalPrice(0);
 			orderRepository.insert(order);
-			System.out.println("ショッピングカートインサート1");
 		}
-		System.out.println("ショッピングカートインサート2");
 
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(orderItemform, orderItem);
 		orderItem.setOrderId(order.getId());
-		System.out.println("ショッピングカートインサート3");
 		orderItemRepository.insert(orderItem);
 
 		// itemとorderトッピングリストはテーブル結合でとってきてorderItemにset

@@ -54,7 +54,6 @@ public class ShowOrderController {
 //        	return "forward:/showorder";
 //        }
 		Order order = showOrderService.showOrder(Integer.parseInt(form.getUserId()));
-		System.err.println(order);
 
 //			Order order= testDataService.testOrder();
 		model.addAttribute("order", order);

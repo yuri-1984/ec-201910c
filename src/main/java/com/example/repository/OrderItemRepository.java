@@ -44,8 +44,6 @@ public class OrderItemRepository {
 		insert = withTableName.usingGeneratedKeyColumns("id");
 
 	}
-	
-
 
 	/**
 	 * 注文商品を追加するメソッド.
@@ -75,6 +73,18 @@ public class OrderItemRepository {
 		template.update(deleteSql, param);
 
 	}
-	
+
+	/**
+	 * ログイン後にupdate処理を行います. 
+	 * 仮IDでカートに入れた後に新規登録して、ログイン後にカートに商品を保持するよう処理。
+	 * 
+	 * @param loginId
+	 * @param sessionId
+	 */
+	public void updateLogin(int loginId, int sessionId) {
+		String sql = "UPDATE order_items set order_id = :orderId where order_id = :id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", loginId).addValue("id", sessionId);
+		template.update(sql, param);
+	}
 
 }

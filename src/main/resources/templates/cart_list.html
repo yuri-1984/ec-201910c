@@ -35,14 +35,13 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-						<span sec:authorize="hasRole('ROLE_USER')"></span> <a
-							th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
-						<span sec:authorize="hasRole('ROLE_USER')"> <a
-							th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						</span> <span sec:authorize="isAnonymous()"> <a
-							th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;
-						</span> <span sec:authorize="hasRole('ROLE_USER')"><a
-							href="item_list.html" class="navbar-link">ログアウト</a></span>
+						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<span sec:authorize="hasRole('ROLE_USER')">
+						<a th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;</span>
+						<span sec:authorize="isAnonymous()">
+						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;</span>
+						<span sec:authorize="hasRole('ROLE_USER')">
+						<a href="list.html" th:href="@{/logout}" class="navbar-link">ログアウト</a></span>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->

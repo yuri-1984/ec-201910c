@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 //import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.domain.LoginUser;
 import com.example.domain.Order;
 import com.example.form.OrderForm;
 import com.example.form.OrderItemForm;
@@ -51,10 +53,19 @@ public class ShoppingCartController {
 	 * @return
 	 */
 	@RequestMapping("/insertOrderItem")
-	public String insertOrderItem(OrderItemForm orderItemform) {
-		System.out.println("フォームの内容" + orderItemform);
-		// 修正必要
-		Integer userId = (Integer)(session.getAttribute("sessionId"));
+	public String insertOrderItem(OrderItemForm orderItemform,@AuthenticationPrincipal LoginUser loginUser) {
+		Integer userId ;
+		if(loginUser != null) {
+			 userId = loginUser.getUser().getId();
+			
+		} else if (session.getAttribute("userId") != null){
+			 userId = (Integer)(session.getAttribute("userId"));
+			
+		}else {
+			 userId = new BigInteger(session.getId(), 16).intValue();
+			session.setAttribute("userId", userId);
+		}
+		
 		shoppingCartService.addItem(userId, orderItemform);
 
 		return "redirect:/showCartList";
@@ -68,13 +79,19 @@ public class ShoppingCartController {
 	 * 
 	 */
 	@RequestMapping("/showCartList")
-	public String showCartList(OrderItemForm orderItemform, Model model) {
-//		Integer userId = Integer.valueOf(session.getId());	
-//		sessionIdを10進数の数字に変換
-
-		int userId = new BigInteger(session.getId(), 16).intValue();
-		session.setAttribute("sessionId", userId);
-
+	public String showCartList(OrderItemForm orderItemform, Model model,@AuthenticationPrincipal LoginUser loginUser) {
+		Integer userId ;
+		if(loginUser != null) {
+			 userId = loginUser.getUser().getId();
+			
+		} else if (session.getAttribute("userId") != null){
+			 userId = (Integer)(session.getAttribute("userId"));
+			
+		}else {
+			 userId = new BigInteger(session.getId(), 16).intValue();
+			session.setAttribute("userId", userId);
+		}
+		
 		Order order = shoppingCartService.showCartList(userId);
 		if (order == null || order.getOrderItemList().size()==0) {
 			model.addAttribute("message", "カートの中身が空です。");
