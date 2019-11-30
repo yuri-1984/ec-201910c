@@ -20,18 +20,23 @@ public class RegisterUserForm {
 	@Email(message="*メールアドレスの形式が不正です")
 	private String email;
 	/**	パスワード */
+	// 英大文字・小文字+数字+記号の4種を含む8桁以上
+	@Pattern(regexp = "^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*[!\\x22\\#$%&@'()*+,\\-./_])[A-Za-z0-9!\\x22\\#$%&@'()*+,\\-./_]{8,}$",
+			message="*パスワードは英大文字・小文字、数字、記号の4種を含む8桁以上で設定してください")
 	@NotBlank(message="*入力は必須です")
 	private String password;
 	@NotBlank(message="*入力は必須です")
 	private String confirmationPassword;	
 	/**	郵便番号 */
-	@Pattern(regexp = "^\\d{3}\\-?\\d{4}$",message="*半角数字7桁で入力してください")
+	@NotBlank(message="*入力は必須です")
+	@Pattern(regexp = "^\\d{3}\\-?\\d{4}$",message="*郵便番号の形式が不正です")
 	private String zipcode;
 	/**	住所 */
 	@NotBlank(message="*入力は必須です")
 	private String address;
 	/**	電話番号 */
 	@Pattern(regexp = "^[0-9]*$",message="*半角数字で入力してください")
+	@NotBlank(message="*入力は必須です")
 	private String telephone;
 	
 	public Integer getId() {
