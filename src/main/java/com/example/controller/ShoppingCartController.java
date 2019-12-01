@@ -42,7 +42,11 @@ public class ShoppingCartController {
 	public OrderForm setUpdateOrderFomr() {
 		return new OrderForm();
 	}
-
+	
+    @RequestMapping("/thanks")
+    public String index() {
+    	return "order_finished";
+    }
 	/**
 	 * カートを追加するのボタンを押したら注文情報が追加されるメソッド.
 	 * 

@@ -45,6 +45,10 @@ public class OrderController {
 //	public String index() {
 //		return "order_confirm";
 //	}
+	@ModelAttribute
+	public OrderForm setupform() {
+		return new OrderForm();
+	}
 
 	/**
 	 * 注文処理を行うメソッド.

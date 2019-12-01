@@ -1,10 +1,10 @@
 package com.example.form;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import com.example.domain.OrderItem;
 import com.example.domain.User;
@@ -18,20 +18,16 @@ public class OrderForm {
 	private String orderDate;
 	@NotBlank(message="お名前を入力して下さい")
 	private String destinationName;
-	@NotBlank(message="メールアドレスを入力して下さい")
+	@Email(message="Emailの形式が不正です")
 	private String destinationEmail;
+	@Pattern(regexp = "^\\d{3}\\-?\\d{4}$" , message="数字７桁で入力してください")
 	private String destinationZipcode;
 	@NotBlank(message="住所を入力して下さい")
 	private String destinationAddress;
-	@NotBlank(message="電話番号を入力してください")
+	@Pattern(regexp="^(070|080|090)-\\d{4}-\\d{4}$" , message="数字１１桁をハイフン有りで入力して下さい")
 	private String destinationTel;
+	@NotBlank(message="配達日時を入力してください")
 	private String deliveryDate;
-	public String getDeliveryDate() {
-		return deliveryDate;
-	}
-	public void setDeliveryDate(String deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
 	private String deliveryTime;
 	private String paymentMethod;
 	private User user;
@@ -103,6 +99,12 @@ public class OrderForm {
 	}
 	public void setDestinationTel(String destinationTel) {
 		this.destinationTel = destinationTel;
+	}
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 	public String getDeliveryTime() {
 		return deliveryTime;
