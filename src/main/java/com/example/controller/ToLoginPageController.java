@@ -39,7 +39,7 @@ public class ToLoginPageController {
 	
 	@RequestMapping("/toLoginPageError")
 	public String toLoginPageError(Model model) throws ServletException, IOException {
-		model.addAttribute("messeage", "メールアドレス、またはパスワードが間違っています");
+		model.addAttribute("error", "メールアドレス、またはパスワードが間違っています");
 		return "login";
 	}
 	

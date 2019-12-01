@@ -57,6 +57,11 @@ public class ShowItemListController {
 			// 入力フィールドの文字列で曖昧検索を行います。
 			itemList = service.findByName(findName);
 		}
+		
+		if(itemList.size() == 0) {
+			model.addAttribute("message", "該当する商品がありません");
+			itemList = service.showList();
+		}
 		System.out.println(itemList);
 		// 表示させたいページ数、ページサイズ、従業員リストを渡し１ページに表示させる従業員リストを絞り込み
 		Page<Item> itemPage = service.showListPaging(page, VIEW_SIZE, itemList);
