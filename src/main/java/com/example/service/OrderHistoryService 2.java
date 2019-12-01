@@ -19,20 +19,13 @@ public class OrderHistoryService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-	
-	
-	 	
-	 	/**
-	 	 * 未購入以外の注文履歴を検索する.
-	 	 * @param id
-	 	 * @return
-	 	 */
-	 	public List<Order> seachOrderList(Integer id){
-	 		 List<Order> orderList = orderRepository.findByLiginUserIdNotStatusZero(id);
-	 		 return orderList;
-	 		
-	 	}
 
+//	public List<Order> showOrdertList(Integer userId) {
+//		List<Order> orderList = orderRepository.findByuserId(userId);
+//		
+//		return orderList;
+//	}
+	
 	
 	
 	

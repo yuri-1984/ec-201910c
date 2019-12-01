@@ -23,7 +23,6 @@ public class ShowOrderHistoryController {
 	@Autowired
 	private OrderHistoryService orderHistoryService;
 
-	
 	/**
 	 * 注文履歴を表示するメソッド.
 	 * 
@@ -42,4 +41,5 @@ public class ShowOrderHistoryController {
 
 		return "order_history.html";
 	}
+	
 }
