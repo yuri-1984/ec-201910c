@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -36,5 +36,13 @@ public class ToLoginPageController {
 		session.setAttribute("referer", request.getHeader("REFERER"));
 		return "login";
 	}
+	
+	@RequestMapping("/toLoginPageError")
+	public String toLoginPageError(Model model) throws ServletException, IOException {
+		model.addAttribute("messeage", "メールアドレス、またはパスワードが間違っています");
+		return "login";
+	}
+	
+	
 	
 }

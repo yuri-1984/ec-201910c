@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import java.io.IOException;
-import java.math.BigInteger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -93,14 +92,14 @@ public class LoginController {
 		String urlPass = (url).substring(21);
 		System.out.println(url);
 		System.out.println(urlPass);
- //		
-//		if(url.equals("http://localhost:8080/showCartList")) {
-//			System.out.println(1);
-//			return "forward:/showorder";
-//		}else {
-//			System.out.println(2);
-//			return "forward:" + urlPass;
-//		}
-		return "forward:" + urlPass;
+ 		
+		if(urlPass.equals("/showRegisterUserPage")) {
+			System.out.println(1);
+			return "forward:/";
+		}else {
+			System.out.println(2);
+			return "forward:" + urlPass;
+		}
+//		return "forward:" + urlPass;
 	}
 }
