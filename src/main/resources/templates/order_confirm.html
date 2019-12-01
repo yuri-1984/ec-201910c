@@ -183,7 +183,7 @@
 		</div>
 
 		<!-- table -->
-		<form th:action="@{/order}" th:object="${orderForm}" method="post">
+		<form th:action="@{/finished}" th:object="${orderForm}" method="post">
 		<input type="hidden" name="id" th:value="${order.id}">
 		<input type="hidden" name="orderDate" th:value="${order.orderDate}">
 		<input type="hidden" name="totalPrice" th:value="${order.getCalctotalPrice()}">
