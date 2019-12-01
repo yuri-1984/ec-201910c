@@ -96,6 +96,8 @@ public class LoginController {
 		if(urlPass.equals("/showRegisterUserPage")) {
 			System.out.println(1);
 			return "forward:/";
+		}else if(urlPass.equals("/toLoginPage")) {
+			return "forward:/";
 		}else {
 			System.out.println(2);
 			return "forward:" + urlPass;
