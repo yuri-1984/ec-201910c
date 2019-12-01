@@ -90,7 +90,7 @@ public class OrderRepository {
 				
 				item = new Item();
 				item.setId(rs.getInt("i_id"));
-				item.setName(rs.getString("i_description"));
+				item.setName(rs.getString("i_name"));
 				item.setPriceM(rs.getInt("i_price_m"));
 				item.setPriceL(rs.getInt("i_price_l"));
 				item.setImagePath(rs.getString("i_image_path"));
@@ -108,8 +108,8 @@ public class OrderRepository {
 				topping = new Topping();
 				topping.setId(rs.getInt("t_id"));
 				topping.setName(rs.getString("t_name"));
-				topping.setPriceL(rs.getInt("t_price_m"));
-				topping.setPriceM(rs.getInt("t_price_l"));
+				topping.setPriceL(rs.getInt("t_price_l"));
+				topping.setPriceM(rs.getInt("t_price_m"));
 				orderTopping.setTopping(topping);
 			}
 //			if (rs.getInt("t_id") != 0) {
