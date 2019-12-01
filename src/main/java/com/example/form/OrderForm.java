@@ -26,7 +26,6 @@ public class OrderForm {
 	private String destinationAddress;
 	@Pattern(regexp="^(070|080|090)-\\d{4}-\\d{4}$" , message="数字１１桁をハイフン有りで入力して下さい")
 	private String destinationTel;
-	@NotBlank(message="配達日時を入力してください")
 	private String deliveryDate;
 	private String deliveryTime;
 	private String paymentMethod;

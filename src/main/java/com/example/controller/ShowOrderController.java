@@ -40,5 +40,11 @@ public class ShowOrderController {
 
 		return "order_confirm";
 	}
+	@RequestMapping("/deleteOrder2")
+	public String deleteOrder2(Integer orderItemId) {
+		showOrderService.deleteByOrderItemId(orderItemId);
 
+		return "redirect:/showorder";
+
+	}
 }

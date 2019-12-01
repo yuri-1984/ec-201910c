@@ -32,5 +32,8 @@ public class ShowOrderService {
 		
 		
 	}
+	public void deleteByOrderItemId(Integer orderitemid) {
+		repository.deleteById(orderitemid);
+	}
 
 }

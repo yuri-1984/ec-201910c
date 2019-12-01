@@ -235,6 +235,12 @@ public class OrderRepository {
 		template.update(sql, param);
 		
 	}
+	public void deleteById(Integer id) {
+		String deleteSql = "WITH deleted AS(DELETE FROM order_items WHERE id =:id RETURNING id) DELETE FROM order_toppings WHERE order_item_id IN (SELECT id FROM deleted)";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		template.update(deleteSql, param);
+
+	}
 	
 
 
