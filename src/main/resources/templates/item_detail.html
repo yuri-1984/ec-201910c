@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+<link rel="icon" type="image/x-icon" th:href="@{/img_curry/favicon.ico}">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ピザ屋のネット注文</title>
+<title>商品詳細</title>
 <script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
 <script th:src="@{/js/item_detail.js}"></script>
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
@@ -20,7 +21,7 @@ $('#price_M').number(true);
     <![endif]-->
 </head>
 <body>
-	<div class="container">
+<header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -54,6 +55,8 @@ $('#price_M').number(true);
 			</div>
 			<!-- /.container-fluid -->
 		</nav>
+		</header>
+	<div class="container">
 
 		<form th:action="@{/insertOrderItem}" method="post">
 		
@@ -160,6 +163,10 @@ $('#price_M').number(true);
 		</form>
 
 	</div>
+	
+	<footer>
+	Copyright © Rakuraku-Curry LTD. All Rights Reserved.
+	</footer>
 	<!-- end container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
