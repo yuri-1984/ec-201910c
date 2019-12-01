@@ -55,6 +55,9 @@ $('#price_M').number(true);
 			<!-- /.container-fluid -->
 		</nav>
 
+		<div sec:authorize="hasRole('ROLE_USER')" style="float : right">
+		<span sec:authentication="principal.user.name">山田</span>さんこんにちは！</div>
+		
 		<form th:action="@{/insertOrderItem}" method="post">
 		
 		<!-- OrderItemFormに渡すitemId -->
