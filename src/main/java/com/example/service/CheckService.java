@@ -24,9 +24,9 @@ public class CheckService {
 	
 	public Credit check(OrderForm form,Model model) {
 		Credit credit = new Credit();
-		credit.setUserId(Integer.parseInt(form.getUserId()));
-		credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
-		credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
+//		credit.setUserId(Integer.parseInt(form.getUserId()));
+//		credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
+//		credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
 		credit.setCardNumber(Integer.parseInt(form.getCardNumber()));
 		credit.setCardExpYear(Integer.parseInt(form.getCardExpYear()));
 		credit.setCardExpMonth(Integer.parseInt(form.getCardExpMonth()));

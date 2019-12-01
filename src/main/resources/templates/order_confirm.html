@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/x-icon" th:href="@{/img_curry/favicon.ico}">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="../static/js/credit.js"></script>
+<script th:src="@{/js/credit.js}"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>注文確認</title>
@@ -77,9 +77,13 @@ $(function() {
 								</div>
 							</th>
 							<th>
-								<div class="text-center">
-									サイズ、価格(税抜)、数量
-								</div>
+								<div class="text-center">サイズ</div>
+							</th>
+							<th>
+								<div class="text-center">価格(税抜)</div>
+							</th>
+							<th>
+								<div class="text-center">数量</div>
 							</th>
 							<th>
 								<div class="text-center">
@@ -89,6 +93,11 @@ $(function() {
 							<th>
 								<div class="text-center">
 									小計
+								</div>
+							</th>
+							<th>
+								<div class="text-center">
+									削除
 								</div>
 							</th>
 						</tr>
@@ -102,10 +111,21 @@ $(function() {
 								</div>
 							</td>
 							<td>
-							<span class="price">&nbsp;<span th:text="${orderItem.size}">Ｌ</span></span>&nbsp;&nbsp;<span th:if="${orderItem.size}=='M'" th:text="${#numbers.formatInteger(orderItem.item.priceM,2,'COMMA')}">2,380</span>円
-							<span th:if="${orderItem.size}=='L'" th:text="${#numbers.formatInteger(orderItem.item.priceL,2,'COMMA')}"></span>円
-								&nbsp;&nbsp;<span th:text="${orderItem.quantity}">1個</span>
-							</td>
+								<span class="price">&nbsp;<span
+										th:text="${orderItem.size}"></span></span>&nbsp;&nbsp; 
+								</td>
+								<td>
+								<span
+									th:if="${orderItem.size} == 'M'"
+									th:text="${#numbers.formatInteger(orderItem.item.priceM, 2, 'COMMA')}">2,380</span> <span
+									th:if="${orderItem.size} == 'L'"
+									th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, 'COMMA')}">2,380</span> 円 &nbsp;&nbsp;
+								
+								</td>
+								<td>	
+									<span
+									th:text="${orderItem.quantity}">1個</span>
+								</td>
 							<td>
 							     <ul th:each="orderTopping : ${orderItem.orderToppingList}">
 									<li><span th:text="${orderTopping.topping.name}">ピーマン300円</span><span 
@@ -130,56 +150,7 @@ $(function() {
 								</div>
 							</td>
 						</tr>
-						<!-- <tr>
-							<td>
-								<div class="center">
-									<img src="img/1.jpg"
-										class="img-responsive img-rounded" width="100" height="300"><br>
-									じゃがバターベーコン
-								</div>
-							</td>
-							<td>
-								<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-								&nbsp;&nbsp;1個
-							</td>
-							<td>
-								<ul>
-									<li>ピーマン300円</li>
-									<li>オニオン300円</li>
-									<li>あらびきソーセージ300円</li>
-								</ul>
-							</td>
-							<td>
-								<div class="text-center">
-								 3,280円
-								</div>
-							</td>
-						</tr> -->
-						<!-- <tr>
-							<td>
-								<div class="center">
-									<img src="img/1.jpg"
-										class="img-responsive img-rounded" width="100" height="300"><br>
-									じゃがバターベーコン
-								</div>
-							</td>
-							<td>
-								<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-								&nbsp;&nbsp;1個
-							</td>
-							<td>
-								<ul>
-									<li>ピーマン300円</li>
-									<li>オニオン300円</li>
-									<li>あらびきソーセージ300円</li>
-								</ul>
-							</td>
-							<td>
-								<div class="text-center">
-									3,280円
-								</div>
-							</td>
-						</tr> -->
+
 					</tbody>
 				</table>
 			</div>
@@ -195,8 +166,9 @@ $(function() {
 		</div>
 
 		<!-- table -->
-		<form th:action="@{/finished}" th:object="${orderForm}" method="post">
+		<form th:action="@{/order}" method="post" th:object="${orderForm}">
 		<input type="hidden" name="id" th:value="${order.id}">
+		<input type="hidden" name="userId" th:value="${order.userId}">
 		<input type="hidden" name="orderDate" th:value="${order.orderDate}">
 		<input type="hidden" name="totalPrice" th:value="${order.getCalctotalPrice()}">
 			<div class="row">
@@ -213,8 +185,9 @@ $(function() {
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{destinationName}" style="color:red"></div>
-									<input type="text" name="destinationName" th:field="*{destinationName}">
+								   <div th:errors="*{destinationName}" style="color:red">エラーメッセージ</div>
+									<input type="text" name="destinationName"  class="form-control"
+									placeholder="氏名を入力してください" th:field="*{destinationName}">
 								</td>
 							</tr>
 							<tr>
@@ -224,8 +197,9 @@ $(function() {
 									</div>
 								</td>
 								<td>
-								  <div th:errors="*{destinationEmail}" style="color:red"></div>
-									<input type="text" name="destinationEmail" th:field="*{destinationEmail}">
+								  <div th:errors="*{destinationEmail}" style="color:red">エラーメッセージ</div>
+									<input type="text" name="destinationEmail" class="form-control"
+									placeholder="メールアドレスを入力してください" th:field="*{destinationEmail}">
 								</td>
 							</tr>
 							<tr>
@@ -235,9 +209,9 @@ $(function() {
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{destinationZipcode}" style="color:red"></div>
+								   <div th:errors="*{destinationZipcode}" style="color:red">エラーメッセージ</div>
 								　　<input type="text" id="inputZipcode" class="form-control" placeholder="半角数字のみで郵便番号を入力してください" name="destinationZipcode" th:field="*{destinationZipcode}">
-								　　<input id="address-search" class="btn btn-primary" style="margin:10px 0px 10px 0px;" type="button" value="住所検索">
+								　　<input id="address-search" class="btn btn-primary" style="margin:10px 0px 0px 0px;" type="button" value="住所検索">
 								</td>
 								
 							</tr>
@@ -248,8 +222,8 @@ $(function() {
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{destinationAddress}" style="color:red"></div>
-									<input type="text" name="destinationAddress" th:field="*{destinationAddress}" id="inputAddress">
+								   <div th:errors="*{destinationAddress}" style="color:red">エラーメッセージ</div>
+									<input type="text" class="form-control" placeholder="住所を入力してください" name="destinationAddress" th:field="*{destinationAddress}" id="inputAddress">
 								</td>
 							</tr>
 							<tr>
@@ -259,8 +233,9 @@ $(function() {
 									</div>
 								</td>
 								<td>
-								   <div th:errors="*{destinationTel}" style="color:red"></div>
-									<input type="text" name="destinationTel" th:field="*{destinationTel}">
+								   <div th:errors="*{destinationTel}" style="color:red">エラーメッセージ</div>
+									<input type="text" class="form-control"
+									placeholder="半角数字のみで電話番号を入力してください" name="destinationTel" th:field="*{destinationTel}">
 								</td>
 							</tr>
 							<tr>
@@ -276,7 +251,7 @@ $(function() {
 											</div>
 											<div class="col-sm-5">
 											<div th:errors="*{orderDate}" style="color:red"></div>
-												<input type="date" name="orderDate" id="inputPeriod"  th:field="*{orderDate}" class="form-control input-sm" />
+												<input type="date" name="orderDate" id="inputPeriod"  th:field="*{orderDate}" class="form-control input-sm"/>
 											</div>
 
 										</div>
@@ -336,6 +311,11 @@ $(function() {
 					</table>
 				</div>
 			</div>
+				<div class="col-xs-offset-4 col-xs-4">
+					<div class="form-group">
+						<input id="orderbutton" class="form-control btn btn-warning btn-block" type="submit" value="この内容で注文する">				  
+					</div>
+				</div>
 
 			<!-- table -->
 			<div class="row">
@@ -347,41 +327,53 @@ $(function() {
 							<tr>
 								<td>
 									<div class="text-center">
-										代金引換
+										決済方法
 									</div>
 								</td>
 								<td>
 									<div class="row">
 										<div class="col-sm-12">
 											<label class="radio-inline">
-												<input type="radio"
-													name="paymentMethod" checked="checked" th:value="1" id="ondelivery">
+												<input type="radio" class="paymentMethod"
+													name="paymentMethod" checked="checked" th:value="1">
 												代金引換
 											</label>
+											<label class="radio-inline">
+												<input type="radio" class="paymentMethod"
+													name="paymentMethod" th:value="2" id="card">
+												クレジットカード
+										
+											</label><br>
 										</div>
 									</div>
 								</td>
 							</tr>
-							<tr>
+							
+							<!-- クレジットカードを選んだ場合のみ表示 -->
+							<tr class="credit">
 								<td>
 									<div class="text-center">
-										クレジットカード決済
+										クレジットカード番号
 									</div>
 								</td>
-								
-								<td align="center">
+								<td>
+									<div class="text-center">
 									<div class="row">
 										<div class="col-sm-12">
-											<label class="radio-inline">
-												<input type="radio"
-													name="paymentMethod" th:value="2" id="card">
-												クレジットカード
-										
-											</label><br><br>
-											<div id="creditcard">
-										クレジットカード番号：<input type="text" name="cardNumber" >
+										<div th:errors="*{cardNumber}" style="color:red">エラーメッセージ</div>
+												<input id="inputCardNumber" type="text" class="form-control" placeholder="クレジットカード番号を16桁で入力してください" name="cardNumber" th:field="*{cardName}">
 									</div>
-									    有効期限：<select name="cardExpMonth">
+										</div>
+									</div>
+								</td>
+							<tr class="credit">
+								<td>
+									<div class="text-center">
+											有効期限
+									</div>
+								</td>
+								<td>
+									    <select id="inputCardExpMonth" name="cardExpMonth">
 									           <option value="01">01
 									           <option value="02">02
 									           <option value="03">03
@@ -403,41 +395,51 @@ $(function() {
 									           <option value="2021">2021
 									           <option value="2022">2022
 									           <option value="2023">2023
-									          
 									           </select>
-									<div>  
-									  カード名義人：<input type="text" name="cardName" >
-									   
-									</div>
-									<div>
-									 セキュリティコード：<input type="text" name="cardCvvy" >
-									
-									</div>
-									</div>
-									</div>
-								</td>
-							</tr>
+									 </td>
+									 <tr class="credit">
+									 	<td>
+										 	<div class="text-center">	
+												  カード名義人
+											  </div>
+									   </td>
+									   <td>
+									<div class="text-center">
+										<div th:errors="*{cardName}" style="color:red">エラーメッセージ</div>
+									   		<input type="text" class="form-control" placeholder="カードに記載の名義を英字で入力してください" name="cardName" th:field="*{cardName}">
+				</div>
+									   </td>									   
+									   </tr>
+									   <tr class="credit">
+									   		<td>
+										 	<div class="text-center">	
+												セキュリティコード
+											  </div>
+									   		</td>
+									  		 <td>
+									<div class="text-center">
+										<div th:errors="*{cardCvy}" style="color:red">エラーメッセージ</div>
+										 		<input type="text" class="form-control" placeholder="カード裏面に記載のセキュリティコードを入力してください"name="cardCvy" th:field="*{cardCvy}">
+				</div>
+									   		</td>
+										</tr>
 						</tbody>
 					</table>
+					
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-offset-4 col-xs-4">
 					<div class="form-group">
-					<div id="orderbutton">
-						<input class="form-control btn btn-warning btn-block" type="submit" value="この内容で注文する">
-					   
+						<input id="orderbutton" class="form-control btn btn-warning btn-block" type="submit" value="この内容で注文する">				  
 					</div>
-					</div>
-				</div>
-			</div>
 		</form>
-	</div>
+	
 	
 	<footer>
 	Copyright © Rakuraku-Curry LTD. All Rights Reserved.
 	</footer>
 	</div>
+	</div>
+	
 	<!-- end container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -9,32 +9,35 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Order;
-import com.example.domain.User;
 import com.example.form.OrderForm;
-import com.example.repository.OrderItemRepository;
 import com.example.repository.OrderRepository;
 
 /**
  * 注文処理を実行するリポジトリ
  * 
- * @author shun053012 return 注文内容
+ * @author shun053012
  */
 @Service
+@Transactional
 public class OrderService {
-
 	@Autowired
 	private OrderRepository orderRepository;
-	@Autowired
-	private OrderItemRepository orderItemRepository;
 
-	public Order order(OrderForm form, User user) {
+	/**
+	 * オーダー情報を受け取りDBに追加を行うメソッド.
+	 * @param form
+	 * @param user
+	 * @return
+	 */
+	public Order registerOrder(OrderForm form) {
 		System.out.println("OrderServiceのForm" + form);
 		Order order = orderRepository.load(Integer.parseInt(form.getId()));
 		System.err.println(order);
 		order.setId(Integer.parseInt(form.getId()));
-		order.setUserId(user.getId());
+//		order.setUserId(Integer.parseInt(form.getUserId()));
 		order.setTotalPrice(Integer.parseInt(form.getTotalPrice()));
 		order.setDestinationName(form.getDestinationName());
 		order.setDestinationEmail(form.getDestinationEmail());
@@ -59,18 +62,14 @@ public class OrderService {
 
 		order.setDeliveryTime(timestamp);
 		order.setPaymentMethod(Integer.parseInt(form.getPaymentMethod()));
-		order.setUser(form.getUser());
+//		order.setUser(form.getUser());
 		if (Integer.parseInt(form.getPaymentMethod()) == 1) {
 			order.setStatus(1);
 		} else if (Integer.parseInt(form.getPaymentMethod()) == 2) {
-
 			order.setStatus(2);
 		}
-		order.setOrderItemList(form.getOrderItemList());
+//		order.setOrderItemList(form.getOrderItemList());
 		orderRepository.update(order);
-		System.out.println(order);
 		return order;
-
 	}
-
 }

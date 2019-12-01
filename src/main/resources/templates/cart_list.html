@@ -68,7 +68,13 @@
 									<div class="text-center">商品名</div>
 								</th>
 								<th>
-									<div class="text-center">サイズ、価格(税抜)、数量</div>
+									<div class="text-center">サイズ</div>
+								</th>
+								<th>
+									<div class="text-center">価格(税抜)</div>
+								</th>
+								<th>
+									<div class="text-center">数量</div>
 								</th>
 								<th>
 									<div class="text-center">トッピング、価格(税抜)</div>
@@ -76,7 +82,9 @@
 								<th>
 									<div class="text-center">小計</div>
 								</th>
-								<th></th>
+								<th>
+									<div class="text-center">削除</div>
+								</th>
 							</tr>
 							<tr th:each="orderItem : ${order.orderItemList}">
 								<td>
@@ -87,13 +95,22 @@
 										<span th:text="${orderItem.item.name}">じゃがバターベーコン</span>
 									</div>
 								</td>
-								<td><span class="price">&nbsp;<span
-										th:text="${orderItem.size}"></span></span>&nbsp;&nbsp; <span
+								<td>
+								<span class="price">&nbsp;<span
+										th:text="${orderItem.size}"></span></span>&nbsp;&nbsp; 
+								</td>
+								<td>
+								<span
 									th:if="${orderItem.size} == 'M'"
 									th:text="${#numbers.formatInteger(orderItem.item.priceM, 2, 'COMMA')}">2,380</span> <span
 									th:if="${orderItem.size} == 'L'"
-									th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, 'COMMA')}">2,380</span> 円 &nbsp;&nbsp;<span
-									th:text="${orderItem.quantity}">1個</span></td>
+									th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, 'COMMA')}">2,380</span> 円 &nbsp;&nbsp;
+								
+								</td>
+								<td>	
+									<span
+									th:text="${orderItem.quantity}">1個</span>
+								</td>
 								<td>
 
 									<ul th:each="orderTopping : ${orderItem.orderToppingList}">
@@ -106,9 +123,6 @@
 
 									</ul>
 
-								</td>
-								<td>
-									<div class="text-center"></div>
 								</td>
 								<td><div class="text-center">
 										<span th:text="${#numbers.formatInteger(orderItem.subTotal, 2, 'COMMA')}">3,280円</span>円
@@ -155,7 +169,7 @@
 			<div class="row">
 				<div class="col-xs-offset-5 col-xs-3">
 					<div class="form-group">
-						<a th:href="@{'/showorder?userId=' + ${order.userId}}">
+						<a th:href="@{'/showOrderConfirm?userId=' + ${order.userId}}">
 							<input class="form-control btn btn-warning btn-block"
 								type="submit" value="注文に進む">
 						</a>
