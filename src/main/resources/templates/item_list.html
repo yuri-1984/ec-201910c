@@ -3,10 +3,11 @@
 xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+<link rel="icon" type="image/x-icon" th:href="@{/img_curry/favicon.ico}">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ピザ屋のネット注文</title>
+<title>カレーデリバリーならラクラクカリー</title>
 <link rel="icon" href="../static/img_curry/favicon.ico">
 <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet">
 <link href="../static/css/piza.css" th:href="@{/css/piza.css}" rel="stylesheet">
@@ -29,7 +30,7 @@ $( function() {
 
 </head>
 <body>
-	<div class="container">
+<header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -64,6 +65,10 @@ $( function() {
 			<div sec:authorize="hasRole('ROLE_USER')" style="float : right">
 		<span sec:authentication="principal.user.name">山田</span>さんこんにちは！</div>
 		</nav>
+		</header>
+		
+		
+	<div class="container">
 
 		<!-- search form -->
 		<div sec:authorize="hasRole('ROLE_USER')" style="float : right">
@@ -127,6 +132,9 @@ $( function() {
 			</div>
 		</div>
 	</div>
+	<footer>
+	Copyright © Rakuraku-Curry LTD. All Rights Reserved.
+	</footer>
 	<!-- end container -->
 	
 </body>

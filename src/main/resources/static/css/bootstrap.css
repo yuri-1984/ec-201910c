@@ -12,7 +12,13 @@ html {
 }
 body {
   margin: 0;
+	background-color:rgb(251,176,59);
 }
+
+.container{
+	background-color:white;
+}
+
 article,
 aside,
 details,
@@ -898,7 +904,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: #fff;
+  background-color: rgb(251,176,59);
 }
 input,
 button,
@@ -1386,6 +1392,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 20px;
 }
 @media (min-width: 768px) {
   .container {
@@ -3833,7 +3840,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar {
-    border-radius: 4px;
   }
 }
 @media (min-width: 768px) {
@@ -3937,8 +3943,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   height: 50px;
-  padding: 15px 15px;
+  padding: 8px 0px 8px 5px;
   font-size: 18px;
+  zoom:1.5;
   line-height: 20px;
 }
 .navbar-brand:hover,
@@ -4148,6 +4155,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-right {
     float: right !important;
+    padding:10px;
     margin-right: -15px;
   }
   .navbar-right ~ .navbar-right {
@@ -4155,8 +4163,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+	color:white;
+  	background-color: #60462E;
 }
 .navbar-default .navbar-brand {
   color: #777;
@@ -4232,7 +4240,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default .navbar-link {
-  color: #777;
+  color: white;
 }
 .navbar-default .navbar-link:hover {
   color: #333;
@@ -6322,4 +6330,11 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+footer{
+	color: white;
+    background-color: #60462E;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
 }
