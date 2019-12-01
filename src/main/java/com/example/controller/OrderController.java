@@ -11,63 +11,74 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Credit;
 import com.example.domain.Order;
 import com.example.domain.ReceiveCredit;
-import com.example.domain.User;
 import com.example.form.OrderForm;
 import com.example.service.CheckService;
 import com.example.service.OrderService;
+import com.example.service.ShoppingCartService;
 
 /**
  * 注文を受け付けて注文完了処理を行うコントローラクラス.
- * 
  * @author yuichi
- *
  */
 @Controller
-@RequestMapping("")
 public class OrderController {
-	@ModelAttribute
-	public OrderForm form() {
-		return new OrderForm();
-	}
-
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 	@Autowired
 	private OrderService orderService;
-
 	@Autowired
 	private CheckService checkService;
-
-//	/**
-//	 * 注文完了ページを表示するメソッド.
-//	 * 
-//	 * @return 注文完了画面
-//	 */
-//	@RequestMapping("/showOrderFinished")
-//	public String index() {
-//		return "order_confirm";
-//	}
+	
+	/**
+	 * エラーチェック用.
+	 * @return 空のOrderFormオブジェクト
+	 */
 	@ModelAttribute
-	public OrderForm setupform() {
+	public OrderForm setUpOrderForm() {
 		return new OrderForm();
 	}
 
 	/**
+	 * 注文確認画面を表示するメソッド.
+	 * @return 注文確認画面
+	 */
+	@RequestMapping("/showOrderConfirm")
+	public String showOrderConfirm(Integer userId, Model model) {
+		//カートの中身を表示する
+		Order order = shoppingCartService.showCartList(userId);
+		model.addAttribute("order", order);
+		return "order_confirm";
+	}
+	
+	/**
+	 * 注文完了画面に遷移するメソッド.
+	 * @return
+	 */
+	@RequestMapping("/finished")
+	public String finished() {
+		return "order_finished.html";
+	}
+
+	/**
 	 * 注文処理を行うメソッド.
-	 * 
 	 * @param form リクエストパラメータ
 	 * @return 注文完了画面.
 	 */
 	@RequestMapping("/order")
-	public String order(@Validated OrderForm form, BindingResult result,User user, Model model) {
-        System.out.println("OrderControllerからもらったform"+form);
+	public String order(
+			@Validated 
+			OrderForm form,
+			BindingResult result,
+			Model model) {
 		if (result.hasErrors()) {
-
-			return "forward:/showorder";
+			System.err.println("バリデーションエラー出すよ");
+			return showOrderConfirm(form.getUserId(),model);
 		} 
 		if (Integer.parseInt(form.getPaymentMethod())==2) {
 			Credit credit = new Credit();
-			credit.setUserId(Integer.parseInt(form.getUserId()));
-			credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
-			credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
+//			credit.setUserId(Integer.parseInt(form.getUserId()));
+//			credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
+//			credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
 			credit.setCardNumber(Integer.parseInt(form.getCardNumber()));
 			credit.setCardExpYear(Integer.parseInt(form.getCardExpYear()));
 			credit.setCardExpMonth(Integer.parseInt(form.getCardExpMonth()));
@@ -75,26 +86,23 @@ public class OrderController {
 			credit.setCardCvv(Integer.parseInt(form.getCardCvv()));
 
 			ReceiveCredit receiveCredit = new ReceiveCredit();
-
-			Order order = orderService.order(form,user);
+			Order order = orderService.registerOrder(form);
 			System.out.println("orderControllerの中身"+order);
 			model.addAttribute("order", order);
 			checkService.service(credit, receiveCredit);
+			
+			// クレジットカード情報がtrueなら注文完了画面にリダイレクト.
 			if (checkService.service(credit, receiveCredit) == true) {
-				return "redirect:/order_finished";
+				return "redirect:/finished";
+				
+			// falseだったらエラーを追加して注文確認画面に戻る
 			} else if (checkService.service(credit, receiveCredit) == false) {
 				result.rejectValue("error", null, "クレジットカード情報が不正です");
-				return "order_confirm";
+				return showOrderConfirm(form.getUserId(),model);
 			}
-
 		}
-		Order order = orderService.order(form,user);
+		Order order = orderService.registerOrder(form);
 		model.addAttribute("order", order);
 		return "redirect:/finished";
-	}
-	
-	@RequestMapping("/finished")
-	public String finished() {
-		return "order_finished";
 	}
 }

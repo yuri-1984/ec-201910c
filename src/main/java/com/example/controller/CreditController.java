@@ -13,16 +13,18 @@ import com.example.form.OrderForm;
 import com.example.service.OrderService;
 
 @Controller
-@RequestMapping("sample-credit-card-web-api")
+@RequestMapping("/sample-credit-card-web-api")
 public class CreditController {
 	@Autowired
 	private OrderService orderService;
 	
 	@RequestMapping("/credit-card")
-	public String creditPayment(@Validated OrderForm form, BindingResult result, User user,Model model) {
-		
-		    
-		Order order=orderService.order(form,user);
+	public String creditPayment(
+			@Validated OrderForm form,
+			BindingResult result,
+			User user,
+			Model model) {
+		Order order = orderService.registerOrder(form);
 		model.addAttribute("order",order);
 		    return "order_finished";
 		

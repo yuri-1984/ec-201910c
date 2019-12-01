@@ -1,62 +1,75 @@
 package com.example.form;
 
-import java.util.List;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import com.example.domain.OrderItem;
-import com.example.domain.User;
-
+/**
+ * order_confirm.htmlのお届け先情報を受け取るフォームクラス.
+ * @author yuichi
+ *
+ */
 public class OrderForm {
-	
+	/**	オーダーID */
 	private String id;
-	private String userId;
-	private String status;
-	private String totalPrice;
+	/**	ユーザーID */
+	private Integer userId;
+	/**	注文日 */
 	private String orderDate;
-	@NotBlank(message="お名前を入力して下さい")
+	/**	合計金額 */
+	private String totalPrice;
+	/**	注文者名 */
+	@NotBlank(message="*入力は必須です")
 	private String destinationName;
-	@Email(message="Emailの形式が不正です")
+	/**	メールアドレス */
+	@NotBlank(message="*入力は必須です")
+	@Email(message="*メールアドレスの形式が不正です")
 	private String destinationEmail;
-	@Pattern(regexp = "^\\d{3}\\-?\\d{4}$" , message="数字７桁で入力してください")
+	/**	郵便番号 */
+	@NotBlank(message="*入力は必須です")
+	@Pattern(regexp = "^\\d{3}\\-?\\d{4}$",message="*郵便番号の形式が不正です")
 	private String destinationZipcode;
-	@NotBlank(message="住所を入力して下さい")
+	/**	住所 */
+	@NotBlank(message="*入力は必須です")
 	private String destinationAddress;
-	@Pattern(regexp="^(070|080|090)-\\d{4}-\\d{4}$" , message="数字１１桁をハイフン有りで入力して下さい")
+	/**	電話番号 */
+	@Pattern(regexp = "^[0-9]*$",message="*半角数字で入力してください")
+	@NotBlank(message="*入力は必須です")
 	private String destinationTel;
+	/**	配達日 */
 	@NotBlank(message="配達日時を入力してください")
 	private String deliveryDate;
+	/**	配達時間 */
 	private String deliveryTime;
+	/**	決済方法 */
 	private String paymentMethod;
-	private User user;
-	private List<OrderItem>orderItemList;
-	
-	private String orderNumber;
-	private String orderAmount;
+	/**	クレジットカード番号 */
+	@Pattern(regexp="(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47]{13}|(?:2131|1800|35[0-9]{3})[0-9]{11})",
+			message="クレジットカード番号の形式が不正です")
+	@NotBlank(message="*入力は必須です")
 	private String cardNumber;
+	/**	有効期限年 */
 	private String cardExpYear;
+	/**	有効期限月 */
 	private String cardExpMonth;
+	/**	カード名義 */
+	@Pattern(regexp="^[A-Z]*$",message="形式が不正です")
 	private String cardName;
+	/**	セキュリティコード */
+	@Pattern(regexp="^\\\\d{3}$",message="形式が不正です")
 	private String cardCvv;
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	public String getTotalPrice() {
 		return totalPrice;
@@ -118,30 +131,6 @@ public class OrderForm {
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public List<OrderItem> getOrderItemList() {
-		return orderItemList;
-	}
-	public void setOrderItemList(List<OrderItem> orderItemList) {
-		this.orderItemList = orderItemList;
-	}
-	public String getOrderNumber() {
-		return orderNumber;
-	}
-	public void setOrderNumber(String orderNumber) {
-		this.orderNumber = orderNumber;
-	}
-	public String getOrderAmount() {
-		return orderAmount;
-	}
-	public void setOrderAmount(String orderAmount) {
-		this.orderAmount = orderAmount;
-	}
 	public String getCardNumber() {
 		return cardNumber;
 	}
@@ -174,15 +163,13 @@ public class OrderForm {
 	}
 	@Override
 	public String toString() {
-		return "OrderForm [id=" + id + ", userId=" + userId + ", status=" + status + ", totalPrice=" + totalPrice
+		return "OrderForm [id=" + id + ", totalPrice=" + totalPrice
 				+ ", orderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
 				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
 				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
-				+ ", paymentMethod=" + paymentMethod + ", user=" + user + ", orderItemList=" + orderItemList
-				+ ", orderNumber=" + orderNumber + ", orderAmount=" + orderAmount + ", cardNumber=" + cardNumber
+				+ ", paymentMethod=" + paymentMethod
+				+ ", cardNumber=" + cardNumber
 				+ ", cardExpYear=" + cardExpYear + ", cardExpMonth=" + cardExpMonth + ", cardName=" + cardName
 				+ ", cardCvv=" + cardCvv + "]";
 	}
-
-	
 }
