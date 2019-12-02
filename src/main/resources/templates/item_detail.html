@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+<link rel="icon" type="image/x-icon" th:href="@{/img_curry/favicon.ico}">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ピザ屋のネット注文</title>
+<title>商品詳細</title>
 <script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
 <script th:src="@{/js/item_detail.js}"></script>
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
 <link th:href="@{/css/piza.css}" rel="stylesheet">
 <link th:href="@{/css/item_detail.css}" rel="stylesheet">
-
 <script type="text/javascript">
 $('#price_M').number(true);
 </script>
@@ -20,7 +20,7 @@ $('#price_M').number(true);
     <![endif]-->
 </head>
 <body>
-	<div class="container">
+<header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -36,7 +36,6 @@ $('#price_M').number(true);
 						<img alt="main log" th:src="@{img_curry/header_logo.png}" height="35">
 					</a>
 				</div>
-
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
@@ -54,6 +53,10 @@ $('#price_M').number(true);
 			</div>
 			<!-- /.container-fluid -->
 		</nav>
+		</header>
+
+		<div class="wrapper">
+	<div class="container">
 
 		<div sec:authorize="hasRole('ROLE_USER')" style="float : right">
 		<span sec:authentication="principal.user.name">山田</span>さんこんにちは！</div>
@@ -65,13 +68,11 @@ $('#price_M').number(true);
 		
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
-
 				<h3 class="text-center">商品詳細</h3>
 				<div class="row">
 					<div class="col-xs-5">
 						<img th:src="@{'/img_curry/'+ ${item.imagePath}}" class="img-responsive img-rounded">
 					</div>
-
 					<div class="col-xs-5">
 						<div class="bs-component">
 							<h4><span th:text="${item.name}">商品名</span></h4> <br>
@@ -154,14 +155,17 @@ $('#price_M').number(true);
 								<input class="form-control btn btn-warning btn-block"
 									type="submit" value="カートに入れる">
 							</p>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		</form>
-
+	</div>
+	
+	<footer>
+	Copyright © Rakuraku-Curry LTD. All Rights Reserved.
+	</footer>
 	</div>
 	<!-- end container -->
 	<script
