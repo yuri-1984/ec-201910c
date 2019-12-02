@@ -34,11 +34,14 @@ public class ShowOrderHistoryController {
 	@RequestMapping("/showOrderHistory")
 	public String showOrderHistory( Model model ,@AuthenticationPrincipal LoginUser loginUser) {
 		List<Order> orderList = orderHistoryService.seachOrderList(loginUser.getUser().getId());
-		if (orderList.isEmpty() ) {
+		if (orderList == null) {
 			model.addAttribute("message", "注文履歴はありません");
 		}else {
 			model.addAttribute("orderList", orderList);
 		}
+		
+		System.err.println(orderList );
+		System.out.println(orderList);
 
 		return "order_history.html";
 	}
