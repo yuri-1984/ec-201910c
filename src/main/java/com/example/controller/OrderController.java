@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,7 @@ import com.example.service.ShoppingCartService;
 
 /**
  * 注文を受け付けて注文完了処理を行うコントローラクラス.
+ * 
  * @author yuichi
  */
 @Controller
@@ -28,9 +32,10 @@ public class OrderController {
 	private OrderService orderService;
 	@Autowired
 	private CheckService checkService;
-	
+
 	/**
 	 * エラーチェック用.
+	 * 
 	 * @return 空のOrderFormオブジェクト
 	 */
 	@ModelAttribute
@@ -40,18 +45,20 @@ public class OrderController {
 
 	/**
 	 * 注文確認画面を表示するメソッド.
+	 * 
 	 * @return 注文確認画面
 	 */
 	@RequestMapping("/showOrderConfirm")
 	public String showOrderConfirm(Integer userId, Model model) {
-		//カートの中身を表示する
+		// カートの中身を表示する
 		Order order = shoppingCartService.showCartList(userId);
 		model.addAttribute("order", order);
 		return "order_confirm";
 	}
-	
+
 	/**
 	 * 注文完了画面に遷移するメソッド.
+	 * 
 	 * @return
 	 */
 	@RequestMapping("/finished")
@@ -61,50 +68,95 @@ public class OrderController {
 
 	/**
 	 * 注文処理を行うメソッド.
+	 * 
 	 * @param form リクエストパラメータ
 	 * @return 注文完了画面.
 	 */
 	@RequestMapping("/order")
-	public String order(
-			@Validated 
-			OrderForm form,
-			BindingResult result,
-			Model model) {
-		System.err.println("OrderControllerの中身"+form);
+	public String order(@Validated OrderForm form, BindingResult result, Model model) {
+		System.err.println("OrderControllerの中身" + form);
+
+		System.out.println("aaa:" + form.getCardNumber());
+		if (form.getPaymentMethod().equals("2")) {
+			
+			if(form.getCardNumber().equals("")) {
+				result.rejectValue("cardNumber", null, "クレジットカード番号の形式が不正です");
+			}else {
+				Pattern pattern = Pattern.compile(
+						"[0-9]{16}");
+				Matcher matcher = pattern.matcher(form.getCardNumber());
+				boolean matchResult = matcher.matches();
+				
+				if (matchResult == false) {
+					result.rejectValue("cardNumber", null, "クレジットカード番号の形式が不正です");
+				}
+			}
+			
+			if(form.getCardName().equals("")) {
+				result.rejectValue("cardName", null, "形式が不正です");
+			}else {
+				System.out.println("cardName"+form.getCardName());
+				Pattern pattern1 = Pattern.compile("^[A-Z]*$");
+				Matcher matcher1 = pattern1.matcher(form.getCardName());
+				boolean matchResult1 = matcher1.matches();
+				
+				if (matchResult1 == false) {
+					result.rejectValue("cardName", null, "形式が不正です");
+				}
+			}
+			
+			
+		    if(form.getCardCvv().equals("")) {
+		    	result.rejectValue("cardCvv", null, "形式が不正です");
+		    }else {
+		    	Pattern pattern2 = Pattern.compile("[0-9]{3}");
+		    	Matcher matcher2 = pattern2.matcher(form.getCardCvv());
+		    	boolean matchResult2 = matcher2.matches();
+		    	
+		    	if (matchResult2 == false) {
+		    		result.rejectValue("cardCvv", null, "形式が不正です");
+		    	}
+		    }
+			
+		}
+        System.err.println("error:::::::"+result);
+
 		if (result.hasErrors()) {
 			System.err.println("バリデーションエラー出すよ");
 			System.err.println(result);
-			return showOrderConfirm(form.getUserId(),model);
-		} 
-		if (Integer.parseInt(form.getPaymentMethod())==2) {
-			Credit credit = new Credit();
-//			credit.setUserId(Integer.parseInt(form.getUserId()));
-//			credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
-//			credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
-			credit.setCardNumber(Integer.parseInt(form.getCardNumber()));
-			credit.setCardExpYear(Integer.parseInt(form.getCardExpYear()));
-			credit.setCardExpMonth(Integer.parseInt(form.getCardExpMonth()));
-			credit.setCardName(form.getCardName());
-			credit.setCardCvv(Integer.parseInt(form.getCardCvv()));
-
-			ReceiveCredit receiveCredit = new ReceiveCredit();
-			Order order = orderService.registerOrder(form);
-			System.out.println("orderControllerの中身"+order);
-			model.addAttribute("order", order);
-			checkService.service(credit, receiveCredit);
-			
-			// クレジットカード情報がtrueなら注文完了画面にリダイレクト.
-			if (checkService.service(credit, receiveCredit) == true) {
-				return "redirect:/finished";
-				
-			// falseだったらエラーを追加して注文確認画面に戻る
-			} else if (checkService.service(credit, receiveCredit) == false) {
-				result.rejectValue("error", null, "クレジットカード情報が不正です");
-				return showOrderConfirm(form.getUserId(),model);
-			}
+			return showOrderConfirm(form.getUserId(), model);
 		}
+		
+//		if (Integer.parseInt(form.getPaymentMethod()) == 2) {
+//			Credit credit = new Credit();
+////			credit.setUserId(Integer.parseInt(form.getUserId()));
+////			credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
+////			credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
+//			credit.setCardNumber(form.getCardNumber());
+//			credit.setCardExpYear(form.getCardExpYear());
+//			credit.setCardExpMonth(form.getCardExpMonth());
+//			credit.setCardName(form.getCardName());
+//			credit.setCardCvv(form.getCardCvv());
+//
+//			ReceiveCredit receiveCredit = new ReceiveCredit();
+//			Order order = orderService.registerOrder(form);
+//			System.out.println("orderControllerの中身" + order);
+//			model.addAttribute("order", order);
+//			checkService.service(credit, receiveCredit);
+//
+//			// クレジットカード情報がtrueなら注文完了画面にリダイレクト.
+//			if (checkService.service(credit, receiveCredit) == true) {
+//				return "redirect:/finished";
+//
+//				// falseだったらエラーを追加して注文確認画面に戻る
+//			} else if (checkService.service(credit, receiveCredit) == false) {
+//				result.rejectValue("error", null, "クレジットカード情報が不正です");
+//				return showOrderConfirm(form.getUserId(), model);
+//			}
+//		}
 		Order order = orderService.registerOrder(form);
 		model.addAttribute("order", order);
 		return "redirect:/finished";
 	}
+	
 }

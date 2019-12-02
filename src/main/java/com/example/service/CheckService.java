@@ -27,11 +27,11 @@ public class CheckService {
 //		credit.setUserId(Integer.parseInt(form.getUserId()));
 //		credit.setOrderNumber(Integer.parseInt(form.getOrderNumber()));
 //		credit.setOrderAmount(Integer.parseInt(form.getOrderAmount()));
-		credit.setCardNumber(Integer.parseInt(form.getCardNumber()));
-		credit.setCardExpYear(Integer.parseInt(form.getCardExpYear()));
-		credit.setCardExpMonth(Integer.parseInt(form.getCardExpMonth()));
+		credit.setCardNumber(form.getCardNumber());
+		credit.setCardExpYear(form.getCardExpYear());
+		credit.setCardExpMonth(form.getCardExpMonth());
 		credit.setCardName(form.getCardName());
-		credit.setCardCvv(Integer.parseInt(form.getCardCvv()));
+		credit.setCardCvv(form.getCardCvv());
 		
 		return credit;
 		
@@ -39,7 +39,7 @@ public class CheckService {
 		
 	}
 	
-	private static final String URL ="http://192.168.56.103:8080/sample-credit-card-web-api/credit-card/payment";
+	private static final String URL ="http://192.168.56.105:8080/sample-credit-card-web-api/credit-card/payment";
 	
 	public boolean service(Credit credit,ReceiveCredit receiveCredit) {
 		

@@ -355,8 +355,8 @@ $(function() {
 									<div class="text-center">
 									<div class="row">
 										<div class="col-sm-12">
-										<div th:errors="*{cardNumber}" style="color:red">エラーメッセージ</div>
-												<input id="inputCardNumber" type="text" class="form-control" placeholder="クレジットカード番号を16桁で入力してください" name="cardNumber" th:field="*{cardName}">
+										<div th:errors="*{cardNumber}" style="color:red"  th:text="${error}">エラーメッセージ</div>
+												<input id="inputCardNumber" type="text" class="form-control" placeholder="クレジットカード番号を16桁で入力してください" name="cardNumber" th:field="*{cardNumber}">
 									</div>
 										</div>
 									</div>
@@ -384,7 +384,6 @@ $(function() {
 									           
 									           </select>
 									           <select name="cardExpYear">
-									           <option value="2018">2018
 									           <option value="2019">2019
 									           <option value="2020">2020
 									           <option value="2021">2021
@@ -400,7 +399,7 @@ $(function() {
 									   </td>
 									   <td>
 									<div class="text-center">
-										<div th:errors="*{cardName}" style="color:red">エラーメッセージ</div>
+										<div th:errors="*{cardName}" style="color:red" th:text="${error1}">エラーメッセージ</div>
 									   		<input type="text" class="form-control" placeholder="カードに記載の名義を英字で入力してください" name="cardName" th:field="*{cardName}">
 				</div>
 									   </td>									   
@@ -413,7 +412,7 @@ $(function() {
 									   		</td>
 									  		 <td>
 									<div class="text-center">
-										<div th:errors="*{cardCvv}" style="color:red">エラーメッセージ</div>
+										<div th:errors="*{cardCvv}" style="color:red" th:text="${error2}">エラーメッセージ</div>
 										 		<input type="text" class="form-control" placeholder="カード裏面に記載のセキュリティコードを入力してください"name="cardCvv" th:field="*{cardCvv}">
 				</div>
 									   		</td>
@@ -423,8 +422,12 @@ $(function() {
 					
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-xs-offset-4 col-xs-4">
 					<div class="form-group">
 						<input id="orderbutton" class="form-control btn btn-warning btn-block" type="submit" value="この内容で注文する">				  
+					</div>
+					</div>
 					</div>
 		</form>
 	
