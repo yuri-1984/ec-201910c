@@ -33,7 +33,10 @@ public class ToLoginPageController {
 	 */
 	@RequestMapping("/toLoginPage")
 	public String toLoginPage() throws ServletException, IOException {
-		session.setAttribute("referer", request.getHeader("REFERER"));
+		System.out.println("urlpassは" + request.getHeader("REFERER"));
+		if(!(request.getHeader("REFERER").equals("http://localhost:8080/showRegisterUserPage"))) {
+			session.setAttribute("referer", request.getHeader("REFERER"));
+		}
 		System.out.println(request.getHeader("REFERER"));
 		return "login";
 	}
