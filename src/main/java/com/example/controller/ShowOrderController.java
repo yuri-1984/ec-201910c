@@ -42,7 +42,7 @@ public class ShowOrderController {
 	}
 	@RequestMapping("/deleteOrder2")
 	public String deleteOrder2(Integer orderItemId) {
-		showOrderService.deleteByOrderItemId(orderItemId);
+//		showOrderService.deleteByOrderItemId(orderItemId);
 
 		return "redirect:/showorder";
 
