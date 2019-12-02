@@ -46,7 +46,7 @@ $('#price_M').number(true);
 						<span sec:authorize="hasRole('ROLE_USER')">
 						<a th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;</span>
 						<span sec:authorize="isAnonymous()">
-						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;</span>
+						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン <img th:src="@{/img_curry/img_src/user.png}"></a>&nbsp;&nbsp;</span>
 						<span sec:authorize="hasRole('ROLE_USER')">
 						<a href="list.html" th:href="@{/logout}" class="navbar-link">ログアウト</a></span>
 					</p>

@@ -8,17 +8,17 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>カレーデリバリーならラクラクカリー</title>
-<link th:href="@{/css/item_list.css}" rel="stylesheet">
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
-<link href="../static/css/piza.css" th:href="@{/css/piza.css}" rel="stylesheet">
-<link href="../static/css/piza.css" th:href="@{/css/item_list.css}" rel="stylesheet">
+<link th:href="@{/css/piza.css}" rel="stylesheet">
+<link th:href="@{/css/swiper.css}" rel="stylesheet">
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- <script th:src="@{/js/item_list.js}"></script> -->
+
+<script src="/js/swiper.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
@@ -28,7 +28,16 @@ $( function() {
   $( "#findName" ).autocomplete({
     source: availableTags
   });
-} );
+  
+ var mySwiper = new Swiper ('.swiper-container', {
+		effect: "flip",
+		loop: true,
+		pagination: '.swiper-pagination',
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev'
+	}); 
+	
+});
 </script>
 
 </head>
@@ -71,6 +80,7 @@ $( function() {
 		</nav>
 		</header>
 		
+
 <div class="wrapper">
 
 	
@@ -80,9 +90,9 @@ $( function() {
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
-        <div class="swiper-slide"><img th:src="@{/img_curry/1.jpg}"></div>
-        <div class="swiper-slide"><img th:src="@{/img_curry/10.jpg}"></div>
-        <div class="swiper-slide"><img th:src="@{/img_curry/12.jpg}"></div>
+        <div style="text-align:center;" class="swiper-slide"><img th:src="@{/img_curry/sample2.jpg}"></div>
+        <div style="text-align:center;" class="swiper-slide"><img th:src="@{/img_curry/sample1.jpg}"></div>
+        <div style="text-align:center;" class="swiper-slide"><img th:src="@{/img_curry/sample3.jpg}"></div>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
