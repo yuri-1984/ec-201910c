@@ -71,8 +71,8 @@ public class OrderController {
 	public String order(
 			@Validated 
 			OrderForm form,
-			@AuthenticationPrincipal LoginUser loginUser,
 			BindingResult result,
+			@AuthenticationPrincipal LoginUser loginUser,
 			Model model) {
 		System.err.println("OrderControllerの中身"+form);
 		if (result.hasErrors()) {
