@@ -70,8 +70,11 @@ public class LoginController {
 			System.out.println("処理されたのは"+ 1);
 			
 			if(loginOrder == null) {
+				System.out.println(1);
+				orderRepository.loginUpdate(loginId, sessionId);
+				System.out.println(2);
+				System.out.println(2);
 				
-				orderRepository.loginUpdate(loginId, sessionId);;
 			}else {
 				//order_itemsのorder
 				System.out.println(sessionId + "こここAAA");
@@ -92,9 +95,11 @@ public class LoginController {
 		String urlPass = (url).substring(21);
 		System.out.println(url);
 		System.out.println(urlPass);
- 		
+		
 		if(urlPass.equals("/showRegisterUserPage")) {
 			System.out.println(1);
+			return "forward:/";
+		}else if(urlPass.equals("/registerUser")) {
 			return "forward:/";
 		}else if(urlPass.equals("/toLoginPage")) {
 			return "forward:/";
