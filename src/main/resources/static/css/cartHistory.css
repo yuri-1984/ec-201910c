@@ -1,23 +1,6 @@
 @charset "UTF-8";
-table{
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
+
+
+.show-item:hover {
+background-color: #FFCC99 !important; /* マウスオーバー時の行の背景色 */
 }
-
-table tr{
-  border-bottom: solid 1px #eee;
-  cursor: pointer;
-}
-
-table tr:hover{
-  background-color: #d4f0fd;
-}
-
-table th,table td{
-  text-align: center;
-  width: 25%;
-  padding: 15px 0;
-}
-
-
