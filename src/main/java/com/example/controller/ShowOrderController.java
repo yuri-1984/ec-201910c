@@ -38,6 +38,9 @@ public class ShowOrderController {
 	@RequestMapping("/showorder")
 	public String showOrder(OrderForm form, Model model,@AuthenticationPrincipal LoginUser loginUser) {
 		Order order = showOrderService.showOrder(loginUser.getUser().getId());
+		if (order == null || order.getOrderItemList().size() == 0) {
+			return "redirect:/showCartList";
+		}
 
 		model.addAttribute("order", order);
 

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Credit;
 import com.example.domain.LoginUser;
 import com.example.domain.Order;
-import com.example.domain.ReceiveCredit;
 import com.example.form.OrderForm;
 import com.example.service.CheckService;
 import com.example.service.OrderService;
@@ -76,12 +75,7 @@ public class OrderController {
 	 * @return 注文完了画面.
 	 */
 	@RequestMapping("/order")
-	public String order(
-			@Validated 
-			OrderForm form,
-			BindingResult result,
-			@AuthenticationPrincipal LoginUser loginUser,
-			Model model) {
+	public String order(@Validated OrderForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser,Model model) {
 		System.err.println("OrderControllerの中身" + form);
 		if (form.getPaymentMethod().equals("2")) {
 
@@ -178,6 +172,6 @@ public class OrderController {
 		Order order = orderService.registerOrder(form);
 		model.addAttribute("order", order);
 		return "redirect:/finished";
-		
+
 	}
 }

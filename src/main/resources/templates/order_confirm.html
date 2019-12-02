@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
@@ -24,6 +24,7 @@ $(function() {
 });
 </script>
 </head>
+
 <body>
 <header>
 		<nav class="navbar navbar-default">
@@ -237,7 +238,7 @@ $(function() {
 								<td>
 								   <div th:errors="*{destinationTel}" style="color:red">エラーメッセージ</div>
 									<input type="text" class="form-control"
-									placeholder="半角数字のみで電話番号を入力してください" name="destinationTel" th:field="*{destinationTel}">
+									placeholder="半角数字のみで電話番号を入力してください" name="destinationTel" th:field="*{destinationTel}" pattern="^[0-9]*$">
 								</td>
 							</tr>
 							<tr>
@@ -433,6 +434,7 @@ $(function() {
 					</div>
 		</form>
 	
+	</div>
 	
 	<footer>
 		<a style="color:white;" th:href="@{https://www.rakus-partners.co.jp/}">運営会社</a>｜ 
@@ -442,7 +444,6 @@ $(function() {
 		<hr style="border-style:white;"> 
 		Copyright © Rakuraku-Curry LTD. All Rights Reserved.
 		</footer>
-	</div>
 	</div>
 	
 	<!-- end container -->
