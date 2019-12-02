@@ -46,7 +46,7 @@ public class LoginController {
 	@Autowired
 	private HttpServletResponse response;
 
-	@RequestMapping("/login")
+	@RequestMapping("/loginAfterSuccess")
 	public String login(@AuthenticationPrincipal LoginUser loginUser, Model model) throws ServletException, IOException {
 		Integer loginId = loginUser.getUser().getId();
 		String email = loginUser.getUser().getEmail();
@@ -98,6 +98,8 @@ public class LoginController {
 			return "forward:/";
 		}else if(urlPass.equals("/toLoginPage")) {
 			return "forward:/";
+		}else if(urlPass.equals("/showCartList")) {
+			return "forward:/showOrderConfirm";
 		}else {
 			System.out.println(2);
 			return "forward:" + urlPass;

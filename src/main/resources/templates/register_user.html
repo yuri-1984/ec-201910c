@@ -104,6 +104,10 @@ $(function() {
 								<input type="password" id="inputConfirmationPassword" class="form-control"
 									placeholder="パスワードを再度入力してください" name="confirmationPassword" th:field="*{confirmationPassword}">
 							</div>
+							<span style="font-size:12px;">
+							<a th:href="@{/privacy/handle}">『個人情報の取り扱いについて』</a>をご確認いただき<br>
+							個人情報の取り扱いに同意いただけましたらご登録をお願いします
+							</span><br><br>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary">登録</button>
 								<button type="reset" class="btn btn-primary">クリア</button>
@@ -115,9 +119,14 @@ $(function() {
 		</div>
 
 	</div>
-	<footer>
-	Copyright © Rakuraku-Curry LTD. All Rights Reserved.
-	</footer>
+		<footer>
+		<a style="color:white;" th:href="@{https://www.rakus-partners.co.jp/}">運営会社</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/handle}">個人情報の取り扱いについて</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/}">個人情報保護方針</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/security}">情報セキュリティ基本方針</a><br>
+		<hr style="border-style:white;"> 
+		Copyright © Rakuraku-Curry LTD. All Rights Reserved.
+		</footer>
 	</div>
 	<!-- end container -->
 	<script

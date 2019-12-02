@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+<head>
+<link rel="icon" type="image/x-icon"
+	th:href="@{/img_curry/favicon.ico}">
+<meta charset="UTF-8">
+<title>個人情報保護方針</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+<link th:href="@{/css/piza.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" th:href="@{/}"> <!-- 企業ロゴ --> <img
+						alt="main log" th:src="@{/img_curry/header_logo.png}" height="35">
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<p class="navbar-text navbar-right">
+						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a th:href="@{showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						<a href="item_list.html" class="navbar-link">ログアウト</a>
+					</p>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+	</header>
+
+	<div class="wrapper">
+		<div class="container">
+
+
+			<!-- table -->
+			<div class="row">
+				<div
+					class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
+					<h3 class="text-center">個人情報保護方針</h3>
+				</div>
+			</div>
+<pre style="border-style:none;background-color: transparent;">
+<h4>基本声明</h4>
+私たちの情報管理の問題によって、お客様に迷惑がかかることが無いように、本基本方針を定め、全社を挙げてこれを遵守いたします。
+株式会社ラクスパートナーズはその人材派遣業の事業活動に、お客様の個人情報を利用させていただいており、お預かりしている情報の管理は当然の責務であります。
+
+<h4>コミットメント</h4>
+・当社は、適切に個人情報の取得、利用をいたします。
+・個人情報の利用目的の達成に必要な範囲を超えた個人情報の取扱いを行わないこと及びそのための措置を講じます。
+・個人情報への不正アクセス、個人情報の紛失、破壊、改竄および漏洩などの無いように予防処置を取ります。
+　また、このような事故が発生した際には、適切な是正処置を取ります。
+・個人情報に関する法令、国が定める指針及びその他の規範を遵守いたします。
+・個人情報を適切に管理するための個人情報保護マネジメントシステムを作成し、これを実行し、また継続的に改善いたします。
+・当社に対する苦情、本個人情報保護方針に関するご質問は、『 個人情報の取り扱いについて』をご参照いただき、ご連絡ください。
+
+本基本方針は弊社ホームページに掲載し、公表するとともにお客様のお求めに応じて配布いたします。
+
+2018年3月1日　制定
+2018年8月30日　最終改訂
+株式会社ラクスパートナーズ　代表取締役　 吉田　雅行
+
+</pre>
+
+
+		</div>
+		<footer>
+		<a style="color:white;" th:href="@{https://www.rakus-partners.co.jp/}">運営会社</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/handle}">個人情報の取り扱いについて</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/}">個人情報保護方針</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/security}">情報セキュリティ基本方針</a><br>
+		<hr style="border-style:white;"> 
+		Copyright © Rakuraku-Curry LTD. All Rights Reserved.
+		</footer>
+	</div>
+	<!-- end container -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>
