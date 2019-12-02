@@ -19,7 +19,6 @@ import com.example.service.ShowOrderService;
  *
  */
 @Controller
-@RequestMapping("")
 public class ShowOrderController {
 
 	@Autowired
