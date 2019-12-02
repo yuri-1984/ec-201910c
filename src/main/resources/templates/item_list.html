@@ -3,11 +3,10 @@
 xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<link rel="icon" type="image/x-icon" th:href="@{/img_curry/favicon.ico}">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>カレーデリバリーならラクラクカリー</title>
+<title>ピザ屋のネット注文</title>
 <link rel="icon" href="../static/img_curry/favicon.ico">
 <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet">
 <link href="../static/css/piza.css" th:href="@{/css/piza.css}" rel="stylesheet">
@@ -30,7 +29,7 @@ $( function() {
 
 </head>
 <body>
-<header>
+	<div class="container">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -51,8 +50,6 @@ $( function() {
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-			<span sec:authorize="hasRole('ROLE_USER')" style="color:white;padding:0 0 0 15px;">
-		<span sec:authentication="principal.user.name">山田</span>さんこんにちは！　</span>
 						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<span sec:authorize="hasRole('ROLE_USER')">
 						<a th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;</span>
@@ -64,12 +61,13 @@ $( function() {
 				<!-- /.navbar-collapse -->
 			</div>
 			<!-- /.container-fluid -->
+			<div sec:authorize="hasRole('ROLE_USER')" style="float : right">
+		<span sec:authentication="principal.user.name">山田</span>さんこんにちは！</div>
 		</nav>
-		</header>
-		
-<div class="wrapper">		
-	<div class="container">
+
 		<!-- search form -->
+		<div sec:authorize="hasRole('ROLE_USER')" style="float : right">
+		<span sec:authentication="principal.user.name">山田</span>さんこんにちは！</div>
 		<div class="row">
 			<div
 				class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
@@ -128,10 +126,6 @@ $( function() {
 				
 			</div>
 		</div>
-	</div>
-	<footer>
-	Copyright © Rakuraku-Curry LTD. All Rights Reserved.
-	</footer>
 	</div>
 	<!-- end container -->
 	
