@@ -50,10 +50,19 @@ public class OrderController {
 	 * @return 注文確認画面
 	 */
 	@RequestMapping("/showOrderConfirm")
-	public String showOrderConfirm(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+	public String showOrderConfirm(OrderForm form,@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		// カートの中身を表示する
 		int userId = loginUser.getUser().getId();
 		Order order = shoppingCartService.showCartList(userId);
+		form.setDestinationName(loginUser.getUser().getName());
+		form.setDestinationEmail(loginUser.getUser().getEmail());
+		form.setDestinationZipcode(loginUser.getUser().getZipcode());
+		form.setDestinationAddress(loginUser.getUser().getAddress());
+		form.setDestinationTel(loginUser.getUser().getTelephone());
+		
+		
+		model.addAttribute("orderForm", form);
+
 		model.addAttribute("order", order);
 		return "order_confirm";
 	}
@@ -120,7 +129,7 @@ public class OrderController {
 			if (result.hasErrors()) {
 				System.err.println("バリデーションエラー出すよ");
 				System.err.println(result);
-				return showOrderConfirm(loginUser, model);
+				return showOrderConfirm(form,loginUser, model);
 			}
 			if (form.getPaymentMethod().equals(2)) {
 				Credit credit = new Credit();
@@ -165,7 +174,7 @@ public class OrderController {
 					// falseだったらエラーを追加して注文確認画面に戻る
 				} else if (checkService.service(credit) == false) {
 					result.rejectValue("error", null, "クレジットカード情報が不正です");
-					return showOrderConfirm(loginUser, model);
+					return showOrderConfirm(form,loginUser, model);
 				}
 			}
 		}

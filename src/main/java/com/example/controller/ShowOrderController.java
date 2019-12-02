@@ -41,7 +41,14 @@ public class ShowOrderController {
 		if (order == null || order.getOrderItemList().size() == 0) {
 			return "redirect:/showCartList";
 		}
-
+		form.setDestinationName(loginUser.getUser().getName());
+		form.setDestinationEmail(loginUser.getUser().getEmail());
+		form.setDestinationZipcode(loginUser.getUser().getZipcode());
+		form.setDestinationAddress(loginUser.getUser().getAddress());
+		form.setDestinationTel(loginUser.getUser().getTelephone());
+		
+		
+		model.addAttribute("orderForm", form);
 		model.addAttribute("order", order);
 
 		return "order_confirm";
