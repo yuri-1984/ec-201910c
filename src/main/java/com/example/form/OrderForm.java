@@ -19,10 +19,10 @@ public class OrderForm {
 	/**	合計金額 */
 	private String totalPrice;
 	/**	注文者名 */
-	@NotBlank(message="*入力は必須です")
+	@NotBlank(message="*お名前を入力して下さい")
 	private String destinationName;
 	/**	メールアドレス */
-	@NotBlank(message="*入力は必須です")
+	@NotBlank(message="*メールアドレスを入力して下さい")
 	@Email(message="*メールアドレスの形式が不正です")
 	private String destinationEmail;
 	/**	郵便番号 */
@@ -30,11 +30,11 @@ public class OrderForm {
 	@Pattern(regexp = "^\\d{3}\\-?\\d{4}$",message="*郵便番号の形式が不正です")
 	private String destinationZipcode;
 	/**	住所 */
-	@NotBlank(message="*入力は必須です")
+	@NotBlank(message="*住所を入力して下さい")
 	private String destinationAddress;
 	/**	電話番号 */
 	@Pattern(regexp = "^[0-9]*$",message="*半角数字で入力してください")
-	@NotBlank(message="*入力は必須です")
+	@NotBlank(message="*電話番号を入力して下さい")
 	private String destinationTel;
 	/**	配達日 */
 	@NotBlank(message="配達日時を入力してください")
