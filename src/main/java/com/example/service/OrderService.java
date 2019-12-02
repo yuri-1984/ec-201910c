@@ -53,7 +53,8 @@ public class OrderService {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date parsedDate = new Date();
 		try {
-			parsedDate = format.parse("dane");
+			parsedDate = format.parse(deliveryDateTime);
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

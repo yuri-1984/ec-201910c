@@ -75,7 +75,8 @@ public class OrderController {
 	 * @return 注文完了画面.
 	 */
 	@RequestMapping("/order")
-	public String order(@Validated OrderForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser,Model model) {
+	public String order(@Validated OrderForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser,
+			Model model) {
 		System.err.println("OrderControllerの中身" + form);
 		if (form.getPaymentMethod().equals("2")) {
 
@@ -168,6 +169,13 @@ public class OrderController {
 					return showOrderConfirm(loginUser, model);
 				}
 			}
+		} else {
+			if (result.hasErrors()) {
+				System.err.println("バリデーションエラー出すよ");
+				System.err.println(result);
+				return showOrderConfirm(loginUser, model);
+			}
+
 		}
 		Order order = orderService.registerOrder(form);
 		model.addAttribute("order", order);
