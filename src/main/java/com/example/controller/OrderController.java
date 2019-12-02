@@ -182,7 +182,7 @@ public class OrderController {
 			if (result.hasErrors()) {
 				System.err.println("バリデーションエラー出すよ");
 				System.err.println(result);
-				return showOrderConfirm(loginUser, model);
+				return showOrderConfirm(form,loginUser,  model);
 			}
 
 		}
