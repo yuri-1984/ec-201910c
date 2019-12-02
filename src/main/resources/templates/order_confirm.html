@@ -190,7 +190,7 @@ $(function() {
 								<td>
 								   <div th:errors="*{destinationName}" style="color:red">エラーメッセージ</div>
 									<input type="text" name="destinationName"  class="form-control"
-									placeholder="氏名を入力してください" th:field="*{destinationName}">
+									placeholder="氏名を入力してください" th:field="*{destinationName}" >
 								</td>
 							</tr>
 							<tr>
@@ -202,7 +202,7 @@ $(function() {
 								<td>
 								  <div th:errors="*{destinationEmail}" style="color:red">エラーメッセージ</div>
 									<input type="text" name="destinationEmail" class="form-control"
-									placeholder="メールアドレスを入力してください" th:field="*{destinationEmail}">
+									placeholder="メールアドレスを入力してください" th:field="*{destinationEmail}" >
 								</td>
 							</tr>
 							<tr>
@@ -214,7 +214,7 @@ $(function() {
 								<td>
 								   <div th:errors="*{destinationZipcode}" style="color:red">エラーメッセージ</div>
 								　　<input type="text" id="inputZipcode" class="form-control" placeholder="半角数字のみで郵便番号を入力してください" name="destinationZipcode" th:field="*{destinationZipcode}">
-								　　<input id="address-search" class="btn btn-primary" style="margin:10px 0px 0px 0px;" type="button" value="住所検索">
+								　　<input id="address-search" class="btn btn-primary" style="margin:10px 0px 0px 0px;" type="button" value="住所検索" >
 								</td>
 								
 							</tr>
@@ -226,7 +226,7 @@ $(function() {
 								</td>
 								<td>
 								   <div th:errors="*{destinationAddress}" style="color:red">エラーメッセージ</div>
-									<input type="text" class="form-control" placeholder="住所を入力してください" name="destinationAddress" th:field="*{destinationAddress}" id="inputAddress">
+									<input type="text" class="form-control" placeholder="住所を入力してください" name="destinationAddress" th:field="*{destinationAddress}" id="inputAddress" >
 								</td>
 							</tr>
 							<tr>
@@ -238,7 +238,7 @@ $(function() {
 								<td>
 								   <div th:errors="*{destinationTel}" style="color:red">エラーメッセージ</div>
 									<input type="text" class="form-control"
-									placeholder="半角数字のみで電話番号を入力してください" name="destinationTel" th:field="*{destinationTel}" pattern="^[0-9]*$">
+									placeholder="半角数字のみで電話番号を入力してください" name="destinationTel" th:field="*{destinationTel}" >
 								</td>
 							</tr>
 							<tr>
@@ -434,7 +434,6 @@ $(function() {
 					</div>
 		</form>
 	
-	</div>
 	
 	<footer>
 		<a style="color:white;" th:href="@{https://www.rakus-partners.co.jp/}">運営会社</a>｜ 
@@ -444,6 +443,7 @@ $(function() {
 		<hr style="border-style:white;"> 
 		Copyright © Rakuraku-Curry LTD. All Rights Reserved.
 		</footer>
+	</div>
 	</div>
 	
 	<!-- end container -->
