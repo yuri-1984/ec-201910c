@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+<head>
+<link rel="icon" type="image/x-icon"
+	th:href="@{/img_curry/favicon.ico}">
+<meta charset="UTF-8">
+<title>情報セキュリティ基本方針</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+<link th:href="@{/css/piza.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" th:href="@{/}"> <!-- 企業ロゴ --> <img
+						alt="main log" th:src="@{/img_curry/header_logo.png}" height="35">
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<p class="navbar-text navbar-right">
+						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a th:href="@{showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+						<a th:href="@{/toLoginPage}" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						<a href="item_list.html" class="navbar-link">ログアウト</a>
+					</p>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+	</header>
+
+	<div class="wrapper">
+		<div class="container">
+
+
+			<!-- table -->
+			<div class="row">
+				<div
+					class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
+					<h3 class="text-center">情報セキュリティ基本方針</h3>
+				</div>
+			</div>
+<pre style="border-style:none;background-color: transparent;">
+<h4>基本声明</h4>
+株式会社ラクスパートナーズ（以下、「当社」）は、お客様にセキュリティが確保された安全なサービスを提供することで、社会に貢献してまいります。
+当社は、お預かりしたお客様の情報をはじめ保有する情報資産を、漏洩・改ざん・破壊・盗難などのあらゆる脅威から守ることを極めて重要な責務として認識しています。
+そのために、情報セキュリティ基本方針を定めました。
+当社は、全役員・全社員がこの方針を理解し、遵守することを宣言します。
+
+<h4>情報セキュリティ基本方針</h4>
+1.当社は、セキュリティを事業活動の最重要事項のひとつとし、セキュリティの確保・継続的改善に努めます。
+2.当社は、取り扱う情報資産の「機密性」、「完全性」、「可用性」を保つために、最適なセキュリティ対策を行います。
+3.当社は、セキュリティ関連の法令および規制(ガイドライン)、その他の規範および契約等の要求事項を遵守します。
+4.当社が取り扱う情報資産に関わる全ての者は、プロフェッショナルとして、セキュリティレベルの向上に努めます。
+5.セキュリティリスクを評価する基準を定め、必要な対策を施し、運用評価を継続的に実施することにより、新たなリスクにも対応します。
+
+</pre>
+
+
+		</div>
+		<footer>
+		<a style="color:white;" th:href="@{https://www.rakus-partners.co.jp/}">運営会社</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/handle}">個人情報の取り扱いについて</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/}">個人情報保護方針</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/security}">情報セキュリティ基本方針</a><br>
+		<hr style="border-style:white;"> 
+		Copyright © Rakuraku-Curry LTD. All Rights Reserved.
+		</footer>
+	</div>
+	<!-- end container -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>

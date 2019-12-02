@@ -52,7 +52,7 @@ $( function() {
 					<p class="navbar-text navbar-right">
 			<span sec:authorize="hasRole('ROLE_USER')" style="color:white;padding:0 0 0 15px;">
 		<span sec:authentication="principal.user.name">山田</span>さんこんにちは！　</span>
-						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a th:href="@{/showCartList}" class="navbar-link">ショッピングカート <img th:src="@{/img_curry/img_src/cart.png}"></a>&nbsp;&nbsp;
 						<span sec:authorize="hasRole('ROLE_USER')">
 						<a th:href="@{/showOrderHistory}" class="navbar-link">注文履歴</a>&nbsp;&nbsp;</span>
 						<span sec:authorize="isAnonymous()">
@@ -129,8 +129,13 @@ $( function() {
 		</div>
 	</div>
 	<footer>
-	Copyright © Rakuraku-Curry LTD. All Rights Reserved.
-	</footer>
+		<a style="color:white;" th:href="@{https://www.rakus-partners.co.jp/}">運営会社</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/handle}">個人情報の取り扱いについて</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/}">個人情報保護方針</a>｜ 
+		<a style="color:white;" th:href="@{/privacy/security}">情報セキュリティ基本方針</a><br>
+		<hr style="border-style:white;"> 
+		Copyright © Rakuraku-Curry LTD. All Rights Reserved.
+		</footer>
 	</div>
 	<!-- end container -->
 	
