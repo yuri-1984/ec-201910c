@@ -29,5 +29,9 @@ public class CreditController {
 		    return "order_finished";
 		
 	}
+	
+	public String test() {
+		return null;
+	}
 
 }
