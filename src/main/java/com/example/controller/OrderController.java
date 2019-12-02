@@ -70,8 +70,10 @@ public class OrderController {
 			OrderForm form,
 			BindingResult result,
 			Model model) {
+		System.err.println("OrderControllerの中身"+form);
 		if (result.hasErrors()) {
 			System.err.println("バリデーションエラー出すよ");
+			System.err.println(result);
 			return showOrderConfirm(form.getUserId(),model);
 		} 
 		if (Integer.parseInt(form.getPaymentMethod())==2) {

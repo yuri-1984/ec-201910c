@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.LoginUser;
 import com.example.domain.Order;
 import com.example.form.OrderForm;
+import com.example.service.ShoppingCartService;
 import com.example.service.ShowOrderService;
 
 /**
@@ -23,6 +24,9 @@ public class ShowOrderController {
 
 	@Autowired
 	private ShowOrderService showOrderService;
+	
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 
 	/**
 	 * 注文内容確認画面を表示する.
@@ -42,7 +46,7 @@ public class ShowOrderController {
 	}
 	@RequestMapping("/deleteOrder2")
 	public String deleteOrder2(Integer orderItemId) {
-		showOrderService.deleteByOrderItemId(orderItemId);
+		shoppingCartService.deleteByOrderItemId(orderItemId);
 
 		return "redirect:/showorder";
 

@@ -46,17 +46,14 @@ public class OrderForm {
 	/**	クレジットカード番号 */
 	@Pattern(regexp="(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47]{13}|(?:2131|1800|35[0-9]{3})[0-9]{11})",
 			message="クレジットカード番号の形式が不正です")
-	@NotBlank(message="*入力は必須です")
 	private String cardNumber;
 	/**	有効期限年 */
 	private String cardExpYear;
 	/**	有効期限月 */
 	private String cardExpMonth;
 	/**	カード名義 */
-	@Pattern(regexp="^[A-Z]*$",message="形式が不正です")
 	private String cardName;
 	/**	セキュリティコード */
-	@Pattern(regexp="^\\\\d{3}$",message="形式が不正です")
 	private String cardCvv;
 	
 	public String getId() {
