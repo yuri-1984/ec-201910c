@@ -44,8 +44,6 @@ public class OrderForm {
 	/**	決済方法 */
 	private String paymentMethod;
 	/**	クレジットカード番号 */
-	@Pattern(regexp="(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47]{13}|(?:2131|1800|35[0-9]{3})[0-9]{11})",
-			message="クレジットカード番号の形式が不正です")
 	private String cardNumber;
 	/**	有効期限年 */
 	private String cardExpYear;
