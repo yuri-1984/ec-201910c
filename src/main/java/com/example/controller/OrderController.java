@@ -76,7 +76,11 @@ public class OrderController {
 	 * @return 注文完了画面.
 	 */
 	@RequestMapping("/order")
-	public String order(@Validated OrderForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser,
+	public String order(
+			@Validated 
+			OrderForm form,
+			BindingResult result,
+			@AuthenticationPrincipal LoginUser loginUser,
 			Model model) {
 		System.err.println("OrderControllerの中身" + form);
 		if (form.getPaymentMethod().equals("2")) {
