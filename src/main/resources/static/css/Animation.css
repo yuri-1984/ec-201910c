@@ -41,7 +41,7 @@ body {
   width: 100%;
   position: absolute;
   top: 50px; 
-  color: orange;
+  color: #FF4500;
   letter-spacing: -2px;
   text-shadow: 4px 0 10px hsla(0, 0%, 0%, .13);
 }

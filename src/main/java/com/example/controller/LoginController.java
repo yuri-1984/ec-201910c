@@ -70,6 +70,7 @@ public class LoginController {
 			System.out.println("処理されたのは"+ 1);
 			
 			if(loginOrder == null) {
+				//新規登録後のログインの際、sessionIdをログインIdに変更
 				System.out.println(1);
 				orderRepository.loginUpdate(loginId, sessionId);
 				System.out.println(2);
